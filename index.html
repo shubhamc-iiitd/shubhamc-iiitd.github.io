@@ -3,45 +3,146 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Hello Bulma!</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <title>Shubham Choudhury - Portfolio</title>
+    <link rel="stylesheet" href="css/bulma.css">
+	<script src="js/bulma.js"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-	<script>
-	$( function() {
-	  $( "#tabs" ).tabs();
-	} );
-	</script>
+	<style>
+	.tabs-content li {
+    display: none;
+    list-style: none;
+	}
+
+	.tabs-content li.is-active {
+	display: block;
+	}
+	body {
+	background-color: #FFDEE9;
+	background-image: linear-gradient(0deg, #FFDEE9 0%, #B5FFFC 100%);
+
+	}
+	html, body { 
+	height: 100%; 
+	}
+	</style>
 
   </head>
   <body>
+	
 	<div class="container">
 	<div class="columns">
-		<div class="column is-one-quarter">is-one-quarter</div>
-		<div class="column">
-			<div class="tabs">
-				<ul>
-				  <li><a>Home</a></li>
-				  <li class="is-active" data-target="edu"><a>Education</a></li>
-				  <li><a>Publications</a></li>
-				  <li><a>About me</a></li>
-				</ul>
-			</div>
-				<div class="px-2" id="tab-content">
-					<div id="edu">
-						<p>Bachelors - IISER Kolkata</p>
-					</div>
+		<div class="column is-one-quarter">
+			<br>
+			<br>
+			<div class="card">
+				<div class="card-image">
+				  <figure class="image is-square">
+					<img src="images/shubham_img.jpeg" alt="Placeholder image">
+				  </figure>
 				</div>
-			 
+				<div class="card-content">
+				  <div class="media">
+					<div class="media-content">
+					  <p class="title is-4">Shubham Choudhury</p>
+					  <p class="subtitle is-6">Aspiring computational biologist</p>
+					</div>
+				  </div>
+			  
+				  <div class="content">
+					Doctoral candidate at Indraprastha Institute of Information Technology, New Delhi.					<br>
+				  </div>
+				</div>
+			  </div>
+		</div>
+		<div class="column">
+			<div class="tabs-wrapper">
+				<div class="tabs is-right is-medium is-boxed">
+					<ul>
+						<li class="is-active">
+							<a>Home</a>
+						</li>
+						<li>
+							<a>Education</a>
+						</li>
+						<li>
+							<a>Publications</a>
+						</li>
+						<li>
+							<a>About me</a>
+						</li>
+					</ul>
+				</div>
+			
+				<div class="tabs-content">
+					<ul>
+						<li class="is-active">
+							<h1>TBA</h1>
+						</li>
+						<li>
+							<div class="box">
+							<table class="table is-hoverable is-fullwidth">
+									<tbody>
+									  <tr>
+										<td><strong>St. Vincents’ Convent School, Berhampur</strong><br>Council For The Indian School Certificate Examinations, New Delhi</td>
+										<td>July 1999 - June 2011<br>Percentage : 93.5/100</td>
+									  </tr>
+									  <tr>
+										<td><strong>Khallikote Junior College, Berhampur</strong> <br>The Council of Higher Secondary Education, Odisha</td>
+										<td>August 2011 - June 2013<br>Percentage : 80.33/100</td>
+									  </tr>
+									  <tr>
+										<td><strong>Indian Institute of Science Education and Research, Kolkata </strong><br>BS-MS Dual Degree<br>Department of Biological Sciences</td>
+										<td>July 2014 - June 2019<br>Overall CGPA: 7.11/10</td>
+									  </tr>
+									  <tr>
+										<td><strong>Indraprastha Institute of Information Technology, New Delhi</strong><br>Doctoral Student<br>Department of Computational Biology</td>
+										<td>Jan 2021 - Present</td>
+									  </tr>
+									</tbody>
+									</table>
+							</div>
+						</li>
+						<li>
+							<div class="box">
+								<table class="table is-hoverable is-fullwidth">
+									<tbody>
+									  <tr>
+										<td><strong>Dhall, A., Patiyal, S., Choudhury, S., Jain, S., Narang, K., &amp; Raghava, G. P. S. (2022).</strong> Prediction, scanning and designing of TNF-α inducing epitopes for human and mouse. BioRxiv. https://doi.org/10.1101/2022.08.02.502430%0A</td>
+									  </tr>
+									  <tr>
+										<td><strong>Kumar, N., Patiyal, S., Choudhury, S., Tomer, R., Dhall, A., &amp; Raghava, G. P. S. (2022).</strong> Identification of Antigenic Regions Responsible for inducing Type 1 diabetes mellitus. BioRxiv. https://doi.org/10.1101/2022.07.20.500753</td>
+									  </tr>
+									  <tr>
+										<td><strong>Aggarwal, S., Dhall, A., Patiyal, S., Choudhury, S., Arora, A., &amp; Raghava, G. P. S. (2022).</strong> An ensemble method for designing phage-based therapy against bacterial infections. BioRxiv, 2022.06.01.494305. https://doi.org/10.1101/2022.06.01.494305</td>
+									  </tr>
+									  <tr>
+										<td><strong>Rajput, A., Thakur, A., Rastogi, A., Choudhury, S., &amp; Kumar, M. (2021).</strong> Computational identification of repurposed drugs against viruses causing epidemics and pandemics via drug-target network analysis. Computers in Biology and Medicine, 136, 104677. https://doi.org/10.1016/j.compbiomed.2021.104677</td>
+									  </tr>
+									  <tr>
+										<td><strong>Gupta, A. K., Khan, M. S., Choudhury, S., Mukhopadhyay, A., Sakshi, Rastogi, A., Thakur, A., Kumari, P., Kaur, M., Shalu, Saini, C., Sapehia, V., Barkha, Patel, P. K., Bhamare, K. T., &amp; Kumar, M. (2020).</strong> CoronaVR: A Computational Resource and Analysis of Epitopes and Therapeutics for Severe Acute Respiratory Syndrome Coronavirus-2. Frontiers in Microbiology, 11, 1858. https://doi.org/10.3389/fmicb.2020.01858</td>
+									  </tr>
+									</tbody>
+									</table>
+							</div>
+						</li>
+						<li>
+							<h1>TBA</h1>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!--
 
-
-		  <section class="section">
-      <h1 class="title">
+			
+		<section class="section">
+      	<h1 class="title">
         Hello World
-      </h1>
-      <p class="subtitle">
-        My first website with <strong>Bulma</strong>!
-      </p>
+      	</h1>
+      	<p class="subtitle">
+      	  My first website with <strong>Bulma</strong>!
+     	</p>
+		-->
 </div>
 </div>
 </div>
