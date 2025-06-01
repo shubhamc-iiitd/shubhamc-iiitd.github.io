@@ -91,6 +91,17 @@
     .tabs-content li.is-active {
       animation: fadeIn 0.5s ease forwards;
     }
+    .repo-list .repo-item {
+      margin-bottom: 1.5rem;
+    }
+    .repo-list .repo-item a {
+      color: #3273dc;
+      font-weight: 500;
+    }
+    .repo-list .repo-item p {
+      margin-top: 0.5rem;
+      color: #4a4a4a;
+    }
     @media screen and (max-width: 768px) {
       .columns {
         flex-direction: column;
@@ -156,7 +167,7 @@
                 <div class="box">
                   <h1 class="title is-3">Welcome!</h1>
                   <p class="subtitle is-5">
-                    I'm a PhD scholar in Computational Biology at <a href="https://www.iiitd.ac.in/" class="has-text-link">IIIT-Delhi</a>, exploring the interface between RNA biology, peptide toxicity, and AI. I build tools, publish open science, and strive to connect molecules to mechanisms using machine learning.
+                    I'm a PhD scholar in Computational Biology at <a href="https://www.iiitd.ac.in/" class="has-text-link">IIIT-Delhi</a>, exploring the interface between RNA biology, Big Data, and AI. I build tools, publish open science, and strive to connect molecules to mechanisms using machine learning.
                   </p>
                   <p class="mt-4">
                     Explore my work through the tabs above to learn about my academic path, publications, and current research.
@@ -219,7 +230,7 @@
                         <tr>
                           <td>
                             <strong><b>Choudhury, S.</b>, Rathore, A. S., & Raghava, G. P. S. (2024).</strong>
-                            Compilation of Resources on Subcellular Localization of lncRNA.
+                            Chronicle of Resources on Subcellular Localization of lncRNA.
                             <em>Frontiers in RNA Research</em>, <b>2</b>, 1419979.
                             <a href="https://doi.org/10.3389/frnar.2024.1419979">https://doi.org/10.3389/frnar.2024.1419979</a>
                           </td>
@@ -312,7 +323,32 @@
               <li>
                 <div class="box">
                   <h1 class="title is-4">GitHub Repositories</h1>
-                  <p>Coming soon! Check back for updates on my open-source projects and computational biology tools.</p>
+                  <div class="repo-list">
+                    <div class="repo-item">
+                      <a href="https://github.com/raghavagps/afpropred" target="_blank">AfProPred</a>
+                      <p>A tool to predict anti-freezing proteins. Written in Python.</p>
+                    </div>
+                    <div class="repo-item">
+                      <a href="https://github.com/raghavagps/cytolncpred" target="_blank">CytoLNCpred</a>
+                      <p>A method for predicting cytoplasm-associated lncRNA. Written in Python.</p>
+                    </div>
+                    <div class="repo-item">
+                      <a href="https://github.com/raghavagps/mrslpred" target="_blank">MRSLpred</a>
+                      <p>In silico method for predicting subcellular localisation of mRNA sequences. Written in Python.</p>
+                    </div>
+                    <div class="repo-item">
+                      <a href="https://github.com/raghavagps/pdac_pred_llm" target="_blank">PDACpredLLM</a>
+                      <p>A computational tool for pancreatic ductal adenocarcinoma prediction using large language models. Written in Python.</p>
+                    </div>
+                    <div class="repo-item">
+                      <a href="https://github.com/raghavagps/toxinpred3" target="_blank">ToxinPred 3.0</a>
+                      <p>An improved method for predicting the toxicity of peptides and designing non-toxic peptides. Written in Python.</p>
+                    </div>
+                    <div class="repo-item">
+                      <a href="https://github.com/raghavagps/PlantDRPpred" target="_blank">PlantDRPpred</a>
+                      <p>Prediction of plant resistance proteins. Written in Python.</p>
+                    </div>
+                  </div>
                 </div>
               </li>
               <li>
