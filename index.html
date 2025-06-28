@@ -8,100 +8,231 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
   <style>
+    :root {
+      --bg-light: #f5f7fa;
+      --bg-dark: #1a202c;
+      --card-bg-light: #ffffff;
+      --card-bg-dark: #2d3748;
+      --text-light: #2c3e50;
+      --text-dark: #e2e8f0;
+      --link-light: #3273dc;
+      --link-dark: #63b3ed;
+      --shadow-light: rgba(0, 0, 0, 0.1);
+      --shadow-dark: rgba(0, 0, 0, 0.3);
+      --accent: #48bb78;
+      --transition: all 0.3s ease;
+    }
+
     body {
-      background: linear-gradient(to bottom, #f5f7fa 0%, #e0e4e9 100%);
+      background: var(--bg-light);
       min-height: 100vh;
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: var(--text-light);
+      transition: var(--transition);
     }
+
+    body.dark-mode {
+      background: var(--bg-dark);
+      color: var(--text-dark);
+    }
+
     .container {
       max-width: 1200px;
       padding: 2rem 1rem;
+      margin: 0 auto;
     }
+
     .card {
-      border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-radius: 12px;
+      background: var(--card-bg-light);
+      box-shadow: 0 4px 6px var(--shadow-light);
+      transition: var(--transition);
     }
+
+    body.dark-mode .card {
+      background: var(--card-bg-dark);
+      box-shadow: 0 4px 6px var(--shadow-dark);
+    }
+
     .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      transform: translateY(-8px);
+      box-shadow: 0 8px 16px var(--shadow-light);
     }
+
+    body.dark-mode .card:hover {
+      box-shadow: 0 8px 16px var(--shadow-dark);
+    }
+
     .card-image img {
-      border-top-left-radius: 8px;
-      border-top-right-radius: 8px;
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+      object-fit: cover;
+      width: 100%;
+      height: 300px;
     }
+
     .tabs.is-boxed a {
-      border-radius: 6px 6px 0 0;
-      font-weight: 500;
-      transition: background-color 0.2s ease;
+      border-radius: 8px 8px 0 0;
+      font-weight: 600;
+      color: var(--text-light);
+      background: var(--card-bg-light);
+      transition: var(--transition);
     }
+
+    body.dark-mode .tabs.is-boxed a {
+      color: var(--text-dark);
+      background: var(--card-bg-dark);
+    }
+
+    .tabs.is-boxed a:hover {
+      background: var(--accent);
+      color: white;
+    }
+
     .tabs-content .box {
-      border-radius: 8px;
-      padding: 2rem;
-      background-color: white;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      border-radius: 12px;
+      padding: 2.5rem;
+      background: var(--card-bg-light);
+      box-shadow: 0 2px 4px var(--shadow-light);
+      transition: var(--transition);
     }
+
+    body.dark-mode .tabs-content .box {
+      background: var(--card-bg-dark);
+      box-shadow: 0 2px 4px var(--shadow-dark);
+    }
+
     .table-container {
       overflow-x: auto;
       max-width: 100%;
     }
+
     .publications-table-container {
       max-height: 500px;
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
     }
+
     .table {
       width: 100%;
-      background-color: transparent;
+      background: transparent;
     }
+
     .table td {
       word-break: break-word;
       white-space: normal;
       vertical-align: top;
-      padding: 1rem;
-      line-height: 1.6;
+      padding: 1.25rem;
+      line-height: 1.8;
+      color: var(--text-light);
     }
+
+    body.dark-mode .table td {
+      color: var(--text-dark);
+    }
+
     .table a[href*="doi.org"] {
-      color: #3273dc;
+      color: var(--link-light);
       word-break: break-all;
+      transition: var(--transition);
     }
-    .title.is-3 {
-      color: #2c3e50;
+
+    body.dark-mode .table a[href*="doi.org"] {
+      color: var(--link-dark);
+    }
+
+    .title.is-3, .title.is-4 {
+      color: var(--text-light);
       font-weight: 700;
     }
-    .subtitle.is-5 {
-      color: #4a4a4a;
+
+    body.dark-mode .title.is-3, body.dark-mode .title.is-4 {
+      color: var(--text-dark);
+    }
+
+    .subtitle.is-5, .subtitle.is-6 {
+      color: var(--text-light);
+      line-height: 1.8;
+      opacity: 0.9;
+    }
+
+    body.dark-mode .subtitle.is-5, body.dark-mode .subtitle.is-6 {
+      color: var(--text-dark);
+    }
+
+    .content p, .repo-list .repo-item p {
+      color: var(--text-light);
       line-height: 1.8;
     }
-    .content p {
-      color: #4a4a4a;
-      line-height: 1.6;
+
+    body.dark-mode .content p, body.dark-mode .repo-list .repo-item p {
+      color: var(--text-dark);
     }
+
     .tabs-content li {
       display: none;
       list-style: none;
     }
+
     .tabs-content li.is-active {
       display: block;
+      animation: fadeIn 0.5s ease forwards;
     }
+
     @keyframes fadeIn {
       0% { opacity: 0; transform: translateY(10px); }
       100% { opacity: 1; transform: translateY(0); }
     }
-    .tabs-content li.is-active {
-      animation: fadeIn 0.5s ease forwards;
-    }
+
     .repo-list .repo-item {
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
+      padding: 1rem;
+      border-radius: 8px;
+      transition: var(--transition);
     }
+
+    .repo-list .repo-item:hover {
+      background: rgba(0, 0, 0, 0.05);
+    }
+
+    body.dark-mode .repo-list .repo-item:hover {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
     .repo-list .repo-item a {
-      color: #3273dc;
-      font-weight: 500;
+      color: var(--link-light);
+      font-weight: 600;
+      font-size: 1.1rem;
     }
-    .repo-list .repo-item p {
-      margin-top: 0.5rem;
-      color: #4a4a4a;
+
+    body.dark-mode .repo-list .repo-item a {
+      color: var(--link-dark);
     }
+
+    .theme-toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      z-index: 1000;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      background: var(--card-bg-light);
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 2px 4px var(--shadow-light);
+      transition: var(--transition);
+    }
+
+    body.dark-mode .theme-toggle {
+      background: var(--card-bg-dark);
+      box-shadow: 0 2px 4px var(--shadow-dark);
+    }
+
+    .theme-toggle:hover {
+      background: var(--accent);
+      color: white;
+    }
+
     @media screen and (max-width: 768px) {
       .columns {
         flex-direction: column;
@@ -114,6 +245,10 @@
       .tabs.is-right {
         justify-content: center;
       }
+      .theme-toggle {
+        top: 0.5rem;
+        right: 0.5rem;
+      }
     }
   </style>
   <script>
@@ -124,6 +259,20 @@
         $('.tabs-content li').removeClass('is-active');
         $('.tabs-content li').eq($(this).index()).addClass('is-active');
       });
+
+      // Theme toggle functionality
+      const themeToggle = $('<button class="theme-toggle">Toggle Dark Mode</button>');
+      $('body').append(themeToggle);
+      
+      themeToggle.click(function() {
+        $('body').toggleClass('dark-mode');
+        localStorage.setItem('theme', $('body').hasClass('dark-mode') ? 'dark' : 'light');
+      });
+
+      // Load saved theme preference
+      if (localStorage.getItem('theme') === 'dark') {
+        $('body').addClass('dark-mode');
+      }
     });
   </script>
 </head>
@@ -208,6 +357,8 @@
                             <strong>Aggarwal, S., Dhall, A., Patiyal, S., <b>Choudhury, S.</b>, Arora, A., & Raghava, G. P. S. (2023).</strong>
                             An Ensemble Method for Prediction of Phage-Based Therapy against Bacterial Infections.
                             <em>Frontiers in Microbiology</em>, <b>14</b>, 1148579.
+                            <a href="https://doi.org/10.3389/fmicb.2023.114857一同
+
                             <a href="https://doi.org/10.3389/fmicb.2023.1148579">https://doi.org/10.3389/fmicb.2023.1148579</a>
                           </td>
                         </tr>
