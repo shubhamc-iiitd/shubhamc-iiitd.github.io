@@ -3,164 +3,67 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Shubham Choudhury - Portfolio</title>
+<title>Shubham Choudhury | Research Homepage</title>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <style>
-
-/* ================= THEME VARIABLES ================= */
 :root {
-  --bg-light: #f5f7fa;
-  --bg-dark: #1a202c;
-
-  --card-light: #ffffff;
-  --card-dark: #2d3748;
-
-  --text-light: #1f2937;
-  --text-dark: #e5e7eb;
-
-  --link-light: #2563eb;
-  --link-dark: #60a5fa;
-
-  --shadow-light: rgba(0,0,0,0.08);
-  --shadow-dark: rgba(0,0,0,0.4);
-
-  --accent: #22c55e;
-  --transition: 0.25s ease;
+  --bg-light:#f9fafb; --bg-dark:#111827;
+  --card-light:#fff; --card-dark:#1f2937;
+  --text-light:#111827; --text-dark:#e5e7eb;
+  --border-light:#e5e7eb; --border-dark:#374151;
+  --link:#2563eb; --accent:#16a34a;
 }
-
-/* ================= GLOBAL BASE ================= */
-body {
-  background: var(--bg-light);
-  color: var(--text-light);
-  font-family: Inter, system-ui, sans-serif;
-  transition: var(--transition);
+body {background:var(--bg-light);color:var(--text-light);font-family:Inter,system-ui;}
+body.dark-mode{background:var(--bg-dark);color:var(--text-dark);}
+a{color:var(--link);}
+.section-box{
+  background:var(--card-light);border:1px solid var(--border-light);
+  padding:1.5rem;border-radius:8px;margin-bottom:1.5rem;
 }
-
-body.dark-mode {
-  background: var(--bg-dark);
-  color: var(--text-dark);
+body.dark-mode .section-box{background:var(--card-dark);border-color:var(--border-dark);}
+.profile-img{border-radius:8px;border:1px solid var(--border-light);}
+.tabs.is-boxed a{border:1px solid var(--border-light);border-bottom:none;}
+body.dark-mode .tabs.is-boxed a{border-color:var(--border-dark);}
+.theme-toggle{
+  position:fixed;top:1rem;right:1rem;padding:.4rem .8rem;
+  border:1px solid var(--border-light);background:var(--card-light);cursor:pointer;
 }
-
-a {
-  color: var(--link-light);
-}
-body.dark-mode a {
-  color: var(--link-dark);
-}
-
-/* ================= CARDS & BOX ================= */
-.card, .box {
-  background: var(--card-light);
-  border-radius: 12px;
-  box-shadow: 0 4px 12px var(--shadow-light);
-  transition: var(--transition);
-}
-
-body.dark-mode .card,
-body.dark-mode .box {
-  background: var(--card-dark);
-  box-shadow: 0 4px 12px var(--shadow-dark);
-}
-
-.card:hover {
-  transform: translateY(-6px);
-}
-
-/* ================= TEXT FIX (Bulma Override) ================= */
-.title, .subtitle, p, td, li, .content {
-  color: inherit !important;
-}
-
-.subtitle {
-  opacity: 0.85;
-}
-
-/* ================= TABS ================= */
-.tabs.is-boxed a {
-  background: var(--card-light);
-  color: var(--text-light);
-  border-radius: 8px 8px 0 0;
-}
-
-body.dark-mode .tabs.is-boxed a {
-  background: var(--card-dark);
-  color: var(--text-dark);
-}
-
-.tabs.is-boxed a:hover {
-  background: var(--accent);
-  color: white;
-}
-
-/* ================= TABLE ================= */
-.table {
-  background: transparent;
-}
-.table td {
-  padding: 1rem;
-  vertical-align: top;
-  line-height: 1.6;
-}
-
-/* ================= THEME BUTTON ================= */
-.theme-toggle {
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  border: none;
-  background: var(--card-light);
-  cursor: pointer;
-  box-shadow: 0 2px 6px var(--shadow-light);
-}
-
-body.dark-mode .theme-toggle {
-  background: var(--card-dark);
-  box-shadow: 0 2px 6px var(--shadow-dark);
-}
-
-.theme-toggle:hover {
-  background: var(--accent);
-  color: white;
-}
-
-/* ================= RESPONSIVE ================= */
-@media (max-width: 768px) {
-  .column.is-one-quarter {
-    max-width: 300px;
-    margin: auto;
-  }
-}
-
+body.dark-mode .theme-toggle{background:var(--card-dark);border-color:var(--border-dark);}
 </style>
 
 <script>
-$(document).ready(function () {
+$(document).ready(function(){
 
-  // Tabs logic
-  $('.tabs li').click(function () {
+  // Tabs
+  $('.tabs li').click(function(){
     $('.tabs li').removeClass('is-active');
     $(this).addClass('is-active');
-    $('.tabs-content li').removeClass('is-active');
-    $('.tabs-content li').eq($(this).index()).addClass('is-active');
+    $('.tab-content').hide().eq($(this).index()).show();
   });
 
   // Theme toggle
-  const btn = $('<button class="theme-toggle">Toggle Theme</button>');
+  const btn=$('<button class="theme-toggle">Toggle Theme</button>');
   $('body').append(btn);
+  btn.click(()=>{$('body').toggleClass('dark-mode');
+    localStorage.setItem('theme',$('body').hasClass('dark-mode')?'dark':'light');});
+  if(localStorage.getItem('theme')==='dark')$('body').addClass('dark-mode');
 
-  btn.click(function () {
-    $('body').toggleClass('dark-mode');
-    localStorage.setItem('theme', $('body').hasClass('dark-mode') ? 'dark' : 'light');
-  });
+  $('.tab-content').hide().first().show();
 
-  if (localStorage.getItem('theme') === 'dark') {
-    $('body').addClass('dark-mode');
-  }
+  // ===== AUTO FETCH PUBLICATIONS FROM SEMANTIC SCHOLAR =====
+  const authorId = "YOUR_SEMANTIC_SCHOLAR_AUTHOR_ID"; // replace this
+  fetch(`https://api.semanticscholar.org/graph/v1/author/${authorId}?fields=name,papers.title,papers.year,papers.url`)
+    .then(r=>r.json())
+    .then(data=>{
+      const list = $("#pub-list");
+      data.papers.slice(0,10).forEach(p=>{
+        list.append(`<li>${p.title} (${p.year}) <a href="${p.url}" target="_blank">Link</a></li>`);
+      });
+    })
+    .catch(()=>$("#pub-list").html("<li>Failed to load publications.</li>"));
 });
 </script>
 </head>
@@ -168,109 +71,91 @@ $(document).ready(function () {
 <body>
 
 <div class="container mt-5">
-<div class="columns is-multiline">
+<div class="columns">
 
-<!-- LEFT PROFILE CARD -->
+<!-- LEFT PROFILE -->
 <div class="column is-one-quarter">
-  <div class="card">
-    <div class="card-image">
-      <figure class="image is-square">
-        <img src="images/shubham_img.jpeg" alt="Shubham Choudhury">
-      </figure>
-    </div>
-    <div class="card-content">
-      <p class="title is-4">Shubham Choudhury</p>
-      <p class="subtitle is-6">Computational Biologist</p>
-      <p>Doctoral candidate at IIIT Delhi.</p>
-    </div>
-  </div>
+
+<img src="images/shubham_img.jpeg" class="profile-img" width="100%">
+
+<h2 class="title is-4 mt-3">Shubham Choudhury</h2>
+<p class="subtitle">PhD Scholar, Computational Biology</p>
+<p>Indraprastha Institute of Information Technology, New Delhi</p>
+
+<!-- ORCID + SCHOLAR BADGES -->
+<div class="mt-3">
+  <a href="https://orcid.org/0000-0000-0000-0000" target="_blank">
+    <img src="https://orcid.org/sites/default/files/images/orcid_16x16.png"> ORCID
+  </a><br>
+  <a href="https://scholar.google.com/citations?user=YOUR_ID" target="_blank">
+    Google Scholar
+  </a>
+</div>
+
+<div class="mt-3">
+  <a href="Shubham_Choudhury_CV.pdf" download class="button is-small is-link">Download CV</a>
+</div>
+
 </div>
 
 <!-- RIGHT CONTENT -->
 <div class="column">
 
-<div class="tabs is-boxed is-right is-medium">
+<div class="tabs is-boxed">
 <ul>
-  <li class="is-active"><a>Home</a></li>
-  <li><a>Education</a></li>
-  <li><a>Publications</a></li>
-  <li><a>GitHub</a></li>
-  <li><a>Contact</a></li>
+<li class="is-active"><a>Home</a></li>
+<li><a>Research</a></li>
+<li><a>Publications</a></li>
+<li><a>Projects</a></li>
+<li><a>Contact</a></li>
 </ul>
 </div>
-
-<div class="tabs-content">
-<ul>
 
 <!-- HOME -->
-<li class="is-active">
-<div class="box">
-  <h1 class="title is-3">Welcome</h1>
-  <p>
-    PhD scholar in Computational Biology at IIIT Delhi, working at the intersection of RNA biology, AI, and big data.
-  </p>
-</div>
-</li>
-
-<!-- EDUCATION -->
-<li>
-<div class="box">
-<table class="table is-fullwidth">
-<tbody>
-<tr>
-<td><b>Indraprastha Institute of Information Technology, Delhi</b><br>PhD Computational Biology</td>
-<td>2021 – Present</td>
-</tr>
-<tr>
-<td><b>IISER Kolkata</b><br>BS-MS Biological Sciences</td>
-<td>2014 – 2019</td>
-</tr>
-</tbody>
-</table>
-</div>
-</li>
-
-<!-- PUBLICATIONS -->
-<li>
-<div class="box">
-<table class="table is-fullwidth">
-<tbody>
-<tr>
-<td>
-<b>Choudhury S. et al. (2024)</b> MRSLpred: Multi-label mRNA localization prediction.  
-<a href="https://doi.org/10.3389/fbinf.2024.1341479" target="_blank">DOI</a>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</li>
-
-<!-- GITHUB -->
-<li>
-<div class="box">
-<p><a href="https://github.com/raghavagps/mrslpred" target="_blank">MRSLpred</a></p>
-<p><a href="https://github.com/raghavagps/cytolncpred" target="_blank">CytoLNCpred</a></p>
-</div>
-</li>
-
-<!-- CONTACT + CV DOWNLOAD -->
-<li>
-<div class="box">
-<h1 class="title is-4">Contact</h1>
-
+<div class="section-box tab-content">
+<h1 class="title is-3">Research Homepage</h1>
 <p>
-  Email: <a href="mailto:shubhamc@outlook.in">shubhamc@outlook.in</a>
+My research focuses on computational RNA biology, machine learning for genomics, and AI-driven drug discovery.
+My long-term goal is to develop RNA-based therapeutics using sequence and structural modeling.
 </p>
-
-<p class="mt-2">
-  CV: <a href="Shubham_Choudhury_CV.pdf" download>Download PDF</a>
-</p>
-
 </div>
-</li>
 
+<!-- RESEARCH -->
+<div class="section-box tab-content">
+<h1 class="title is-4">Research Interests</h1>
+<ul>
+<li>RNA Biology & lncRNA Functional Annotation</li>
+<li>Machine Learning in Genomics & Proteomics</li>
+<li>RNA–Protein Interaction Modeling</li>
+<li>Structure-based Drug Design</li>
+<li>Biomedical Large Language Models</li>
 </ul>
+</div>
+
+<!-- AUTO PUBLICATIONS -->
+<div class="section-box tab-content">
+<h1 class="title is-4">Publications (Auto Loaded)</h1>
+<ul id="pub-list">
+<li>Loading publications...</li>
+</ul>
+<p class="mt-2">Full list on <a href="https://scholar.google.com/">Google Scholar</a></p>
+</div>
+
+<!-- PROJECTS -->
+<div class="section-box tab-content">
+<h1 class="title is-4">Software & Projects</h1>
+<ul>
+<li><a href="https://github.com/raghavagps/mrslpred">MRSLpred</a></li>
+<li><a href="https://github.com/raghavagps/cytolncpred">CytoLNCpred</a></li>
+<li><a href="https://github.com/raghavagps/toxinpred3">ToxinPred 3.0</a></li>
+</ul>
+</div>
+
+<!-- CONTACT -->
+<div class="section-box tab-content">
+<h1 class="title is-4">Contact</h1>
+<p>Email: <a href="mailto:shubhamc@outlook.in">shubhamc@outlook.in</a></p>
+<p>CV: <a href="Shubham_Choudhury_CV.pdf" download>Download PDF</a></p>
 </div>
 
 </div>
