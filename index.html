@@ -1,1 +1,499 @@
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1"> <title>Shubham Choudhury - Portfolio</title> <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"> <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script> <style> :root { --bg-light: #f5f7fa; --bg-dark: #1a202c; --card-bg-light: #ffffff; --card-bg-dark: #2d3748; --text-light: #2c3e50; --text-dark: #e2e8f0; --link-light: #3273dc; --link-dark: #63b3ed; --shadow-light: rgba(0, 0, 0, 0.5); --shadow-dark: rgba(0, 0, 0, 0.3); --accent: #48bb78; --transition: all 0.3s ease; } body { background: var(--bg-light); min-height: 100vh; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: var(--text-light); transition: var(--transition); } body.dark-mode { background: var(--bg-dark); color: var(--text-dark); } .container { max-width: 1200px; padding: 2rem 1rem; margin: 0 auto; } .card { border-radius: 12px; background: var(--card-bg-light); box-shadow: 0 4px 6px var(--shadow-light); transition: var(--transition); } body.dark-mode .card { background: var(--card-bg-dark); box-shadow: 0 4px 6px var(--shadow-dark); } .card:hover { transform: translateY(-8px); box-shadow: 0 8px 16px var(--shadow-light); } body.dark-mode .card:hover { box-shadow: 0 8px 16px var(--shadow-dark); } .card-image img { border-top-left-radius: 12px; border-top-right-radius: 12px; object-fit: cover; width: 100%; height: 300px; } .tabs.is-boxed a { border-radius: 8px 8px 0 0; font-weight: 600; color: var(--text-light); background: var(--card-bg-light); transition: var(--transition); } body.dark-mode .tabs.is-boxed a { color: var(--text-dark); background: var(--card-bg-dark); } .tabs.is-boxed a:hover { background: var(--accent); color: white; } .tabs-content .box { border-radius: 12px; padding: 2.5rem; background: var(--card-bg-light); box-shadow: 0 2px 4px var(--shadow-light); transition: var(--transition); } body.dark-mode .tabs-content .box { background: var(--card-bg-dark); box-shadow: 0 2px 4px var(--shadow-dark); } .table-container { overflow-x: auto; max-width: 100%; } .publications-table-container { max-height: 500px; overflow-y: auto; -webkit-overflow-scrolling: touch; } .table { width: 100%; background: transparent; } .table td { word-break: break-word; white-space: normal; vertical-align: top; padding: 1.25rem; line-height: 1.8; color: var(--text-light); } body.dark-mode .table td { color: var(--text-dark); } .table a[href*="doi.org"] { color: var(--link-light); word-break: break-all; transition: var(--transition); } body.dark-mode .table a[href*="doi.org"] { color: var(--link-dark); } .title.is-3, .title.is-4 { color: var(--text-light); font-weight: 700; } body.dark-mode .title.is-3, body.dark-mode .title.is-4 { color: var(--text-dark); } .subtitle.is-5, .subtitle.is-6 { color: var(--text-light); line-height: 1.8; opacity: 0.9; } body.dark-mode .subtitle.is-5, body.dark-mode .subtitle.is-6 { color: var(--text-dark); } .content p, .repo-list .repo-item p { color: var(--text-light); line-height: 1.8; } body.dark-mode .content p, body.dark-mode .repo-list .repo-item p { color: var(--text-dark); } .tabs-content li { display: none; list-style: none; } .tabs-content li.is-active { display: block; animation: fadeIn 0.5s ease forwards; } @keyframes fadeIn { 0% { opacity: 0; transform: translateY(10px); } 100% { opacity: 1; transform: translateY(0); } } .repo-list .repo-item { margin-bottom: 2rem; padding: 1rem; border-radius: 8px; transition: var(--transition); } .repo-list .repo-item:hover { background: rgba(0, 0, 0, 0.05); } body.dark-mode .repo-list .repo-item:hover { background: rgba(255, 255, 255, 0.05); } .repo-list .repo-item a { color: var(--link-light); font-weight: 600; font-size: 1.1rem; } body.dark-mode .repo-list .repo-item a { color: var(--link-dark); } .theme-toggle { position: fixed; top: 1rem; right: 1rem; z-index: 1000; padding: 0.5rem 1rem; border-radius: 20px; background: var(--card-bg-light); border: none; cursor: pointer; box-shadow: 0 2px 4px var(--shadow-light); transition: var(--transition); } body.dark-mode .theme-toggle { background: var(--card-bg-dark); box-shadow: 0 2px 4px var(--shadow-dark); } .theme-toggle:hover { background: var(--accent); color: white; } @media screen and (max-width: 768px) { .columns { flex-direction: column; } .column.is-one-quarter { width: 100%; max-width: 300px; margin: 0 auto; } .tabs.is-right { justify-content: center; } .theme-toggle { top: 0.5rem; right: 0.5rem; } } </style> <script> $(document).ready(function() { $('.tabs li').click(function() { $('.tabs li').removeClass('is-active'); $(this).addClass('is-active'); $('.tabs-content li').removeClass('is-active'); $('.tabs-content li').eq($(this).index()).addClass('is-active'); }); // Theme toggle functionality const themeToggle = $('<button class="theme-toggle">Toggle Dark Mode</button>'); $('body').append(themeToggle); themeToggle.click(function() { $('body').toggleClass('dark-mode'); localStorage.setItem('theme', $('body').hasClass('dark-mode') ? 'dark' : 'light'); }); // Load saved theme preference if (localStorage.getItem('theme') === 'dark') { $('body').addClass('dark-mode'); } }); </script> </head> <body> <div class="container"> <div class="columns is-multiline"> <div class="column is-one-quarter"> <div class="card"> <div class="card-image"> <figure class="image is-square"> <img src="images/shubham_img.jpeg" alt="Shubham Choudhury"> </figure> </div> <div class="card-content"> <div class="media"> <div class="media-content"> <p class="title is-4">Shubham Choudhury</p> <p class="subtitle is-6">Aspiring Computational Biologist</p> </div> </div> <div class="content"> Doctoral candidate at Indraprastha Institute of Information Technology, New Delhi. </div> </div> </div> </div> <div class="column"> <div class="tabs-wrapper"> <div class="tabs is-right is-medium is-boxed"> <ul> <li class="is-active"><a>Home</a></li> <li><a>Education</a></li> <li><a>Publications</a></li> <li><a>GitHub Repositories</a></li> <li><a>Contact</a></li> </ul> </div> <div class="tabs-content"> <ul> <li class="is-active"> <div class="box"> <h1 class="title is-3">Welcome!</h1> <p class="subtitle is-5"> I'm a PhD scholar in Computational Biology at <a href="https://www.iiitd.ac.in/" class="has-text-link">IIIT-Delhi</a>, exploring the interface between RNA biology, Big Data, and AI. I build tools, publish open science, and strive to connect molecules to mechanisms using machine learning. </p> <p class="mt-4"> Explore my work through the tabs above to learn about my academic path, publications, and current research. </p> </div> </li> <li> <div class="box"> <table class="table is-hoverable is-fullwidth"> <tbody> <tr> <td><strong>St. Vincent’s Convent School, Berhampur</strong><br>Council For The Indian School Certificate Examinations, New Delhi</td> <td>July 1999 - June 2011<br>Percentage: 93.5/100</td> </tr> <tr> <td><strong>Khallikote Junior College, Berhampur</strong><br>The Council of Higher Secondary Education, Odisha</td> <td>August 2011 - June 2013<br>Percentage: 80.33/100</td> </tr> <tr> <td><strong>Indian Institute of Science Education and Research, Kolkata</strong><br>BS-MS Dual Degree<br>Department of Biological Sciences</td> <td>July 2014 - June 2019<br>Overall CGPA: 7.11/10</td> </tr> <tr> <td><strong>Indraprastha Institute of Information Technology, New Delhi</strong><br>Doctoral Student<br>Department of Computational Biology</td> <td>Jan 2021 - Present</td> </tr> </tbody> </table> </div> </li> <li> <div class="box"> <div class="publications-table-container"> <table class="table is-hoverable is-fullwidth"> <tbody> <tr> <td> <strong>Aggarwal, S., Dhall, A., Patiyal, S., <b>Choudhury, S.</b>, Arora, A., & Raghava, G. P. S. (2023).</strong> An Ensemble Method for Prediction of Phage-Based Therapy against Bacterial Infections. <em>Frontiers in Microbiology</em>, <b>14</b>, 1148579. <a href="https://doi.org/10.3389/fmicb.2023.114857一同 <a href="https://doi.org/10.3389/fmicb.2023.1148579">https://doi.org/10.3389/fmicb.2023.1148579</a> </td> </tr> <tr> <td> <strong>Bajiya, N., <b>Choudhury, S.</b>, Dhall, A., & Raghava, G. P. S. (2024).</strong> AntiBP3: A Method for Predicting Antibacterial Peptides against Gram-Positive/Negative/Variable Bacteria. <em>Antibiotics</em>, <b>13</b>(2), 168. <a href="https://doi.org/10.3390/antibiotics13020168">https://doi.org/10.3390/antibiotics13020168</a> </td> </tr> <tr> <td> <strong><b>Choudhury, S.</b>, Bajiya, N., Patiyal, S., & Raghava, G. P. S. (2024).</strong> MRSLpred: A Hybrid Approach for Predicting Multi-Label Subcellular Localization of mRNA at the Genome Scale. <em>Frontiers in Bioinformatics</em>, <b>4</b>, 1341479. <a href="https://doi.org/10.3389/fbinf.2024.1341479">https://doi.org/10.3389/fbinf.2024.1341479</a> </td> </tr> <tr> <td> <strong><b>Choudhury, S.</b>, Rathore, A. S., & Raghava, G. P. S. (2024).</strong> Chronicle of Resources on Subcellular Localization of lncRNA. <em>Frontiers in RNA Research</em>, <b>2</b>, 1419979. <a href="https://doi.org/10.3389/frnar.2024.1419979">https://doi.org/10.3389/frnar.2024.1419979</a> </td> </tr> <tr> <td> <strong><b>Choudhury, S.</b>, Mehta, N. K., & Raghava, G. P. S. (2025).</strong> CytoLNCpred: A Computational Method for Predicting Cytoplasm-Associated Long Non-Coding RNAs in 15 Cell Lines. <em>Frontiers in Bioinformatics</em>, <b>5</b>, 1585794. <a href="https://doi.org/10.3389/fbinf.2025.1585794">https://doi.org/10.3389/fbinf.2025.1585794</a> </td> </tr> <tr> <td> <strong>Dhall, A., Patiyal, S., <b>Choudhury, S.</b>, Jain, S., Narang, K., & Raghava, G. P. S. (2023).</strong> TNFepitope: A Webserver for the Prediction of TNF-α Inducing Epitopes. <em>Computers in Biology and Medicine</em>, <b>160</b>, 106929. <a href="https://doi.org/10.1016/j.compbiomed.2023.106929">https://doi.org/10.1016/j.compbiomed.2023.106929</a> </td> </tr> <tr> <td> <strong>Gahlot, P. S., <b>Choudhury, S.</b>, Bajiya, N., Kumar, N., & Raghava, G. P. S. (2025).</strong> Prediction of Plant Resistance Proteins Using Alignment-Based and Alignment-Free Approaches. <em>Proteomics</em>, <b>25</b>(5–6), e202400261. <a href="https://doi.org/10.1002/pmic.202400261">https://doi.org/10.1002/pmic.202400261</a> </td> </tr> <tr> <td> <strong>Gupta, A. K., Khan, M. S., <b>Choudhury, S.</b>, Mukhopadhyay, A., Sakshi, Rastogi, A., ... & Shalu. (2020).</strong> CoronaVR: A Computational Resource and Analysis of Epitopes and Therapeutics for Severe Acute Respiratory Syndrome Coronavirus-2. <em>Frontiers in Microbiology</em>, <b>11</b>, 1858. <a href="https://doi.org/10.3389/fmicb.2020.01858">https://doi.org/10.3389/fmicb.2020.01858</a> </td> </tr> <tr> <td> <strong>Kumar, N., <b>Choudhury, S.</b>, Bajiya, N., Patiyal, S., & Raghava, G. P. S. (2025).</strong> Prediction of Anti-Freezing Proteins From Their Evolutionary Profile. <em>Proteomics</em>, <b>25</b>(3), e202400157. <a href="https://doi.org/10.1002/pmic.202400157">https://doi.org/10.1002/pmic.202400157</a> </td> </tr> <tr> <td> <strong>Kumar, N., Patiyal, S., <b>Choudhury, S.</b>, Tomer, R., Dhall, A., & Raghava, G. P. S. (2023).</strong> DMPPred: A Tool for Identification of Antigenic Regions Responsible for Inducing Type 1 Diabetes Mellitus. <em>Briefings in Bioinformatics</em>, <b>24</b>(1), bbac525. <a href="https://doi.org/10.1093/bib/bbac525">https://doi.org/10.1093/bib/bbac525</a> </td> </tr> <tr> <td> <strong>Mukhopadhyay, A., <b>Choudhury, S.</b>, & Kumar, M. (2023).</strong> Metaviromic Analyses of DNA Virus Community from Sediments of the N-Choe Stream, North India. <em>Virus Research</em>, <b>330</b>, 199110. <a href="https://doi.org/10.1016/j.virusres.2023.199110">https://doi.org/10.1016/j.virusres.2023.199110</a> </td> </tr> <tr> <td> <strong>Rajput, A., Thakur, A., Rastogi, A., <b>Choudhury, S.</b>, & Kumar, M. (2021).</strong> Computational Identification of Repurposed Drugs against Viruses Causing Epidemics and Pandemics via Drug-Target Network Analysis. <em>Computers in Biology and Medicine</em>, <b>136</b>, 104677. <a href="https://doi.org/10.1016/j.compbiomed.2021.104677">https://doi.org/10.1016/j.compbiomed.2021.104677</a> </td> </tr> <tr> <td> <strong>Rathore, A. S., <b>Choudhury, S.</b>, Arora, A., Tijare, P., & Raghava, G. P. S. (2024).</strong> ToxinPred 3.0: An Improved Method for Predicting the Toxicity of Peptides. <em>Computers in Biology and Medicine</em>, <b>179</b>, 108926. <a href="https://doi.org/10.1016/j.compbiomed.2024.108926">https://doi.org/10.1016/j.compbiomed.2024.108926</a> </td> </tr> <tr> <td> <strong>Rathore, A. S., Kumar, N., <b>Choudhury, S.</b>, Mehta, N. K., & Raghava, G. P. S. (2025).</strong> Prediction of Hemolytic Peptides and Their Hemolytic Concentration. <em>Communications Biology</em>, <b>8</b>(1), 176. <a href="https://doi.org/10.1038/s42003-024-05922-6">https://doi.org/10.1038/s42003-024-05922-6</a> </td> </tr> </tbody> </table> </div> </div> </li> <li> <div class="box"> <h1 class="title is-4">GitHub Repositories</h1> <div class="repo-list"> <div class="repo-item"> <a href="https://github.com/raghavagps/afpropred" target="_blank">AfProPred</a> <p>A tool to predict anti-freezing proteins. Written in Python.</p> </div> <div class="repo-item"> <a href="https://github.com/raghavagps/cytolncpred" target="_blank">CytoLNCpred</a> <p>A method for predicting cytoplasm-associated lncRNA. Written in Python.</p> </div> <div class="repo-item"> <a href="https://github.com/raghavagps/mrslpred" target="_blank">MRSLpred</a> <p>In silico method for predicting subcellular localisation of mRNA sequences. Written in Python.</p> </div> <div class="repo-item"> <a href="https://github.com/raghavagps/pdac_pred_llm" target="_blank">PDACpredLLM</a> <p>A computational tool for pancreatic ductal adenocarcinoma prediction using large language models. Written in Python.</p> </div> <div class="repo-item"> <a href="https://github.com/raghavagps/toxinpred3" target="_blank">ToxinPred 3.0</a> <p>An improved method for predicting the toxicity of peptides and designing non-toxic peptides. Written in Python.</p> </div> <div class="repo-item"> <a href="https://github.com/raghavagps/PlantDRPpred" target="_blank">PlantDRPpred</a> <p>Prediction of plant resistance proteins. Written in Python.</p> </div> </div> </div> </li> <li> <div class="box"> <h1 class="title is-4">Contact</h1> <p> Shubham Choudhury<br> Lab no. A-315, R & D Building,<br> Indraprastha Institute of Information Technology,<br> Okhla Phase 3, New Delhi - 110020.<br> Contact: <a href="tel:+919040468955">+91 9040468955</a><br> Email: <a href="mailto:shubhamc@outlook.in">shubhamc@outlook.in</a> </p> </div> </li> </ul> </div> </div> </div> </div> </div> </body> </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shubham Choudhury - Academic Portfolio</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* --- Variables & Reset --- */
+    :root {
+      --bg-body: #f8fafc;
+      --bg-card: #ffffff;
+      --text-main: #334155;
+      --text-muted: #64748b;
+      --primary: #2563eb;       /* Academic Blue */
+      --primary-soft: #eff6ff;
+      --accent: #0f172a;
+      --border: #e2e8f0;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.05);
+      --radius: 12px;
+      --transition: all 0.3s ease;
+    }
+
+    /* Dark Mode Overrides */
+    body.dark-mode {
+      --bg-body: #0f172a;
+      --bg-card: #1e293b;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --primary: #60a5fa;
+      --primary-soft: #1e3a8a;
+      --accent: #f8fafc;
+      --border: #334155;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.3);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg-body);
+      color: var(--text-main);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      transition: var(--transition);
+      line-height: 1.6;
+    }
+
+    /* --- Typography --- */
+    h1, h2, h3, h4 { color: var(--accent); font-weight: 700; }
+    a { color: var(--primary); transition: var(--transition); }
+    a:hover { color: var(--accent); }
+    
+    .section-title {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* --- Layout Utilities --- */
+    .container { max-width: 1100px; padding: 2rem 1.5rem; }
+    
+    .card-glass {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      transition: var(--transition);
+    }
+
+    .card-glass:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+
+    /* --- Sidebar Profile --- */
+    .profile-sticky {
+      position: sticky;
+      top: 2rem;
+    }
+
+    .profile-img-container {
+      position: relative;
+      margin-bottom: 1rem;
+    }
+
+    .profile-img-container img {
+      width: 100%;
+      height: auto;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-md);
+      aspect-ratio: 1/1;
+      object-fit: cover;
+    }
+
+    .nav-links li { margin-bottom: 0.5rem; }
+    .nav-links a {
+      display: block;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      background: var(--primary-soft);
+      color: var(--primary);
+    }
+
+    /* --- Components: Timeline (Education) --- */
+    .timeline {
+      border-left: 2px solid var(--border);
+      margin-left: 1rem;
+      padding-left: 1.5rem;
+    }
+    
+    .timeline-item {
+      position: relative;
+      padding-bottom: 2rem;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -23px;
+      top: 5px;
+      width: 14px;
+      height: 14px;
+      background: var(--primary);
+      border-radius: 50%;
+      border: 3px solid var(--bg-body);
+    }
+
+    .timeline-date {
+      font-size: 0.85rem;
+      color: var(--primary);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.25rem;
+    }
+
+    .timeline-degree { font-size: 1.1rem; font-weight: 700; color: var(--accent); }
+    .timeline-inst { color: var(--text-muted); font-style: italic; }
+    .timeline-score { font-size: 0.9rem; margin-top: 0.25rem; display: inline-block; background: var(--primary-soft); color: var(--primary); padding: 2px 8px; border-radius: 4px; font-weight: 600; }
+
+    /* --- Components: Publications --- */
+    .pub-card {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      padding-bottom: 1.5rem;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .pub-card:last-child { border-bottom: none; margin-bottom: 0; }
+    
+    .pub-title { font-weight: 700; font-size: 1.05rem; color: var(--accent); }
+    .pub-authors { font-size: 0.95rem; color: var(--text-muted); }
+    .pub-journal { font-style: italic; color: var(--primary); }
+    
+    .btn-doi {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      text-decoration: none;
+      color: var(--text-main);
+      border: 1px solid var(--border);
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      width: fit-content;
+      margin-top: 0.5rem;
+    }
+    .btn-doi:hover { background: var(--primary); color: white; border-color: var(--primary); }
+
+    /* --- Components: Repo Grid --- */
+    .repo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    
+    .repo-card {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    
+    .repo-lang {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+    .lang-dot { width: 8px; height: 8px; background: #f59e0b; border-radius: 50%; display: inline-block; }
+
+    /* --- Theme Toggle --- */
+    .theme-toggle {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: var(--bg-body);
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      transition: transform 0.2s;
+    }
+    .theme-toggle:hover { transform: scale(1.1); }
+
+    /* --- Responsive --- */
+    @media (max-width: 768px) {
+      .profile-sticky { position: relative; top: 0; margin-bottom: 2rem; }
+      .columns { display: block; }
+      .column.is-one-quarter { width: 100%; }
+      .timeline { margin-left: 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <button class="theme-toggle" id="themeBtn" aria-label="Toggle Dark Mode">
+    <i class="fas fa-moon"></i>
+  </button>
+
+  <div class="container">
+    <div class="columns is-variable is-6">
+      
+      <div class="column is-one-quarter">
+        <div class="profile-sticky">
+          <div class="card-glass has-text-centered">
+            <div class="profile-img-container">
+              <img src="images/shubham_img.jpeg" alt="Shubham Choudhury" onerror="this.src='https://ui-avatars.com/api/?name=Shubham+Choudhury&background=2563eb&color=fff&size=256'">
+            </div>
+            <h1 class="title is-4 mb-2">Shubham Choudhury</h1>
+            <p class="subtitle is-6 has-text-muted mb-4">Aspiring Computational Biologist</p>
+            <div class="tags is-centered are-small mb-4">
+              <span class="tag is-light">RNA Biology</span>
+              <span class="tag is-light">Machine Learning</span>
+              <span class="tag is-light">Big Data</span>
+            </div>
+            <hr style="background-color: var(--border); height: 1px; margin: 1rem 0;">
+            
+            <ul class="nav-links is-hidden-mobile">
+              <li><a href="#about" class="active">About Me</a></li>
+              <li><a href="#education">Education</a></li>
+              <li><a href="#publications">Publications</a></li>
+              <li><a href="#projects">Repositories</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+
+            <div class="is-size-7 has-text-muted mt-4">
+              <p><i class="fas fa-map-marker-alt mr-1"></i> New Delhi, India</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="column">
+        
+        <section id="about" class="mb-6">
+          <div class="card-glass">
+            <h2 class="section-title"><i class="fas fa-user-circle has-text-primary"></i> About Me</h2>
+            <div class="content">
+              <p class="is-size-5">
+                Hello! I am a <strong>PhD scholar in Computational Biology</strong> at <a href="https://www.iiitd.ac.in/" target="_blank">IIIT-Delhi</a>.
+              </p>
+              <p>
+                My work lies at the exciting interface between <strong>RNA biology, Big Data, and Artificial Intelligence</strong>. I am passionate about building computational tools, advocating for open science, and connecting molecules to biological mechanisms using machine learning.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section id="education" class="mb-6">
+          <div class="card-glass">
+            <h2 class="section-title"><i class="fas fa-graduation-cap has-text-primary"></i> Education</h2>
+            <div class="timeline">
+              
+              <div class="timeline-item">
+                <div class="timeline-date">Jan 2021 - Present</div>
+                <div class="timeline-degree">Doctoral Student</div>
+                <div class="timeline-inst">Indraprastha Institute of Information Technology (IIIT), New Delhi</div>
+                <div class="is-size-7 mt-1">Dept. of Computational Biology</div>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-date">July 2014 - June 2019</div>
+                <div class="timeline-degree">BS-MS Dual Degree</div>
+                <div class="timeline-inst">Indian Institute of Science Education and Research (IISER), Kolkata</div>
+                <div class="timeline-score">CGPA: 7.11/10</div>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-date">August 2011 - June 2013</div>
+                <div class="timeline-degree">Higher Secondary</div>
+                <div class="timeline-inst">Khallikote Junior College, Berhampur</div>
+                <div class="timeline-score">80.33%</div>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-date">July 1999 - June 2011</div>
+                <div class="timeline-degree">ICSE Schooling</div>
+                <div class="timeline-inst">St. Vincent’s Convent School, Berhampur</div>
+                <div class="timeline-score">93.5%</div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <section id="publications" class="mb-6">
+          <div class="card-glass">
+            <h2 class="section-title"><i class="fas fa-book-open has-text-primary"></i> Selected Publications</h2>
+            
+            <div class="pub-card">
+              <div class="pub-title">An Ensemble Method for Prediction of Phage-Based Therapy against Bacterial Infections</div>
+              <div class="pub-authors">Aggarwal, S., Dhall, A., Patiyal, S., <b>Choudhury, S.</b>, Arora, A., & Raghava, G. P. S. (2023)</div>
+              <div class="pub-journal">Frontiers in Microbiology, 14, 1148579.</div>
+              <a href="https://doi.org/10.3389/fmicb.2023.1148579" target="_blank" class="btn-doi"><i class="fas fa-external-link-alt"></i> View Article</a>
+            </div>
+
+            <div class="pub-card">
+              <div class="pub-title">AntiBP3: A Method for Predicting Antibacterial Peptides against Gram-Positive/Negative/Variable Bacteria</div>
+              <div class="pub-authors">Bajiya, N., <b>Choudhury, S.</b>, Dhall, A., & Raghava, G. P. S. (2024)</div>
+              <div class="pub-journal">Antibiotics, 13(2), 168.</div>
+              <a href="https://doi.org/10.3390/antibiotics13020168" target="_blank" class="btn-doi"><i class="fas fa-external-link-alt"></i> View Article</a>
+            </div>
+
+            <div class="pub-card">
+              <div class="pub-title">MRSLpred: A Hybrid Approach for Predicting Multi-Label Subcellular Localization of mRNA at the Genome Scale</div>
+              <div class="pub-authors"><b>Choudhury, S.</b>, Bajiya, N., Patiyal, S., & Raghava, G. P. S. (2024)</div>
+              <div class="pub-journal">Frontiers in Bioinformatics, 4, 1341479.</div>
+              <a href="https://doi.org/10.3389/fbinf.2024.1341479" target="_blank" class="btn-doi"><i class="fas fa-external-link-alt"></i> View Article</a>
+            </div>
+
+            <div class="pub-card">
+              <div class="pub-title">Chronicle of Resources on Subcellular Localization of lncRNA</div>
+              <div class="pub-authors"><b>Choudhury, S.</b>, Rathore, A. S., & Raghava, G. P. S. (2024)</div>
+              <div class="pub-journal">Frontiers in RNA Research, 2, 1419979.</div>
+              <a href="https://doi.org/10.3389/frnar.2024.1419979" target="_blank" class="btn-doi"><i class="fas fa-external-link-alt"></i> View Article</a>
+            </div>
+
+             <div class="pub-card">
+              <div class="pub-title">CytoLNCpred: A Computational Method for Predicting Cytoplasm-Associated Long Non-Coding RNAs</div>
+              <div class="pub-authors"><b>Choudhury, S.</b>, Mehta, N. K., & Raghava, G. P. S. (2025)</div>
+              <div class="pub-journal">Frontiers in Bioinformatics, 5, 1585794.</div>
+              <a href="https://doi.org/10.3389/fbinf.2025.1585794" target="_blank" class="btn-doi"><i class="fas fa-external-link-alt"></i> View Article</a>
+            </div>
+
+            <div class="has-text-centered mt-4">
+               <span class="tag is-light">... and many more co-authored works.</span>
+            </div>
+
+          </div>
+        </section>
+
+        <section id="projects" class="mb-6">
+          <h2 class="section-title"><i class="fab fa-github has-text-primary"></i> GitHub Repositories</h2>
+          <div class="repo-grid">
+            
+            <div class="card-glass repo-card">
+              <div>
+                <h3 class="title is-6 mb-2"><a href="https://github.com/raghavagps/afpropred" target="_blank">AfProPred</a></h3>
+                <p class="is-size-7">A tool to predict anti-freezing proteins.</p>
+              </div>
+              <div class="repo-lang"><span class="lang-dot"></span> Python</div>
+            </div>
+
+            <div class="card-glass repo-card">
+              <div>
+                <h3 class="title is-6 mb-2"><a href="https://github.com/raghavagps/cytolncpred" target="_blank">CytoLNCpred</a></h3>
+                <p class="is-size-7">Predicting cytoplasm-associated lncRNA.</p>
+              </div>
+              <div class="repo-lang"><span class="lang-dot"></span> Python</div>
+            </div>
+
+            <div class="card-glass repo-card">
+              <div>
+                <h3 class="title is-6 mb-2"><a href="https://github.com/raghavagps/mrslpred" target="_blank">MRSLpred</a></h3>
+                <p class="is-size-7">In silico method for predicting subcellular localisation of mRNA sequences.</p>
+              </div>
+              <div class="repo-lang"><span class="lang-dot"></span> Python</div>
+            </div>
+
+            <div class="card-glass repo-card">
+              <div>
+                <h3 class="title is-6 mb-2"><a href="https://github.com/raghavagps/pdac_pred_llm" target="_blank">PDACpredLLM</a></h3>
+                <p class="is-size-7">Pancreatic ductal adenocarcinoma prediction using large language models.</p>
+              </div>
+              <div class="repo-lang"><span class="lang-dot"></span> Python</div>
+            </div>
+
+            <div class="card-glass repo-card">
+              <div>
+                <h3 class="title is-6 mb-2"><a href="https://github.com/raghavagps/toxinpred3" target="_blank">ToxinPred 3.0</a></h3>
+                <p class="is-size-7">Method for predicting the toxicity of peptides and designing non-toxic peptides.</p>
+              </div>
+              <div class="repo-lang"><span class="lang-dot"></span> Python</div>
+            </div>
+
+          </div>
+        </section>
+
+        <section id="contact" class="mb-6">
+          <div class="card-glass">
+            <h2 class="section-title"><i class="fas fa-envelope has-text-primary"></i> Get in Touch</h2>
+            <div class="columns">
+              <div class="column">
+                <p class="mb-4"><strong>Address:</strong><br>
+                Lab no. A-315, R & D Building,<br>
+                Indraprastha Institute of Information Technology,<br>
+                Okhla Phase 3, New Delhi - 110020.</p>
+              </div>
+              <div class="column">
+                <p class="mb-2"><i class="fas fa-phone mr-2 has-text-primary"></i> <a href="tel:+919040468955">+91 9040468955</a></p>
+                <p class="mb-2"><i class="fas fa-at mr-2 has-text-primary"></i> <a href="mailto:shubhamc@outlook.in">shubhamc@outlook.in</a></p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Simple Vanilla JS for Dark Mode
+    const themeBtn = document.getElementById('themeBtn');
+    const body = document.body;
+    const icon = themeBtn.querySelector('i');
+
+    // Check local storage
+    if (localStorage.getItem('theme') === 'dark') {
+      body.classList.add('dark-mode');
+      icon.classList.remove('fa-moon');
+      icon.classList.add('fa-sun');
+    }
+
+    themeBtn.addEventListener('click', () => {
+      body.classList.toggle('dark-mode');
+      const isDark = body.classList.contains('dark-mode');
+      
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      
+      // Toggle Icon
+      if (isDark) {
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+      } else {
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
+      }
+    });
+
+    // Active Link Highlighting on Scroll
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (pageYOffset >= (sectionTop - 150)) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href').includes(current)) {
+          link.classList.add('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
