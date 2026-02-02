@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Shubham Choudhury - Academic Portfolio</title>
-  <link rel="stylesheet" href="css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     /* --- Variables & Reset --- */
@@ -13,7 +13,7 @@
       --bg-card: #ffffff;
       --text-main: #334155;
       --text-muted: #64748b;
-      --primary: #2563eb;       /* Academic Blue */
+      --primary: #2563eb;
       --primary-soft: #eff6ff;
       --accent: #0f172a;
       --border: #e2e8f0;
@@ -23,7 +23,6 @@
       --transition: all 0.3s ease;
     }
 
-    /* Dark Mode Overrides */
     body.dark-mode {
       --bg-body: #0f172a;
       --bg-card: #1e293b;
@@ -37,9 +36,7 @@
       --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.3);
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       background: var(--bg-body);
@@ -49,7 +46,6 @@
       line-height: 1.6;
     }
 
-    /* --- Typography --- */
     h1, h2, h3, h4 { color: var(--accent); font-weight: 700; }
     a { color: var(--primary); transition: var(--transition); }
     a:hover { color: var(--accent); }
@@ -64,7 +60,6 @@
       gap: 0.5rem;
     }
 
-    /* --- Layout Utilities --- */
     .container { max-width: 1100px; padding: 2rem 1.5rem; }
     
     .card-glass {
@@ -76,17 +71,13 @@
       margin-bottom: 1.5rem;
       transition: var(--transition);
     }
-
     .card-glass:hover {
       box-shadow: var(--shadow-md);
       transform: translateY(-2px);
     }
 
     /* --- Sidebar Profile --- */
-    .profile-sticky {
-      position: sticky;
-      top: 2rem;
-    }
+    .profile-sticky { position: sticky; top: 2rem; }
 
     .profile-img-container {
       position: relative;
@@ -100,6 +91,17 @@
       box-shadow: var(--shadow-md);
       aspect-ratio: 1/1;
       object-fit: cover;
+    }
+
+    /* FIX FOR OVERLAPPING TEXT */
+    .profile-name {
+        margin-bottom: 0.75rem !important; /* Increased margin */
+        line-height: 1.2 !important;       /* Tighter line height to avoid bounding box issues */
+        display: block;
+    }
+    .profile-subtitle {
+        margin-top: 0 !important;
+        display: block;
     }
 
     .social-buttons {
@@ -135,7 +137,7 @@
       color: var(--primary);
     }
 
-    /* --- Components: Timeline (Education) --- */
+    /* --- Education Timeline --- */
     .timeline {
       border-left: 2px solid var(--border);
       margin-left: 1rem;
@@ -172,7 +174,7 @@
     .timeline-inst { color: var(--text-muted); font-style: italic; }
     .timeline-score { font-size: 0.9rem; margin-top: 0.25rem; display: inline-block; background: var(--primary-soft); color: var(--primary); padding: 2px 8px; border-radius: 4px; font-weight: 600; }
 
-    /* --- Components: Publications --- */
+    /* --- Publications --- */
     .pub-card {
       display: flex;
       flex-direction: column;
@@ -202,7 +204,6 @@
     }
     .btn-doi:hover { background: var(--primary); color: white; border-color: var(--primary); }
 
-    /* --- Components: Show More Button --- */
     .show-more-container {
         text-align: center;
         margin-top: 1rem;
@@ -224,13 +225,10 @@
         gap: 0.5rem;
     }
     
-    .btn-expand:hover {
-        background: var(--primary);
-        color: white;
-    }
+    .btn-expand:hover { background: var(--primary); color: white; }
     
     #hidden-pubs {
-        display: none; /* Hidden by default */
+        display: none;
         animation: fadeIn 0.5s ease;
     }
 
@@ -239,7 +237,7 @@
         to { opacity: 1; transform: translateY(0); }
     }
 
-    /* --- Components: Repo Grid --- */
+    /* --- Repo Grid --- */
     .repo-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -263,7 +261,6 @@
     }
     .lang-dot { width: 8px; height: 8px; background: #f59e0b; border-radius: 50%; display: inline-block; }
 
-    /* --- Theme Toggle --- */
     .theme-toggle {
       position: fixed;
       bottom: 2rem;
@@ -285,7 +282,6 @@
     }
     .theme-toggle:hover { transform: scale(1.1); }
 
-    /* --- Responsive --- */
     @media (max-width: 768px) {
       .profile-sticky { position: relative; top: 0; margin-bottom: 2rem; }
       .columns { display: block; }
@@ -309,8 +305,9 @@
             <div class="profile-img-container">
               <img src="images/shubham_img.jpeg" alt="Shubham Choudhury" onerror="this.src='https://ui-avatars.com/api/?name=Shubham+Choudhury&background=2563eb&color=fff&size=256'">
             </div>
-            <h1 class="title is-4 mb-2">Shubham Choudhury</h1>
-            <p class="subtitle is-6 has-text-muted mb-4">Aspiring Computational Biologist</p>
+            
+            <h1 class="title is-4 profile-name">Shubham Choudhury</h1>
+            <p class="subtitle is-6 has-text-muted profile-subtitle mb-4">Aspiring Computational Biologist</p>
             
             <div class="tags is-centered are-small mb-4">
               <span class="tag is-light">RNA Biology</span>
@@ -366,35 +363,30 @@
           <div class="card-glass">
             <h2 class="section-title"><i class="fas fa-graduation-cap has-text-primary"></i> Education</h2>
             <div class="timeline">
-              
               <div class="timeline-item">
                 <div class="timeline-date">Jan 2021 - Present</div>
                 <div class="timeline-degree">Doctoral Student</div>
                 <div class="timeline-inst">Indraprastha Institute of Information Technology (IIIT), New Delhi</div>
                 <div class="is-size-7 mt-1">Dept. of Computational Biology</div>
               </div>
-
               <div class="timeline-item">
                 <div class="timeline-date">July 2014 - June 2019</div>
                 <div class="timeline-degree">BS-MS Dual Degree</div>
                 <div class="timeline-inst">Indian Institute of Science Education and Research (IISER), Kolkata</div>
                 <div class="timeline-score">CGPA: 7.11/10</div>
               </div>
-
               <div class="timeline-item">
                 <div class="timeline-date">August 2011 - June 2013</div>
                 <div class="timeline-degree">Higher Secondary</div>
                 <div class="timeline-inst">Khallikote Junior College, Berhampur</div>
                 <div class="timeline-score">80.33%</div>
               </div>
-
               <div class="timeline-item">
                 <div class="timeline-date">July 1999 - June 2011</div>
                 <div class="timeline-degree">ICSE Schooling</div>
                 <div class="timeline-inst">St. Vincent’s Convent School, Berhampur</div>
                 <div class="timeline-score">93.5%</div>
               </div>
-
             </div>
           </div>
         </section>
@@ -404,36 +396,31 @@
             <h2 class="section-title"><i class="fas fa-book-open has-text-primary"></i> Publications</h2>
             
             <div class="pub-list-visible">
-                
                 <div class="pub-card">
                   <div class="pub-title">An Ensemble Method for Prediction of Phage-Based Therapy against Bacterial Infections</div>
                   <div class="pub-authors">Aggarwal, S., Dhall, A., Patiyal, S., <b>Choudhury, S.</b>, Arora, A., & Raghava, G. P. S. (2023)</div>
                   <div class="pub-journal">Frontiers in Microbiology, 14, 1148579.</div>
                   <a href="https://doi.org/10.3389/fmicb.2023.1148579" target="_blank" class="btn-doi"><i class="fas fa-external-link-alt"></i> View Article</a>
                 </div>
-    
                 <div class="pub-card">
                   <div class="pub-title">AntiBP3: A Method for Predicting Antibacterial Peptides against Gram-Positive/Negative/Variable Bacteria</div>
                   <div class="pub-authors">Bajiya, N., <b>Choudhury, S.</b>, Dhall, A., & Raghava, G. P. S. (2024)</div>
                   <div class="pub-journal">Antibiotics, 13(2), 168.</div>
                   <a href="https://doi.org/10.3390/antibiotics13020168" target="_blank" class="btn-doi"><i class="fas fa-external-link-alt"></i> View Article</a>
                 </div>
-    
                 <div class="pub-card">
                   <div class="pub-title">MRSLpred: A Hybrid Approach for Predicting Multi-Label Subcellular Localization of mRNA at the Genome Scale</div>
                   <div class="pub-authors"><b>Choudhury, S.</b>, Bajiya, N., Patiyal, S., & Raghava, G. P. S. (2024)</div>
                   <div class="pub-journal">Frontiers in Bioinformatics, 4, 1341479.</div>
                   <a href="https://doi.org/10.3389/fbinf.2024.1341479" target="_blank" class="btn-doi"><i class="fas fa-external-link-alt"></i> View Article</a>
                 </div>
-    
                 <div class="pub-card">
                   <div class="pub-title">Chronicle of Resources on Subcellular Localization of lncRNA</div>
                   <div class="pub-authors"><b>Choudhury, S.</b>, Rathore, A. S., & Raghava, G. P. S. (2024)</div>
                   <div class="pub-journal">Frontiers in RNA Research, 2, 1419979.</div>
                   <a href="https://doi.org/10.3389/frnar.2024.1419979" target="_blank" class="btn-doi"><i class="fas fa-external-link-alt"></i> View Article</a>
                 </div>
-    
-                 <div class="pub-card">
+                <div class="pub-card">
                   <div class="pub-title">CytoLNCpred: A Computational Method for Predicting Cytoplasm-Associated Long Non-Coding RNAs</div>
                   <div class="pub-authors"><b>Choudhury, S.</b>, Mehta, N. K., & Raghava, G. P. S. (2025)</div>
                   <div class="pub-journal">Frontiers in Bioinformatics, 5, 1585794.</div>
@@ -448,56 +435,48 @@
                     <div class="pub-journal">Computers in Biology and Medicine, 160, 106929.</div>
                     <a href="https://doi.org/10.1016/j.compbiomed.2023.106929" target="_blank" class="btn-doi"><i class="fas fa-external-link-alt"></i> View Article</a>
                 </div>
-
                 <div class="pub-card">
                     <div class="pub-title">Prediction of Plant Resistance Proteins Using Alignment-Based and Alignment-Free Approaches</div>
                     <div class="pub-authors">Gahlot, P. S., <b>Choudhury, S.</b>, Bajiya, N., Kumar, N., & Raghava, G. P. S. (2025)</div>
                     <div class="pub-journal">Proteomics, 25(5–6), e202400261.</div>
                     <a href="https://doi.org/10.1002/pmic.202400261" target="_blank" class="btn-doi"><i class="fas fa-external-link-alt"></i> View Article</a>
                 </div>
-
                 <div class="pub-card">
                     <div class="pub-title">CoronaVR: A Computational Resource and Analysis of Epitopes and Therapeutics for Severe Acute Respiratory Syndrome Coronavirus-2</div>
                     <div class="pub-authors">Gupta, A. K., Khan, M. S., <b>Choudhury, S.</b>, Mukhopadhyay, A., Sakshi, Rastogi, A., ... & Shalu. (2020)</div>
                     <div class="pub-journal">Frontiers in Microbiology, 11, 1858.</div>
                     <a href="https://doi.org/10.3389/fmicb.2020.01858" target="_blank" class="btn-doi"><i class="fas fa-external-link-alt"></i> View Article</a>
                 </div>
-
                 <div class="pub-card">
                     <div class="pub-title">Prediction of Anti-Freezing Proteins From Their Evolutionary Profile</div>
                     <div class="pub-authors">Kumar, N., <b>Choudhury, S.</b>, Bajiya, N., Patiyal, S., & Raghava, G. P. S. (2025)</div>
                     <div class="pub-journal">Proteomics, 25(3), e202400157.</div>
                     <a href="https://doi.org/10.1002/pmic.202400157" target="_blank" class="btn-doi"><i class="fas fa-external-link-alt"></i> View Article</a>
                 </div>
-
                 <div class="pub-card">
                     <div class="pub-title">DMPPred: A Tool for Identification of Antigenic Regions Responsible for Inducing Type 1 Diabetes Mellitus</div>
                     <div class="pub-authors">Kumar, N., Patiyal, S., <b>Choudhury, S.</b>, Tomer, R., Dhall, A., & Raghava, G. P. S. (2023)</div>
                     <div class="pub-journal">Briefings in Bioinformatics, 24(1), bbac525.</div>
                     <a href="https://doi.org/10.1093/bib/bbac525" target="_blank" class="btn-doi"><i class="fas fa-external-link-alt"></i> View Article</a>
                 </div>
-
                 <div class="pub-card">
                     <div class="pub-title">Metaviromic Analyses of DNA Virus Community from Sediments of the N-Choe Stream, North India</div>
                     <div class="pub-authors">Mukhopadhyay, A., <b>Choudhury, S.</b>, & Kumar, M. (2023)</div>
                     <div class="pub-journal">Virus Research, 330, 199110.</div>
                     <a href="https://doi.org/10.1016/j.virusres.2023.199110" target="_blank" class="btn-doi"><i class="fas fa-external-link-alt"></i> View Article</a>
                 </div>
-
                 <div class="pub-card">
                     <div class="pub-title">Computational Identification of Repurposed Drugs against Viruses Causing Epidemics and Pandemics via Drug-Target Network Analysis</div>
                     <div class="pub-authors">Rajput, A., Thakur, A., Rastogi, A., <b>Choudhury, S.</b>, & Kumar, M. (2021)</div>
                     <div class="pub-journal">Computers in Biology and Medicine, 136, 104677.</div>
                     <a href="https://doi.org/10.1016/j.compbiomed.2021.104677" target="_blank" class="btn-doi"><i class="fas fa-external-link-alt"></i> View Article</a>
                 </div>
-
                 <div class="pub-card">
                     <div class="pub-title">ToxinPred 3.0: An Improved Method for Predicting the Toxicity of Peptides</div>
                     <div class="pub-authors">Rathore, A. S., <b>Choudhury, S.</b>, Arora, A., Tijare, P., & Raghava, G. P. S. (2024)</div>
                     <div class="pub-journal">Computers in Biology and Medicine, 179, 108926.</div>
                     <a href="https://doi.org/10.1016/j.compbiomed.2024.108926" target="_blank" class="btn-doi"><i class="fas fa-external-link-alt"></i> View Article</a>
                 </div>
-
                 <div class="pub-card">
                     <div class="pub-title">Prediction of Hemolytic Peptides and Their Hemolytic Concentration</div>
                     <div class="pub-authors">Rathore, A. S., Kumar, N., <b>Choudhury, S.</b>, Mehta, N. K., & Raghava, G. P. S. (2025)</div>
@@ -512,14 +491,12 @@
                     <i class="fas fa-chevron-down"></i>
                 </button>
             </div>
-
           </div>
         </section>
 
         <section id="projects" class="mb-6">
           <h2 class="section-title"><i class="fab fa-github has-text-primary"></i> GitHub Repositories</h2>
           <div class="repo-grid">
-            
             <div class="card-glass repo-card">
               <div>
                 <h3 class="title is-6 mb-2"><a href="https://github.com/raghavagps/afpropred" target="_blank">AfProPred</a></h3>
@@ -527,7 +504,6 @@
               </div>
               <div class="repo-lang"><span class="lang-dot"></span> Python</div>
             </div>
-
             <div class="card-glass repo-card">
               <div>
                 <h3 class="title is-6 mb-2"><a href="https://github.com/raghavagps/cytolncpred" target="_blank">CytoLNCpred</a></h3>
@@ -535,7 +511,6 @@
               </div>
               <div class="repo-lang"><span class="lang-dot"></span> Python</div>
             </div>
-
             <div class="card-glass repo-card">
               <div>
                 <h3 class="title is-6 mb-2"><a href="https://github.com/raghavagps/mrslpred" target="_blank">MRSLpred</a></h3>
@@ -543,7 +518,6 @@
               </div>
               <div class="repo-lang"><span class="lang-dot"></span> Python</div>
             </div>
-
             <div class="card-glass repo-card">
               <div>
                 <h3 class="title is-6 mb-2"><a href="https://github.com/raghavagps/pdac_pred_llm" target="_blank">PDACpredLLM</a></h3>
@@ -551,7 +525,6 @@
               </div>
               <div class="repo-lang"><span class="lang-dot"></span> Python</div>
             </div>
-
             <div class="card-glass repo-card">
               <div>
                 <h3 class="title is-6 mb-2"><a href="https://github.com/raghavagps/toxinpred3" target="_blank">ToxinPred 3.0</a></h3>
@@ -559,7 +532,6 @@
               </div>
               <div class="repo-lang"><span class="lang-dot"></span> Python</div>
             </div>
-            
             <div class="card-glass repo-card">
               <div>
                 <h3 class="title is-6 mb-2"><a href="https://github.com/raghavagps/PlantDRPpred" target="_blank">PlantDRPpred</a></h3>
@@ -567,7 +539,6 @@
               </div>
               <div class="repo-lang"><span class="lang-dot"></span> Python</div>
             </div>
-
           </div>
         </section>
 
@@ -594,7 +565,7 @@
   </div>
 
   <script>
-    // --- 1. Dark Mode Logic ---
+    // Theme Toggle
     const themeBtn = document.getElementById('themeBtn');
     const body = document.body;
     const icon = themeBtn.querySelector('i');
@@ -619,7 +590,7 @@
       }
     });
 
-    // --- 2. Publications Toggle Logic ---
+    // Publications Toggle
     const toggleBtn = document.getElementById('togglePubs');
     const hiddenPubs = document.getElementById('hidden-pubs');
     const btnText = toggleBtn.querySelector('span');
@@ -639,7 +610,7 @@
         }
     });
 
-    // --- 3. Active Link Highlighting ---
+    // Scroll Highlight
     const sections = document.querySelectorAll('section');
     const navLinks = document.querySelectorAll('.nav-links a');
 
@@ -651,7 +622,6 @@
           current = section.getAttribute('id');
         }
       });
-
       navLinks.forEach(link => {
         link.classList.remove('active');
         if (link.getAttribute('href').includes(current)) {
