@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Shubham Choudhury - Academic Portfolio</title>
-  <link rel="stylesheet" href="css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     /* --- Variables & Reset --- */
@@ -858,13 +858,13 @@
             <div class="columns">
               <div class="column">
                 <p class="mb-4" style="color: #2d3748; line-height: 1.7;"><strong style="color: #1a202c;">Address:</strong><br>
-                Lab no. A-315, R & D Building,<br>
+                Lab no. A-318, R & D Building,<br>
                 Indraprastha Institute of Information Technology,<br>
                 Okhla Phase 3, New Delhi - 110020.</p>
               </div>
               <div class="column">
                 <p class="mb-2" style="color: #2d3748;"><i class="fas fa-phone mr-2"></i> <a href="tel:+919040468955">+91 9040468955</a></p>
-                <p class="mb-2" style="color: #2d3748;"><i class="fas fa-at mr-2"></i> <a href="/cdn-cgi/l/email-protection#3d4e55485f555c505e7d52484951525256135453"><span class="__cf_email__" data-cfemail="7a09120f18121b17193a150f0e16151511541314">[email&#160;protected]</span></a></p>
+                <p class="mb-2" style="color: #2d3748;"><i class="fas fa-at mr-2"></i> <a href="mailto:shubhamc@outlook.in">shubhamc@outlook.in</a></p>
               </div>
             </div>
           </div>
@@ -874,51 +874,78 @@
     </div>
   </div>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-    // Theme Toggle
-    const themeBtn = document.getElementById('themeBtn');
-    const body = document.body;
-    const icon = themeBtn.querySelector('i');
+  <script>
+    // Wait for DOM to be ready
+    window.addEventListener('DOMContentLoaded', function() {
+      // Theme Toggle
+      const themeBtn = document.getElementById('themeBtn');
+      const body = document.body;
+      const icon = themeBtn.querySelector('i');
 
-    if (localStorage.getItem('theme') === 'dark') {
-      body.classList.add('dark-mode');
-      icon.classList.remove('fa-moon');
-      icon.classList.add('fa-sun');
-    }
-
-    themeBtn.addEventListener('click', () => {
-      body.classList.toggle('dark-mode');
-      const isDark = body.classList.contains('dark-mode');
-      localStorage.setItem('theme', isDark ? 'dark' : 'light');
-      
-      if (isDark) {
+      if (localStorage.getItem('theme') === 'dark') {
+        body.classList.add('dark-mode');
         icon.classList.remove('fa-moon');
         icon.classList.add('fa-sun');
-      } else {
-        icon.classList.remove('fa-sun');
-        icon.classList.add('fa-moon');
       }
-    });
 
-    // Publications Toggle
-    const toggleBtn = document.getElementById('togglePubs');
-    const hiddenPubs = document.getElementById('hidden-pubs');
-    const btnText = toggleBtn.querySelector('span');
-    const btnIcon = toggleBtn.querySelector('i');
+      themeBtn.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        const isDark = body.classList.contains('dark-mode');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        
+        if (isDark) {
+          icon.classList.remove('fa-moon');
+          icon.classList.add('fa-sun');
+        } else {
+          icon.classList.remove('fa-sun');
+          icon.classList.add('fa-moon');
+        }
+      });
 
-    toggleBtn.addEventListener('click', () => {
-      if (hiddenPubs.style.display === 'block') {
-        hiddenPubs.style.display = 'none';
-        btnText.textContent = 'Show All Publications';
-        btnIcon.classList.remove('fa-chevron-up');
-        btnIcon.classList.add('fa-chevron-down');
-      } else {
-        hiddenPubs.style.display = 'block';
-        btnText.textContent = 'Show Less';
-        btnIcon.classList.remove('fa-chevron-down');
-        btnIcon.classList.add('fa-chevron-up');
+      // Publications Toggle
+      const toggleBtn = document.getElementById('togglePubs');
+      const hiddenPubs = document.getElementById('hidden-pubs');
+      
+      if (toggleBtn && hiddenPubs) {
+        const btnText = toggleBtn.querySelector('span');
+        const btnIcon = toggleBtn.querySelector('i');
+
+        toggleBtn.addEventListener('click', () => {
+          if (hiddenPubs.style.display === 'block') {
+            hiddenPubs.style.display = 'none';
+            btnText.textContent = 'Show All Publications';
+            btnIcon.classList.remove('fa-chevron-up');
+            btnIcon.classList.add('fa-chevron-down');
+          } else {
+            hiddenPubs.style.display = 'block';
+            btnText.textContent = 'Show Less';
+            btnIcon.classList.remove('fa-chevron-down');
+            btnIcon.classList.add('fa-chevron-up');
+          }
+        });
       }
+
+      // Scroll Highlight
+      const sections = document.querySelectorAll('section');
+      const navLinks = document.querySelectorAll('.nav-links a');
+
+      window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          if (pageYOffset >= (sectionTop - 150)) {
+            current = section.getAttribute('id');
+          }
+        });
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href').includes(current)) {
+            link.classList.add('active');
+          }
+        });
+      });
     });
+  </script>
 
     // Scroll Highlight
     const sections = document.querySelectorAll('section');
@@ -930,4 +957,3 @@
         const sectionTop = section.offsetTop;
         if (pageYOffset >= (sectionTop - 150)) {
           current = section.getAttribute('id');
-
