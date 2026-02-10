@@ -9,31 +9,44 @@
   <style>
     /* --- Variables & Reset --- */
     :root {
-      --bg-body: #f8fafc;
+      --bg-body: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --bg-overlay: rgba(255, 255, 255, 0.95);
       --bg-card: #ffffff;
-      --text-main: #334155;
-      --text-muted: #64748b;
-      --primary: #2563eb;
-      --primary-soft: #eff6ff;
-      --accent: #0f172a;
+      --text-main: #1a202c;
+      --text-muted: #4a5568;
+      --primary: #667eea;
+      --primary-dark: #5a67d8;
+      --secondary: #764ba2;
+      --accent-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --primary-soft: #f7fafc;
+      --accent: #1a202c;
       --border: #e2e8f0;
-      --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
-      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.05);
-      --radius: 12px;
-      --transition: all 0.3s ease;
+      --shadow-sm: 0 2px 8px rgba(102, 126, 234, 0.1);
+      --shadow-md: 0 8px 24px rgba(102, 126, 234, 0.15);
+      --shadow-lg: 0 12px 40px rgba(102, 126, 234, 0.2);
+      --radius: 16px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --success: #48bb78;
+      --info: #4299e1;
+      --warning: #ed8936;
     }
 
     body.dark-mode {
-      --bg-body: #0f172a;
-      --bg-card: #1e293b;
-      --text-main: #f1f5f9;
-      --text-muted: #94a3b8;
-      --primary: #60a5fa;
-      --primary-soft: #1e3a8a;
-      --accent: #f8fafc;
-      --border: #334155;
-      --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
-      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.3);
+      --bg-body: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+      --bg-overlay: rgba(26, 32, 44, 0.95);
+      --bg-card: #2d3748;
+      --text-main: #f7fafc;
+      --text-muted: #a0aec0;
+      --primary: #7c3aed;
+      --primary-dark: #6d28d9;
+      --secondary: #ec4899;
+      --accent-gradient: linear-gradient(135deg, #7c3aed 0%, #ec4899 100%);
+      --primary-soft: #1a202c;
+      --accent: #f7fafc;
+      --border: #4a5568;
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
+      --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.5);
     }
 
     html { scroll-behavior: smooth; }
@@ -44,44 +57,128 @@
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
       transition: var(--transition);
       line-height: 1.6;
+      position: relative;
+      min-height: 100vh;
     }
 
-    h1, h2, h3, h4 { color: var(--accent); font-weight: 700; }
-    a { color: var(--primary); transition: var(--transition); }
-    a:hover { color: var(--accent); }
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--bg-overlay);
+      z-index: -1;
+    }
+
+    h1, h2, h3, h4 { 
+      color: var(--accent); 
+      font-weight: 700; 
+    }
+    
+    a { 
+      color: var(--primary); 
+      transition: var(--transition);
+      text-decoration: none;
+    }
+    a:hover { 
+      color: var(--primary-dark);
+      transform: translateY(-1px);
+    }
     
     .section-title {
-      font-size: 1.5rem;
-      margin-bottom: 1.5rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 2px solid var(--border);
+      font-size: 1.75rem;
+      margin-bottom: 2rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 3px solid transparent;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.75rem;
+      position: relative;
     }
 
-    .container { max-width: 1100px; padding: 2rem 1.5rem; }
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: var(--accent-gradient);
+      border-radius: 3px;
+    }
+
+    .section-title i {
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-size: 1.5rem;
+    }
+
+    .container { max-width: 1200px; padding: 2rem 1.5rem; }
     
     .card-glass {
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       box-shadow: var(--shadow-sm);
-      padding: 1.5rem;
+      padding: 2rem;
       margin-bottom: 1.5rem;
       transition: var(--transition);
+      position: relative;
+      overflow: hidden;
     }
+
+    .card-glass::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--accent-gradient);
+      opacity: 0;
+      transition: var(--transition);
+    }
+
     .card-glass:hover {
       box-shadow: var(--shadow-md);
-      transform: translateY(-2px);
+      transform: translateY(-4px);
+      border-color: var(--primary);
+    }
+
+    .card-glass:hover::before {
+      opacity: 1;
     }
 
     /* --- Sidebar Profile --- */
-    .profile-sticky { position: sticky; top: 2rem; }
+    .profile-sticky { 
+      position: sticky; 
+      top: 2rem; 
+    }
 
     .profile-img-container {
       position: relative;
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .profile-img-container::before {
+      content: '';
+      position: absolute;
+      top: -8px;
+      left: -8px;
+      right: -8px;
+      bottom: -8px;
+      background: var(--accent-gradient);
+      border-radius: var(--radius);
+      z-index: -1;
+      opacity: 0.3;
     }
 
     .profile-img-container img {
@@ -91,156 +188,299 @@
       box-shadow: var(--shadow-md);
       aspect-ratio: 1/1;
       object-fit: cover;
+      transition: var(--transition);
     }
 
-    /* FIX FOR OVERLAPPING TEXT */
-    .profile-name {
-        margin-bottom: 0.75rem !important; /* Increased margin */
-        line-height: 1.2 !important;       /* Tighter line height to avoid bounding box issues */
-        display: block;
+    .profile-img-container:hover img {
+      transform: scale(1.02);
     }
+
+    .profile-name {
+      margin-bottom: 0.75rem !important;
+      line-height: 1.2 !important;
+      display: block;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
     .profile-subtitle {
-        margin-top: 0 !important;
-        display: block;
+      margin-top: 0 !important;
+      display: block;
+      color: #4a5568;
+      font-weight: 600;
+    }
+
+    .tags .tag {
+      background: var(--primary-soft);
+      color: var(--primary);
+      border: 1px solid var(--border);
+      font-weight: 600;
+      transition: var(--transition);
+      padding: 0.5rem 1rem;
+    }
+
+    .tags .tag:hover {
+      background: var(--accent-gradient);
+      color: white;
+      border-color: transparent;
+      transform: translateY(-2px);
     }
 
     .social-buttons {
-        display: flex;
-        justify-content: center;
-        gap: 0.5rem;
-        margin-bottom: 1.5rem;
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
     }
 
     .btn-social {
-        transition: var(--transition);
-        border: 1px solid var(--border) !important;
-        color: var(--text-main) !important;
-        background: transparent !important;
-        text-decoration: none !important;
+      transition: var(--transition);
+      border: 2px solid var(--border) !important;
+      color: var(--text-main) !important;
+      background: transparent !important;
+      text-decoration: none !important;
+      font-weight: 600;
+      position: relative;
+      overflow: hidden;
     }
+
+    .btn-social::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: var(--accent-gradient);
+      transition: var(--transition);
+      z-index: -1;
+    }
+
     .btn-social:hover {
-        background: var(--primary-soft) !important;
-        color: var(--primary) !important;
-        border-color: var(--primary) !important;
+      color: white !important;
+      border-color: transparent !important;
+      transform: translateY(-2px);
+    }
+
+    .btn-social:hover::before {
+      left: 0;
     }
 
     .nav-links li { margin-bottom: 0.5rem; }
+    
     .nav-links a {
       display: block;
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      color: var(--text-muted);
-      font-weight: 500;
+      padding: 0.75rem 1rem;
+      border-radius: 10px;
+      color: #4a5568;
+      font-weight: 600;
+      transition: var(--transition);
+      position: relative;
     }
+
+    .nav-links a::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 3px;
+      height: 0;
+      background: var(--accent-gradient);
+      transition: var(--transition);
+      border-radius: 3px;
+    }
+
     .nav-links a:hover, .nav-links a.active {
       background: var(--primary-soft);
       color: var(--primary);
+      padding-left: 1.5rem;
+    }
+
+    .nav-links a:hover::before, .nav-links a.active::before {
+      height: 60%;
     }
 
     /* --- Education Timeline --- */
     .timeline {
-      border-left: 2px solid var(--border);
+      border-left: 3px solid #667eea;
       margin-left: 1rem;
-      padding-left: 1.5rem;
+      padding-left: 2rem;
     }
     
     .timeline-item {
       position: relative;
-      padding-bottom: 2rem;
+      padding-bottom: 2.5rem;
     }
 
     .timeline-item::before {
       content: '';
       position: absolute;
-      left: -23px;
+      left: -29px;
       top: 5px;
-      width: 14px;
-      height: 14px;
-      background: var(--primary);
+      width: 18px;
+      height: 18px;
+      background: white;
+      border: 4px solid var(--primary);
       border-radius: 50%;
-      border: 3px solid var(--bg-body);
+      box-shadow: 0 0 0 4px var(--bg-card);
+      transition: var(--transition);
+    }
+
+    .timeline-item:hover::before {
+      transform: scale(1.2);
+      border-color: var(--secondary);
     }
 
     .timeline-date {
-      font-size: 0.85rem;
-      color: var(--primary);
-      font-weight: 600;
+      font-size: 0.9rem;
+      font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+      display: inline-block;
+      color: #5a67d8;
+      padding: 0.25rem 0.75rem;
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+      border-radius: 6px;
+    }
+
+    .timeline-degree { 
+      font-size: 1.2rem; 
+      font-weight: 700; 
+      color: #1a202c;
       margin-bottom: 0.25rem;
     }
 
-    .timeline-degree { font-size: 1.1rem; font-weight: 700; color: var(--accent); }
-    .timeline-inst { color: var(--text-muted); font-style: italic; }
-    .timeline-score { font-size: 0.9rem; margin-top: 0.25rem; display: inline-block; background: var(--primary-soft); color: var(--primary); padding: 2px 8px; border-radius: 4px; font-weight: 600; }
+    .timeline-inst { 
+      color: #2d3748;
+      font-style: italic;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .timeline-score { 
+      font-size: 0.9rem; 
+      margin-top: 0.5rem; 
+      display: inline-block; 
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 6px 14px; 
+      border-radius: 20px; 
+      font-weight: 700;
+      box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+    }
 
     /* --- Publications --- */
     .pub-card {
       display: flex;
       flex-direction: column;
-      gap: 0.5rem;
-      padding-bottom: 1.5rem;
+      gap: 0.75rem;
+      padding: 1.5rem;
       margin-bottom: 1.5rem;
-      border-bottom: 1px solid var(--border);
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      transition: var(--transition);
+      background: var(--primary-soft);
     }
-    .pub-card:last-child { border-bottom: none; margin-bottom: 0; }
+
+    .pub-card:hover {
+      border-color: var(--primary);
+      box-shadow: var(--shadow-sm);
+      transform: translateX(4px);
+    }
+
+    .pub-card:last-child { margin-bottom: 0; }
     
-    .pub-title { font-weight: 700; font-size: 1.05rem; color: var(--accent); }
-    .pub-authors { font-size: 0.95rem; color: var(--text-muted); }
-    .pub-journal { font-style: italic; color: var(--primary); }
+    .pub-title { 
+      font-weight: 700; 
+      font-size: 1.1rem; 
+      color: var(--accent);
+      line-height: 1.4;
+    }
+
+    .pub-authors { 
+      font-size: 0.95rem; 
+      color: #4a5568;
+      line-height: 1.5;
+    }
+
+    .pub-journal { 
+      font-style: italic; 
+      font-weight: 600;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
     
     .btn-doi {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      font-size: 0.8rem;
+      font-size: 0.85rem;
       text-decoration: none;
-      color: var(--text-main);
-      border: 1px solid var(--border);
-      padding: 0.25rem 0.75rem;
-      border-radius: 20px;
+      color: white;
+      background: var(--accent-gradient);
+      padding: 0.5rem 1rem;
+      border-radius: 25px;
       width: fit-content;
       margin-top: 0.5rem;
+      font-weight: 600;
+      transition: var(--transition);
+      box-shadow: var(--shadow-sm);
     }
-    .btn-doi:hover { background: var(--primary); color: white; border-color: var(--primary); }
+
+    .btn-doi:hover { 
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      color: white;
+    }
 
     .show-more-container {
-        text-align: center;
-        margin-top: 1rem;
-        padding-top: 1rem;
-        border-top: 1px dashed var(--border);
+      text-align: center;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 2px dashed var(--border);
     }
     
     .btn-expand {
-        background: transparent;
-        border: 2px solid var(--primary);
-        color: var(--primary);
-        padding: 0.5rem 1.5rem;
-        border-radius: 2rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: var(--transition);
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
+      background: var(--accent-gradient);
+      border: none;
+      color: white;
+      padding: 0.75rem 2rem;
+      border-radius: 2rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      box-shadow: var(--shadow-md);
+      font-size: 1rem;
     }
     
-    .btn-expand:hover { background: var(--primary); color: white; }
+    .btn-expand:hover { 
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+    }
     
     #hidden-pubs {
-        display: none;
-        animation: fadeIn 0.5s ease;
+      display: none;
+      animation: fadeIn 0.5s ease;
     }
 
     @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(-10px); }
-        to { opacity: 1; transform: translateY(0); }
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     /* --- Repo Grid --- */
     .repo-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap: 1.5rem;
     }
     
@@ -249,44 +489,112 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      border-left: 4px solid var(--primary);
+    }
+
+    .repo-card:hover {
+      border-left-color: var(--secondary);
+    }
+
+    .repo-card h3 a {
+      color: #5a67d8;
+      font-weight: 700;
+      transition: var(--transition);
+    }
+
+    .repo-card h3 a:hover {
+      color: #764ba2;
     }
     
     .repo-lang {
-      font-size: 0.75rem;
-      color: var(--text-muted);
+      font-size: 0.8rem;
+      color: #4a5568;
       display: flex;
       align-items: center;
       gap: 0.5rem;
       margin-top: 1rem;
+      font-weight: 600;
     }
-    .lang-dot { width: 8px; height: 8px; background: #f59e0b; border-radius: 50%; display: inline-block; }
 
+    .lang-dot { 
+      width: 10px; 
+      height: 10px; 
+      background: var(--accent-gradient);
+      border-radius: 50%; 
+      display: inline-block;
+      box-shadow: 0 0 8px rgba(102, 126, 234, 0.4);
+    }
+
+    /* --- Theme Toggle --- */
     .theme-toggle {
       position: fixed;
       bottom: 2rem;
       right: 2rem;
-      width: 50px;
-      height: 50px;
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
-      background: var(--accent);
-      color: var(--bg-body);
+      background: var(--accent-gradient);
+      color: white;
       border: none;
       cursor: pointer;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      box-shadow: var(--shadow-lg);
       z-index: 100;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.2rem;
-      transition: transform 0.2s;
+      font-size: 1.5rem;
+      transition: var(--transition);
     }
-    .theme-toggle:hover { transform: scale(1.1); }
+
+    .theme-toggle:hover { 
+      transform: scale(1.1) rotate(15deg);
+      box-shadow: 0 16px 48px rgba(102, 126, 234, 0.3);
+    }
+
+    /* --- About Section Enhancement --- */
+    #about .content p:first-of-type {
+      font-size: 1.15rem;
+      line-height: 1.8;
+    }
+
+    #about .content strong {
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 700;
+    }
+
+    /* --- Contact Section --- */
+    #contact .columns {
+      gap: 2rem;
+    }
+
+    #contact i {
+      color: var(--primary);
+    }
+
+    #contact a:hover {
+      text-decoration: underline;
+    }
 
     @media (max-width: 768px) {
       .profile-sticky { position: relative; top: 0; margin-bottom: 2rem; }
       .columns { display: block; }
       .column.is-one-quarter { width: 100%; }
       .timeline { margin-left: 0.5rem; }
+      .repo-grid {
+        grid-template-columns: 1fr;
+      }
+      .section-title {
+        font-size: 1.5rem;
+      }
+      .theme-toggle {
+        width: 50px;
+        height: 50px;
+        bottom: 1.5rem;
+        right: 1.5rem;
+      }
     }
   </style>
 </head>
@@ -303,7 +611,7 @@
         <div class="profile-sticky">
           <div class="card-glass has-text-centered">
             <div class="profile-img-container">
-              <img src="images/shubham_img.jpeg" alt="Shubham Choudhury" onerror="this.src='https://ui-avatars.com/api/?name=Shubham+Choudhury&background=2563eb&color=fff&size=256'">
+              <img src="images/shubham_img.jpeg" alt="Shubham Choudhury" onerror="this.src='https://ui-avatars.com/api/?name=Shubham+Choudhury&background=667eea&color=fff&size=256'">
             </div>
             
             <h1 class="title is-4 profile-name">Shubham Choudhury</h1>
@@ -316,14 +624,14 @@
             </div>
 
             <div class="social-buttons">
-                <a href="https://scholar.google.com/citations?user=pUOPVlUAAAAJ&hl=en&authuser=1" target="_blank" class="button is-small is-rounded btn-social">
-                    <span class="icon"><i class="fas fa-graduation-cap"></i></span>
-                    <span>Scholar</span>
-                </a>
-                <a href="https://orcid.org/0000-0002-4509-4683" target="_blank" class="button is-small is-rounded btn-social">
-                    <span class="icon"><i class="fab fa-orcid"></i></span>
-                    <span>ORCID</span>
-                </a>
+              <a href="https://scholar.google.com/citations?user=pUOPVlUAAAAJ&hl=en&authuser=1" target="_blank" class="button is-small is-rounded btn-social">
+                <span class="icon"><i class="fas fa-graduation-cap"></i></span>
+                <span>Scholar</span>
+              </a>
+              <a href="https://orcid.org/0000-0002-4509-4683" target="_blank" class="button is-small is-rounded btn-social">
+                <span class="icon"><i class="fab fa-orcid"></i></span>
+                <span>ORCID</span>
+              </a>
             </div>
 
             <hr style="background-color: var(--border); height: 1px; margin: 1rem 0;">
@@ -347,7 +655,7 @@
         
         <section id="about" class="mb-6">
           <div class="card-glass">
-            <h2 class="section-title"><i class="fas fa-user-circle has-text-primary"></i> About Me</h2>
+            <h2 class="section-title"><i class="fas fa-user-circle"></i> About Me</h2>
             <div class="content">
               <p class="is-size-5">
                 Hello! I am a <strong>PhD scholar in Computational Biology</strong> at <a href="https://www.iiitd.ac.in/" target="_blank">IIIT-Delhi</a>.
@@ -361,13 +669,13 @@
 
         <section id="education" class="mb-6">
           <div class="card-glass">
-            <h2 class="section-title"><i class="fas fa-graduation-cap has-text-primary"></i> Education</h2>
+            <h2 class="section-title"><i class="fas fa-graduation-cap"></i> Education</h2>
             <div class="timeline">
               <div class="timeline-item">
                 <div class="timeline-date">Jan 2021 - Present</div>
                 <div class="timeline-degree">Doctoral Student</div>
                 <div class="timeline-inst">Indraprastha Institute of Information Technology (IIIT), New Delhi</div>
-                <div class="is-size-7 mt-1">Dept. of Computational Biology</div>
+                <div class="is-size-7 mt-1" style="color: #4a5568; font-weight: 600;">Dept. of Computational Biology</div>
               </div>
               <div class="timeline-item">
                 <div class="timeline-date">July 2014 - June 2019</div>
@@ -384,7 +692,7 @@
               <div class="timeline-item">
                 <div class="timeline-date">July 1999 - June 2011</div>
                 <div class="timeline-degree">ICSE Schooling</div>
-                <div class="timeline-inst">St. Vincent’s Convent School, Berhampur</div>
+                <div class="timeline-inst">St. Vincent's Convent School, Berhampur</div>
                 <div class="timeline-score">93.5%</div>
               </div>
             </div>
@@ -393,168 +701,170 @@
 
         <section id="publications" class="mb-6">
           <div class="card-glass">
-            <h2 class="section-title"><i class="fas fa-book-open has-text-primary"></i> Publications</h2>
+            <h2 class="section-title"><i class="fas fa-book-open"></i> Publications</h2>
             
             <div class="pub-list-visible">
-                <div class="pub-card">
-                  <div class="pub-title">An Ensemble Method for Prediction of Phage-Based Therapy against Bacterial Infections</div>
-                  <div class="pub-authors">Aggarwal, S., Dhall, A., Patiyal, S., <b>Choudhury, S.</b>, Arora, A., & Raghava, G. P. S. (2023)</div>
-                  <div class="pub-journal">Frontiers in Microbiology, 14, 1148579.</div>
-                  <a href="https://doi.org/10.3389/fmicb.2023.1148579" target="_blank" class="btn-doi"><i class="fas fa-external-link-alt"></i> View Article</a>
-                </div>
-                <div class="pub-card">
-                  <div class="pub-title">AntiBP3: A Method for Predicting Antibacterial Peptides against Gram-Positive/Negative/Variable Bacteria</div>
-                  <div class="pub-authors">Bajiya, N., <b>Choudhury, S.</b>, Dhall, A., & Raghava, G. P. S. (2024)</div>
-                  <div class="pub-journal">Antibiotics, 13(2), 168.</div>
-                  <a href="https://doi.org/10.3390/antibiotics13020168" target="_blank" class="btn-doi"><i class="fas fa-external-link-alt"></i> View Article</a>
-                </div>
-                <div class="pub-card">
-                  <div class="pub-title">MRSLpred: A Hybrid Approach for Predicting Multi-Label Subcellular Localization of mRNA at the Genome Scale</div>
-                  <div class="pub-authors"><b>Choudhury, S.</b>, Bajiya, N., Patiyal, S., & Raghava, G. P. S. (2024)</div>
-                  <div class="pub-journal">Frontiers in Bioinformatics, 4, 1341479.</div>
-                  <a href="https://doi.org/10.3389/fbinf.2024.1341479" target="_blank" class="btn-doi"><i class="fas fa-external-link-alt"></i> View Article</a>
-                </div>
-                <div class="pub-card">
-                  <div class="pub-title">Chronicle of Resources on Subcellular Localization of lncRNA</div>
-                  <div class="pub-authors"><b>Choudhury, S.</b>, Rathore, A. S., & Raghava, G. P. S. (2024)</div>
-                  <div class="pub-journal">Frontiers in RNA Research, 2, 1419979.</div>
-                  <a href="https://doi.org/10.3389/frnar.2024.1419979" target="_blank" class="btn-doi"><i class="fas fa-external-link-alt"></i> View Article</a>
-                </div>
-                <div class="pub-card">
-                  <div class="pub-title">CytoLNCpred: A Computational Method for Predicting Cytoplasm-Associated Long Non-Coding RNAs</div>
-                  <div class="pub-authors"><b>Choudhury, S.</b>, Mehta, N. K., & Raghava, G. P. S. (2025)</div>
-                  <div class="pub-journal">Frontiers in Bioinformatics, 5, 1585794.</div>
-                  <a href="https://doi.org/10.3389/fbinf.2025.1585794" target="_blank" class="btn-doi"><i class="fas fa-external-link-alt"></i> View Article</a>
-                </div>
+              <div class="pub-card">
+                <div class="pub-title">An Ensemble Method for Prediction of Phage-Based Therapy against Bacterial Infections</div>
+                <div class="pub-authors">Aggarwal, S., Dhall, A., Patiyal, S., <b>Choudhury, S.</b>, Arora, A., & Raghava, G. P. S. (2023)</div>
+                <div class="pub-journal">Frontiers in Microbiology, 14, 1148579.</div>
+                <a href="https://doi.org/10.3389/fmicb.2023.1148579" target="_blank" class="btn-doi"><i class="fas fa-external-link-alt"></i> View Article</a>
+              </div>
+              <div class="pub-card">
+                <div class="pub-title">AntiBP3: A Method for Predicting Antibacterial Peptides against Gram-Positive/Negative/Variable Bacteria</div>
+                <div class="pub-authors">Bajiya, N., <b>Choudhury, S.</b>, Dhall, A., & Raghava, G. P. S. (2024)</div>
+                <div class="pub-journal">Antibiotics, 13(2), 168.</div>
+                <a href="https://doi.org/10.3390/antibiotics13020168" target="_blank" class="btn-doi"><i class="fas fa-external-link-alt"></i> View Article</a>
+              </div>
+              <div class="pub-card">
+                <div class="pub-title">MRSLpred: A Hybrid Approach for Predicting Multi-Label Subcellular Localization of mRNA at the Genome Scale</div>
+                <div class="pub-authors"><b>Choudhury, S.</b>, Bajiya, N., Patiyal, S., & Raghava, G. P. S. (2024)</div>
+                <div class="pub-journal">Frontiers in Bioinformatics, 4, 1341479.</div>
+                <a href="https://doi.org/10.3389/fbinf.2024.1341479" target="_blank" class="btn-doi"><i class="fas fa-external-link-alt"></i> View Article</a>
+              </div>
+              <div class="pub-card">
+                <div class="pub-title">Chronicle of Resources on Subcellular Localization of lncRNA</div>
+                <div class="pub-authors"><b>Choudhury, S.</b>, Rathore, A. S., & Raghava, G. P. S. (2024)</div>
+                <div class="pub-journal">Frontiers in RNA Research, 2, 1419979.</div>
+                <a href="https://doi.org/10.3389/frnar.2024.1419979" target="_blank" class="btn-doi"><i class="fas fa-external-link-alt"></i> View Article</a>
+              </div>
+              <div class="pub-card">
+                <div class="pub-title">CytoLNCpred: A Computational Method for Predicting Cytoplasm-Associated Long Non-Coding RNAs</div>
+                <div class="pub-authors"><b>Choudhury, S.</b>, Mehta, N. K., & Raghava, G. P. S. (2025)</div>
+                <div class="pub-journal">Frontiers in Bioinformatics, 5, 1585794.</div>
+                <a href="https://doi.org/10.3389/fbinf.2025.1585794" target="_blank" class="btn-doi"><i class="fas fa-external-link-alt"></i> View Article</a>
+              </div>
             </div>
 
             <div id="hidden-pubs">
-                <div class="pub-card">
-                    <div class="pub-title">TNFepitope: A Webserver for the Prediction of TNF-α Inducing Epitopes</div>
-                    <div class="pub-authors">Dhall, A., Patiyal, S., <b>Choudhury, S.</b>, Jain, S., Narang, K., & Raghava, G. P. S. (2023)</div>
-                    <div class="pub-journal">Computers in Biology and Medicine, 160, 106929.</div>
-                    <a href="https://doi.org/10.1016/j.compbiomed.2023.106929" target="_blank" class="btn-doi"><i class="fas fa-external-link-alt"></i> View Article</a>
-                </div>
-                <div class="pub-card">
-                    <div class="pub-title">Prediction of Plant Resistance Proteins Using Alignment-Based and Alignment-Free Approaches</div>
-                    <div class="pub-authors">Gahlot, P. S., <b>Choudhury, S.</b>, Bajiya, N., Kumar, N., & Raghava, G. P. S. (2025)</div>
-                    <div class="pub-journal">Proteomics, 25(5–6), e202400261.</div>
-                    <a href="https://doi.org/10.1002/pmic.202400261" target="_blank" class="btn-doi"><i class="fas fa-external-link-alt"></i> View Article</a>
-                </div>
-                <div class="pub-card">
-                    <div class="pub-title">CoronaVR: A Computational Resource and Analysis of Epitopes and Therapeutics for Severe Acute Respiratory Syndrome Coronavirus-2</div>
-                    <div class="pub-authors">Gupta, A. K., Khan, M. S., <b>Choudhury, S.</b>, Mukhopadhyay, A., Sakshi, Rastogi, A., ... & Shalu. (2020)</div>
-                    <div class="pub-journal">Frontiers in Microbiology, 11, 1858.</div>
-                    <a href="https://doi.org/10.3389/fmicb.2020.01858" target="_blank" class="btn-doi"><i class="fas fa-external-link-alt"></i> View Article</a>
-                </div>
-                <div class="pub-card">
-                    <div class="pub-title">Prediction of Anti-Freezing Proteins From Their Evolutionary Profile</div>
-                    <div class="pub-authors">Kumar, N., <b>Choudhury, S.</b>, Bajiya, N., Patiyal, S., & Raghava, G. P. S. (2025)</div>
-                    <div class="pub-journal">Proteomics, 25(3), e202400157.</div>
-                    <a href="https://doi.org/10.1002/pmic.202400157" target="_blank" class="btn-doi"><i class="fas fa-external-link-alt"></i> View Article</a>
-                </div>
-                <div class="pub-card">
-                    <div class="pub-title">DMPPred: A Tool for Identification of Antigenic Regions Responsible for Inducing Type 1 Diabetes Mellitus</div>
-                    <div class="pub-authors">Kumar, N., Patiyal, S., <b>Choudhury, S.</b>, Tomer, R., Dhall, A., & Raghava, G. P. S. (2023)</div>
-                    <div class="pub-journal">Briefings in Bioinformatics, 24(1), bbac525.</div>
-                    <a href="https://doi.org/10.1093/bib/bbac525" target="_blank" class="btn-doi"><i class="fas fa-external-link-alt"></i> View Article</a>
-                </div>
-                <div class="pub-card">
-                    <div class="pub-title">Metaviromic Analyses of DNA Virus Community from Sediments of the N-Choe Stream, North India</div>
-                    <div class="pub-authors">Mukhopadhyay, A., <b>Choudhury, S.</b>, & Kumar, M. (2023)</div>
-                    <div class="pub-journal">Virus Research, 330, 199110.</div>
-                    <a href="https://doi.org/10.1016/j.virusres.2023.199110" target="_blank" class="btn-doi"><i class="fas fa-external-link-alt"></i> View Article</a>
-                </div>
-                <div class="pub-card">
-                    <div class="pub-title">Computational Identification of Repurposed Drugs against Viruses Causing Epidemics and Pandemics via Drug-Target Network Analysis</div>
-                    <div class="pub-authors">Rajput, A., Thakur, A., Rastogi, A., <b>Choudhury, S.</b>, & Kumar, M. (2021)</div>
-                    <div class="pub-journal">Computers in Biology and Medicine, 136, 104677.</div>
-                    <a href="https://doi.org/10.1016/j.compbiomed.2021.104677" target="_blank" class="btn-doi"><i class="fas fa-external-link-alt"></i> View Article</a>
-                </div>
-                <div class="pub-card">
-                    <div class="pub-title">ToxinPred 3.0: An Improved Method for Predicting the Toxicity of Peptides</div>
-                    <div class="pub-authors">Rathore, A. S., <b>Choudhury, S.</b>, Arora, A., Tijare, P., & Raghava, G. P. S. (2024)</div>
-                    <div class="pub-journal">Computers in Biology and Medicine, 179, 108926.</div>
-                    <a href="https://doi.org/10.1016/j.compbiomed.2024.108926" target="_blank" class="btn-doi"><i class="fas fa-external-link-alt"></i> View Article</a>
-                </div>
-                <div class="pub-card">
-                    <div class="pub-title">Prediction of Hemolytic Peptides and Their Hemolytic Concentration</div>
-                    <div class="pub-authors">Rathore, A. S., Kumar, N., <b>Choudhury, S.</b>, Mehta, N. K., & Raghava, G. P. S. (2025)</div>
-                    <div class="pub-journal">Communications Biology, 8(1), 176.</div>
-                    <a href="https://doi.org/10.1038/s42003-024-05922-6" target="_blank" class="btn-doi"><i class="fas fa-external-link-alt"></i> View Article</a>
-                </div>
+              <div class="pub-card">
+                <div class="pub-title">TNFepitope: A Webserver for the Prediction of TNF-α Inducing Epitopes</div>
+                <div class="pub-authors">Dhall, A., Patiyal, S., <b>Choudhury, S.</b>, Jain, S., Narang, K., & Raghava, G. P. S. (2023)</div>
+                <div class="pub-journal">Computers in Biology and Medicine, 160, 106929.</div>
+                <a href="https://doi.org/10.1016/j.compbiomed.2023.106929" target="_blank" class="btn-doi"><i class="fas fa-external-link-alt"></i> View Article</a>
+              </div>
+              <div class="pub-card">
+                <div class="pub-title">Prediction of Plant Resistance Proteins Using Alignment-Based and Alignment-Free Approaches</div>
+                <div class="pub-authors">Gahlot, P. S., <b>Choudhury, S.</b>, Bajiya, N., Kumar, N., & Raghava, G. P. S. (2025)</div>
+                <div class="pub-journal">Proteomics, 25(5–6), e202400261.</div>
+                <a href="https://doi.org/10.1002/pmic.202400261" target="_blank" class="btn-doi"><i class="fas fa-external-link-alt"></i> View Article</a>
+              </div>
+              <div class="pub-card">
+                <div class="pub-title">CoronaVR: A Computational Resource and Analysis of Epitopes and Therapeutics for Severe Acute Respiratory Syndrome Coronavirus-2</div>
+                <div class="pub-authors">Gupta, A. K., Khan, M. S., <b>Choudhury, S.</b>, Mukhopadhyay, A., Sakshi, Rastogi, A., ... & Shalu. (2020)</div>
+                <div class="pub-journal">Frontiers in Microbiology, 11, 1858.</div>
+                <a href="https://doi.org/10.3389/fmicb.2020.01858" target="_blank" class="btn-doi"><i class="fas fa-external-link-alt"></i> View Article</a>
+              </div>
+              <div class="pub-card">
+                <div class="pub-title">Prediction of Anti-Freezing Proteins From Their Evolutionary Profile</div>
+                <div class="pub-authors">Kumar, N., <b>Choudhury, S.</b>, Bajiya, N., Patiyal, S., & Raghava, G. P. S. (2025)</div>
+                <div class="pub-journal">Proteomics, 25(3), e202400157.</div>
+                <a href="https://doi.org/10.1002/pmic.202400157" target="_blank" class="btn-doi"><i class="fas fa-external-link-alt"></i> View Article</a>
+              </div>
+              <div class="pub-card">
+                <div class="pub-title">DMPPred: A Tool for Identification of Antigenic Regions Responsible for Inducing Type 1 Diabetes Mellitus</div>
+                <div class="pub-authors">Kumar, N., Patiyal, S., <b>Choudhury, S.</b>, Tomer, R., Dhall, A., & Raghava, G. P. S. (2023)</div>
+                <div class="pub-journal">Briefings in Bioinformatics, 24(1), bbac525.</div>
+                <a href="https://doi.org/10.1093/bib/bbac525" target="_blank" class="btn-doi"><i class="fas fa-external-link-alt"></i> View Article</a>
+              </div>
+              <div class="pub-card">
+                <div class="pub-title">Metaviromic Analyses of DNA Virus Community from Sediments of the N-Choe Stream, North India</div>
+                <div class="pub-authors">Mukhopadhyay, A., <b>Choudhury, S.</b>, & Kumar, M. (2023)</div>
+                <div class="pub-journal">Virus Research, 330, 199110.</div>
+                <a href="https://doi.org/10.1016/j.virusres.2023.199110" target="_blank" class="btn-doi"><i class="fas fa-external-link-alt"></i> View Article</a>
+              </div>
+              <div class="pub-card">
+                <div class="pub-title">Computational Identification of Repurposed Drugs against Viruses Causing Epidemics and Pandemics via Drug-Target Network Analysis</div>
+                <div class="pub-authors">Rajput, A., Thakur, A., Rastogi, A., <b>Choudhury, S.</b>, & Kumar, M. (2021)</div>
+                <div class="pub-journal">Computers in Biology and Medicine, 136, 104677.</div>
+                <a href="https://doi.org/10.1016/j.compbiomed.2021.104677" target="_blank" class="btn-doi"><i class="fas fa-external-link-alt"></i> View Article</a>
+              </div>
+              <div class="pub-card">
+                <div class="pub-title">ToxinPred 3.0: An Improved Method for Predicting the Toxicity of Peptides</div>
+                <div class="pub-authors">Rathore, A. S., <b>Choudhury, S.</b>, Arora, A., Tijare, P., & Raghava, G. P. S. (2024)</div>
+                <div class="pub-journal">Computers in Biology and Medicine, 179, 108926.</div>
+                <a href="https://doi.org/10.1016/j.compbiomed.2024.108926" target="_blank" class="btn-doi"><i class="fas fa-external-link-alt"></i> View Article</a>
+              </div>
+              <div class="pub-card">
+                <div class="pub-title">Prediction of Hemolytic Peptides and Their Hemolytic Concentration</div>
+                <div class="pub-authors">Rathore, A. S., Kumar, N., <b>Choudhury, S.</b>, Mehta, N. K., & Raghava, G. P. S. (2025)</div>
+                <div class="pub-journal">Communications Biology, 8(1), 176.</div>
+                <a href="https://doi.org/10.1038/s42003-024-05922-6" target="_blank" class="btn-doi"><i class="fas fa-external-link-alt"></i> View Article</a>
+              </div>
             </div>
 
             <div class="show-more-container">
-                <button id="togglePubs" class="btn-expand">
-                    <span>Show All Publications</span>
-                    <i class="fas fa-chevron-down"></i>
-                </button>
+              <button id="togglePubs" class="btn-expand">
+                <span>Show All Publications</span>
+                <i class="fas fa-chevron-down"></i>
+              </button>
             </div>
           </div>
         </section>
 
         <section id="projects" class="mb-6">
-          <h2 class="section-title"><i class="fab fa-github has-text-primary"></i> GitHub Repositories</h2>
-          <div class="repo-grid">
-            <div class="card-glass repo-card">
-              <div>
-                <h3 class="title is-6 mb-2"><a href="https://github.com/raghavagps/afpropred" target="_blank">AfProPred</a></h3>
-                <p class="is-size-7">A tool to predict anti-freezing proteins.</p>
+          <div class="card-glass">
+            <h2 class="section-title"><i class="fab fa-github"></i> GitHub Repositories</h2>
+            <div class="repo-grid">
+              <div class="card-glass repo-card">
+                <div>
+                  <h3 class="title is-6 mb-2"><a href="https://github.com/raghavagps/afpropred" target="_blank">AfProPred</a></h3>
+                  <p class="is-size-7" style="color: #2d3748; line-height: 1.5;">A tool to predict anti-freezing proteins.</p>
+                </div>
+                <div class="repo-lang"><span class="lang-dot"></span> Python</div>
               </div>
-              <div class="repo-lang"><span class="lang-dot"></span> Python</div>
-            </div>
-            <div class="card-glass repo-card">
-              <div>
-                <h3 class="title is-6 mb-2"><a href="https://github.com/raghavagps/cytolncpred" target="_blank">CytoLNCpred</a></h3>
-                <p class="is-size-7">Predicting cytoplasm-associated lncRNA.</p>
+              <div class="card-glass repo-card">
+                <div>
+                  <h3 class="title is-6 mb-2"><a href="https://github.com/raghavagps/cytolncpred" target="_blank">CytoLNCpred</a></h3>
+                  <p class="is-size-7" style="color: #2d3748; line-height: 1.5;">Predicting cytoplasm-associated lncRNA.</p>
+                </div>
+                <div class="repo-lang"><span class="lang-dot"></span> Python</div>
               </div>
-              <div class="repo-lang"><span class="lang-dot"></span> Python</div>
-            </div>
-            <div class="card-glass repo-card">
-              <div>
-                <h3 class="title is-6 mb-2"><a href="https://github.com/raghavagps/mrslpred" target="_blank">MRSLpred</a></h3>
-                <p class="is-size-7">In silico method for predicting subcellular localisation of mRNA sequences.</p>
+              <div class="card-glass repo-card">
+                <div>
+                  <h3 class="title is-6 mb-2"><a href="https://github.com/raghavagps/mrslpred" target="_blank">MRSLpred</a></h3>
+                  <p class="is-size-7" style="color: #2d3748; line-height: 1.5;">In silico method for predicting subcellular localisation of mRNA sequences.</p>
+                </div>
+                <div class="repo-lang"><span class="lang-dot"></span> Python</div>
               </div>
-              <div class="repo-lang"><span class="lang-dot"></span> Python</div>
-            </div>
-            <div class="card-glass repo-card">
-              <div>
-                <h3 class="title is-6 mb-2"><a href="https://github.com/raghavagps/pdac_pred_llm" target="_blank">PDACpredLLM</a></h3>
-                <p class="is-size-7">Pancreatic ductal adenocarcinoma prediction using large language models.</p>
+              <div class="card-glass repo-card">
+                <div>
+                  <h3 class="title is-6 mb-2"><a href="https://github.com/raghavagps/pdac_pred_llm" target="_blank">PDACpredLLM</a></h3>
+                  <p class="is-size-7" style="color: #2d3748; line-height: 1.5;">Pancreatic ductal adenocarcinoma prediction using large language models.</p>
+                </div>
+                <div class="repo-lang"><span class="lang-dot"></span> Python</div>
               </div>
-              <div class="repo-lang"><span class="lang-dot"></span> Python</div>
-            </div>
-            <div class="card-glass repo-card">
-              <div>
-                <h3 class="title is-6 mb-2"><a href="https://github.com/raghavagps/toxinpred3" target="_blank">ToxinPred 3.0</a></h3>
-                <p class="is-size-7">Method for predicting the toxicity of peptides and designing non-toxic peptides.</p>
+              <div class="card-glass repo-card">
+                <div>
+                  <h3 class="title is-6 mb-2"><a href="https://github.com/raghavagps/toxinpred3" target="_blank">ToxinPred 3.0</a></h3>
+                  <p class="is-size-7" style="color: #2d3748; line-height: 1.5;">Method for predicting the toxicity of peptides and designing non-toxic peptides.</p>
+                </div>
+                <div class="repo-lang"><span class="lang-dot"></span> Python</div>
               </div>
-              <div class="repo-lang"><span class="lang-dot"></span> Python</div>
-            </div>
-            <div class="card-glass repo-card">
-              <div>
-                <h3 class="title is-6 mb-2"><a href="https://github.com/raghavagps/PlantDRPpred" target="_blank">PlantDRPpred</a></h3>
-                <p class="is-size-7">Prediction of plant resistance proteins.</p>
+              <div class="card-glass repo-card">
+                <div>
+                  <h3 class="title is-6 mb-2"><a href="https://github.com/raghavagps/PlantDRPpred" target="_blank">PlantDRPpred</a></h3>
+                  <p class="is-size-7" style="color: #2d3748; line-height: 1.5;">Prediction of plant resistance proteins.</p>
+                </div>
+                <div class="repo-lang"><span class="lang-dot"></span> Python</div>
               </div>
-              <div class="repo-lang"><span class="lang-dot"></span> Python</div>
             </div>
           </div>
         </section>
 
         <section id="contact" class="mb-6">
           <div class="card-glass">
-            <h2 class="section-title"><i class="fas fa-envelope has-text-primary"></i> Get in Touch</h2>
+            <h2 class="section-title"><i class="fas fa-envelope"></i> Get in Touch</h2>
             <div class="columns">
               <div class="column">
-                <p class="mb-4"><strong>Address:</strong><br>
+                <p class="mb-4" style="color: #2d3748; line-height: 1.7;"><strong style="color: #1a202c;">Address:</strong><br>
                 Lab no. A-315, R & D Building,<br>
                 Indraprastha Institute of Information Technology,<br>
                 Okhla Phase 3, New Delhi - 110020.</p>
               </div>
               <div class="column">
-                <p class="mb-2"><i class="fas fa-phone mr-2 has-text-primary"></i> <a href="tel:+919040468955">+91 9040468955</a></p>
-                <p class="mb-2"><i class="fas fa-at mr-2 has-text-primary"></i> <a href="mailto:shubhamc@outlook.in">shubhamc@outlook.in</a></p>
+                <p class="mb-2" style="color: #2d3748;"><i class="fas fa-phone mr-2"></i> <a href="tel:+919040468955">+91 9040468955</a></p>
+                <p class="mb-2" style="color: #2d3748;"><i class="fas fa-at mr-2"></i> <a href="/cdn-cgi/l/email-protection#3d4e55485f555c505e7d52484951525256135453"><span class="__cf_email__" data-cfemail="7a09120f18121b17193a150f0e16151511541314">[email&#160;protected]</span></a></p>
               </div>
             </div>
           </div>
@@ -564,7 +874,7 @@
     </div>
   </div>
 
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     // Theme Toggle
     const themeBtn = document.getElementById('themeBtn');
     const body = document.body;
@@ -597,17 +907,17 @@
     const btnIcon = toggleBtn.querySelector('i');
 
     toggleBtn.addEventListener('click', () => {
-        if (hiddenPubs.style.display === 'block') {
-            hiddenPubs.style.display = 'none';
-            btnText.textContent = 'Show All Publications';
-            btnIcon.classList.remove('fa-chevron-up');
-            btnIcon.classList.add('fa-chevron-down');
-        } else {
-            hiddenPubs.style.display = 'block';
-            btnText.textContent = 'Show Less';
-            btnIcon.classList.remove('fa-chevron-down');
-            btnIcon.classList.add('fa-chevron-up');
-        }
+      if (hiddenPubs.style.display === 'block') {
+        hiddenPubs.style.display = 'none';
+        btnText.textContent = 'Show All Publications';
+        btnIcon.classList.remove('fa-chevron-up');
+        btnIcon.classList.add('fa-chevron-down');
+      } else {
+        hiddenPubs.style.display = 'block';
+        btnText.textContent = 'Show Less';
+        btnIcon.classList.remove('fa-chevron-down');
+        btnIcon.classList.add('fa-chevron-up');
+      }
     });
 
     // Scroll Highlight
@@ -620,15 +930,3 @@
         const sectionTop = section.offsetTop;
         if (pageYOffset >= (sectionTop - 150)) {
           current = section.getAttribute('id');
-        }
-      });
-      navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href').includes(current)) {
-          link.classList.add('active');
-        }
-      });
-    });
-  </script>
-</body>
-</html>
