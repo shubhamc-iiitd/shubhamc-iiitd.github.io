@@ -195,7 +195,7 @@
     .sidebar-socials {
       display: flex;
       gap: 0.6rem;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
     }
 
     .social-btn {
@@ -216,6 +216,33 @@
       background: rgba(255,255,255,0.08);
       color: var(--gold-light);
       border-color: rgba(201,168,76,0.4);
+    }
+
+    /* CV Button Styling */
+    .cv-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1.5rem;
+      background: var(--gold);
+      color: var(--midnight);
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: var(--radius-sm);
+      transition: all 0.2s var(--ease);
+    }
+
+    .cv-btn:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(201, 168, 76, 0.2);
     }
 
     .sidebar-location {
@@ -813,7 +840,6 @@
 
 <div class="layout">
 
-  <!-- ══ SIDEBAR ══ -->
   <aside class="sidebar">
     <div class="sidebar-logo">
       <span>Portfolio — 2026</span>
@@ -856,16 +882,18 @@
       </a>
     </div>
 
+    <a href="./Shubham_Choudhury_CV.pdf" download="Shubham_Choudhury_CV.pdf" class="cv-btn">
+      <i class="fas fa-download"></i> Download CV
+    </a>
+
     <div class="sidebar-location">
       <i class="fas fa-map-marker-alt"></i>
       IIIT-Delhi, New Delhi, India
     </div>
   </aside>
 
-  <!-- ══ MAIN ══ -->
   <main>
 
-    <!-- ABOUT -->
     <section id="about">
       <div class="section-header">
         <span class="section-eyebrow">01 / About</span>
@@ -908,7 +936,6 @@
       </div>
     </section>
 
-    <!-- EDUCATION -->
     <section id="education">
       <div class="section-header">
         <span class="section-eyebrow">02 / Education</span>
@@ -953,7 +980,6 @@
       </div>
     </section>
 
-    <!-- PUBLICATIONS -->
     <section id="publications">
       <div class="section-header">
         <span class="section-eyebrow">03 / Research</span>
@@ -1139,7 +1165,6 @@
       </button>
     </section>
 
-    <!-- REPOSITORIES -->
     <section id="repositories">
       <div class="section-header">
         <span class="section-eyebrow">04 / Code</span>
@@ -1192,7 +1217,6 @@
       </div>
     </section>
 
-    <!-- CONTACT -->
     <section id="contact">
       <div class="section-header">
         <span class="section-eyebrow">05 / Contact</span>
