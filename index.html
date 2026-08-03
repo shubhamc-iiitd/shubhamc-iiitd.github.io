@@ -19,13 +19,11 @@
       --accent: #0f766e;
       --accent-hover: #0d9488;
       --accent-soft: #ccfbf1;
-      --accent-glow: rgba(15, 118, 110, 0.12);
       --border: rgba(9, 9, 11, 0.08);
       --border-strong: rgba(9, 9, 11, 0.12);
       --shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.03);
       --shadow-lg: 0 8px 30px rgba(0,0,0,0.06);
       --radius: 16px;
-      --radius-sm: 10px;
       --sans: 'Inter', system-ui, -apple-system, sans-serif;
       --mono: 'JetBrains Mono', ui-monospace, monospace;
       --ease: cubic-bezier(0.16, 1, 0.3, 1);
@@ -43,7 +41,7 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ── Nav ── */
+    /* Nav */
     .nav {
       position: sticky;
       top: 0;
@@ -142,14 +140,13 @@
       color: var(--accent);
     }
 
-    /* ── Layout ── */
     .wrap {
       max-width: 1080px;
       margin: 0 auto;
       padding: 0 1.5rem;
     }
 
-    /* ── Hero ── */
+    /* Hero */
     .hero {
       padding: 5rem 0 4rem;
       display: grid;
@@ -258,10 +255,8 @@
     }
     .loc i { color: var(--accent); font-size: 0.7rem; }
 
-    /* ── Sections ── */
-    section {
-      padding: 5rem 0;
-    }
+    /* Sections */
+    section { padding: 5rem 0; }
     .band {
       background: var(--bg-alt);
       border-top: 1px solid var(--border);
@@ -290,7 +285,7 @@
       margin-bottom: 2.5rem;
     }
 
-    /* ── About ── */
+    /* About */
     .about-grid {
       display: grid;
       grid-template-columns: 1.5fr 1fr;
@@ -342,7 +337,7 @@
       font-weight: 500;
     }
 
-    /* ── Education ── */
+    /* Education */
     .edu-stack {
       display: flex;
       flex-direction: column;
@@ -396,7 +391,7 @@
       white-space: nowrap;
     }
 
-    /* ── Publications ── */
+    /* Publications */
     .pubs {
       display: flex;
       flex-direction: column;
@@ -490,6 +485,7 @@
       justify-content: center;
       gap: 0.5rem;
       transition: all 0.2s;
+      font-family: var(--sans);
     }
     .more-btn:hover {
       background: var(--accent);
@@ -497,6 +493,7 @@
       border-style: solid;
       color: #fff;
     }
+
     #hidden-pubs {
       display: none;
       flex-direction: column;
@@ -509,7 +506,7 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* ── Repos ── */
+    /* Repos */
     .repo-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -590,7 +587,7 @@
       background: #3178c6;
     }
 
-    /* ── Contact ── */
+    /* Contact */
     .contact-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -653,7 +650,6 @@
       flex-shrink: 0;
     }
 
-    /* ── Footer ── */
     footer {
       padding: 2rem 0;
       border-top: 1px solid var(--border);
@@ -666,7 +662,7 @@
       letter-spacing: 0.02em;
     }
 
-    /* ── Dark ── */
+    /* Dark mode */
     body.dark {
       --bg: #09090b;
       --bg-alt: #121214;
@@ -690,7 +686,7 @@
       background: #0f766e;
     }
 
-    /* ── Responsive ── */
+    /* Responsive */
     @media (max-width: 880px) {
       .hero {
         grid-template-columns: 1fr;
@@ -767,6 +763,9 @@
           </a>
           <a href="https://orcid.org/0000-0002-4509-4683" target="_blank" class="btn btn-ghost">
             <i class="fab fa-orcid"></i> ORCID
+          </a>
+          <a href="https://www.linkedin.com/in/shubham-choudhury-ph-d-b22677120/" target="_blank" class="btn btn-ghost">
+            <i class="fab fa-linkedin"></i> LinkedIn
           </a>
         </div>
       </div>
@@ -994,14 +993,14 @@
         </div>
       </div>
 
-      <button class="more-btn" id="togglePubs">
+      <button class="more-btn" id="togglePubs" type="button">
         <i class="fas fa-plus" id="toggleIcon"></i>
         <span id="toggleText">Show all 14 publications</span>
       </button>
     </div>
   </section>
 
-  <!-- Repos -->
+  <!-- Repositories -->
   <section id="repositories">
     <div class="wrap">
       <div class="sec-label">04 — Code</div>
@@ -1078,6 +1077,9 @@
             <a href="https://orcid.org/0000-0002-4509-4683" target="_blank" class="c-link">
               <i class="fab fa-orcid"></i> ORCID 0000-0002-4509-4683
             </a>
+            <a href="https://www.linkedin.com/in/shubham-choudhury-ph-d-b22677120/" target="_blank" class="c-link">
+              <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
           </div>
         </div>
       </div>
@@ -1092,7 +1094,53 @@
 </footer>
 
 <script>
+  // Theme toggle
   const themeBtn = document.getElementById('themeBtn');
   const themeIcon = document.getElementById('themeIcon');
   if (localStorage.getItem('theme') === 'dark') {
     document.body.classList.add('dark');
+    themeIcon.className = 'fas fa-sun';
+  }
+  themeBtn.addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+    const isDark = document.body.classList.contains('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    themeIcon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+  });
+
+  // Publications toggle
+  const toggleBtn = document.getElementById('togglePubs');
+  const hiddenPubs = document.getElementById('hidden-pubs');
+  const toggleText = document.getElementById('toggleText');
+  const toggleIcon = document.getElementById('toggleIcon');
+  let expanded = false;
+
+  toggleBtn.addEventListener('click', () => {
+    expanded = !expanded;
+    if (expanded) {
+      hiddenPubs.style.display = 'flex';
+      toggleText.textContent = 'Show fewer publications';
+      toggleIcon.className = 'fas fa-minus';
+    } else {
+      hiddenPubs.style.display = 'none';
+      toggleText.textContent = 'Show all 14 publications';
+      toggleIcon.className = 'fas fa-plus';
+    }
+  });
+
+  // Active nav on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        const a = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+        if (a) a.classList.add('active');
+      }
+    });
+  }, { threshold: 0.25 });
+  sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
