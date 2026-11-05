@@ -547,13 +547,16 @@
       margin-bottom: 0.6rem;
     }
     .pub-year {
-      font-family: var(--display);
-      font-size: 0.68rem;
-      color: var(--faint);
-      padding: 0.16rem 0.5rem;
-      border: 1px solid rgba(255,255,255,.58);
+      font-family: var(--mono);
+      font-size: 0.70rem;
+      font-weight: 500;
+      color: var(--ink-2);
+      padding: 0.18rem 0.58rem;
+      border: 1px solid rgba(80,105,108,.22);
       border-radius: 999px;
-      background: rgba(255,255,255,.18);
+      background: rgba(255,255,255,.46);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.68);
+      white-space: nowrap;
     }
     .pub-j {
       font-family: var(--mono);
@@ -853,7 +856,12 @@
       border-color: rgba(210,255,250,.13);
       box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,.06);
     }
-    body.dark .pub-year { background: rgba(255,255,255,.04); border-color: rgba(210,255,250,.12); }
+    body.dark .pub-year {
+      color: var(--ink-2);
+      background: rgba(255,255,255,.08);
+      border-color: rgba(210,255,250,.18);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.07);
+    }
     body.dark .c-link { border-bottom-color: rgba(210,255,250,.09); }
     body.dark .band { background: rgba(9,24,27,.22); border-color: rgba(210,255,250,.09); }
     body.dark .c-card.filled {
