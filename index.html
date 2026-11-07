@@ -7,106 +7,118 @@
 <meta name="description" content="PhD in Computational Biology, IIIT Delhi. Machine learning tools that predict the function of long non-coding RNAs from sequence.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
-<script>
-try{var t=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');document.documentElement.dataset.theme=t}catch(e){}
-</script>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f4f6f7;--ink:#14191c;--mut:#4a565c;--line:#d8dee1;--ac:#1c5a85;--a:#3f8f6b;--c:#3b6fa8;--g:#b98a2e;--u:#b5476b;--sans:'Schibsted Grotesk',system-ui,sans-serif;--serif:'Source Serif 4',Georgia,serif}
-[data-theme=dark]{--bg:#0e1215;--ink:#e8edf0;--mut:#9ba8ae;--line:#263137;--ac:#86bbe0;--a:#6fbf9a;--c:#86a9dd;--g:#d9ae5a;--u:#d98aa6}
+:root{--cob:#2237d9;--cor:#ff6a45;--ink:#0c0f16;--bone:#f0f2ef;--tint:#dce2ff;--mut:#475063;--sans:'Archivo',system-ui,sans-serif;--mono:'IBM Plex Mono',ui-monospace,monospace}
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:2rem}
-body{background:var(--bg);color:var(--ink);font:400 1.125rem/1.72 var(--serif);-webkit-font-smoothing:antialiased}
-a{color:var(--ac);text-underline-offset:3px;text-decoration-thickness:1px}
-a:hover{text-decoration-thickness:2px}
-:focus-visible{outline:3px solid var(--ac);outline-offset:3px;border-radius:3px}
-.skip{position:absolute;left:-999px}.skip:focus{left:1rem;top:1rem;background:var(--bg);padding:.5rem;z-index:99}
-.layout{max-width:72rem;margin:0 auto;display:grid;grid-template-columns:17rem minmax(0,1fr);column-gap:5rem;padding:0 2rem}
+html{scroll-behavior:smooth;scroll-padding-top:3.5rem}
+body{background:var(--bone);color:var(--ink);font:400 1.125rem/1.65 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:clip}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--cor);outline-offset:3px}
+.skip{position:absolute;left:-999px}.skip:focus{left:1rem;top:1rem;background:#fff;color:#000;padding:.5rem;z-index:99}
+.in{max-width:76rem;margin:0 auto;padding:0 1.5rem}
+h1,h2{font-stretch:115%;font-weight:850;letter-spacing:-.035em;line-height:.95}
 
-.side{position:sticky;top:0;height:100vh;overflow:auto;padding:3.5rem 0 2rem;display:flex;flex-direction:column;font-family:var(--sans)}
-.side img{width:7.5rem;height:7.5rem;border-radius:6px;object-fit:cover;margin-bottom:1.5rem}
-.side h1{font:700 1.9rem/1.1 var(--sans);letter-spacing:-.02em}
-.role{color:var(--mut);font-size:.98rem;line-height:1.5;margin-top:.6rem}
-.bar{display:flex;height:3px;width:3.5rem;margin:1.3rem 0 1.8rem}
-.bar i{flex:1}.bar i:nth-child(1){background:var(--a)}.bar i:nth-child(2){background:var(--c)}.bar i:nth-child(3){background:var(--g)}.bar i:nth-child(4){background:var(--u)}
-.side nav ul{list-style:none;display:flex;flex-direction:column;gap:.15rem}
-.side nav a{display:block;padding:.35rem 0 .35rem 1rem;border-left:2px solid var(--line);color:var(--mut);text-decoration:none;font-size:.97rem;font-weight:500}
-.side nav a:hover{color:var(--ink)}
-.side nav a.on{color:var(--ink);border-left-color:var(--ac);font-weight:600}
-.links{list-style:none;margin-top:2rem;display:flex;flex-direction:column;gap:.3rem;font-size:.95rem;font-weight:500}
-.tools-row{margin-top:auto;padding-top:2rem;display:flex;gap:.6rem;align-items:center}
-.cv{font:600 .9rem var(--sans);text-decoration:none;color:var(--bg);background:var(--ink);padding:.5rem 1rem;border-radius:4px}
-.cv:hover{background:var(--ac)}
-#theme{background:none;border:1px solid var(--line);color:var(--ink);font:500 .88rem var(--sans);padding:.46rem .8rem;border-radius:4px;cursor:pointer}
-#theme:hover{border-color:var(--ac)}
+.top{position:sticky;top:0;z-index:20;background:var(--cob);color:#fff}
+.top .in{display:flex;align-items:center;gap:1.5rem;height:3.5rem}
+.brand{font:700 1rem var(--sans);font-stretch:115%;text-decoration:none;white-space:nowrap;letter-spacing:-.01em}
+.top ul{display:flex;gap:1.4rem;list-style:none;overflow-x:auto;flex:1;justify-content:flex-end;scrollbar-width:none}
+.top ul::-webkit-scrollbar{display:none}
+.top li a{font-size:.92rem;font-weight:600;text-decoration:none;white-space:nowrap;padding:.3rem 0;border-bottom:3px solid transparent}
+.top li a:hover{border-bottom-color:var(--cor)}
 
-main{max-width:42rem;padding:3.5rem 0 2rem}
-section{padding:0 0 4.5rem}
-h2{font:700 1.5rem/1.2 var(--sans);letter-spacing:-.015em;margin-bottom:1.5rem}
-.lead{font:600 clamp(1.7rem,3.4vw,2.35rem)/1.25 var(--sans);letter-spacing:-.02em;margin-bottom:2rem}
+.hero{position:relative;background:var(--cob);color:#fff;overflow:hidden;padding:5rem 0 5.5rem}
+.seq{position:absolute;inset:0;font:500 11.5vw/.92 var(--mono);letter-spacing:.06em;color:rgba(255,255,255,.085);white-space:nowrap;user-select:none;pointer-events:none;padding-top:1rem}
+.hero .in{position:relative;display:grid;grid-template-columns:1fr 15rem;gap:3rem;align-items:end}
+.hero h1{font-size:clamp(3.1rem,10.5vw,9rem);margin-bottom:2.2rem;max-width:9ch}
+.hero .sub{font-size:clamp(1.15rem,2vw,1.5rem);line-height:1.45;max-width:36rem;color:#fff}
+.hero .meta{margin-top:.9rem;color:#dfe4ff;font-size:1rem}
+.acts{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:2rem}
+.btn{font:700 .95rem var(--sans);text-decoration:none;padding:.8rem 1.4rem;border:3px solid #fff;color:#fff;transition:background .15s,color .15s}
+.btn:hover{background:#fff;color:var(--cob)}
+.btn.p{background:var(--cor);border-color:var(--cor);color:var(--ink)}
+.btn.p:hover{background:#fff;border-color:#fff}
+.ph{position:relative;justify-self:end}
+.ph::before{content:'';position:absolute;inset:16px -16px -16px 16px;background:var(--cor)}
+.ph img{position:relative;display:block;width:15rem;height:19rem;object-fit:cover;border:3px solid var(--ink)}
+
+.band{background:var(--cor);color:var(--ink);padding:1.4rem 0;border-block:3px solid var(--ink)}
+.band p{font:800 clamp(1.15rem,2.6vw,1.9rem)/1.25 var(--sans);font-stretch:112%;letter-spacing:-.02em}
+
+section{padding:6rem 0}
+h2{font-size:clamp(2.6rem,7.5vw,6rem);margin-bottom:2.6rem}
 p+p{margin-top:1.1rem}
-.note{color:var(--mut);font:400 .98rem/1.6 var(--sans);margin-bottom:1.2rem}
+.note{color:var(--mut);margin-bottom:1.6rem}
+em{font-style:italic}
+#about{background:var(--bone)}
+.lead{font:600 clamp(1.5rem,3vw,2.3rem)/1.3 var(--sans);letter-spacing:-.02em;max-width:42rem;margin-bottom:2rem}
+#about p:not(.lead){max-width:40rem;font-size:1.2rem}
+mark{background:var(--cor);color:var(--ink);padding:.05em .25em}
 
-.rows{list-style:none;font-family:var(--sans)}
-.rows>li{display:grid;grid-template-columns:8.5rem 1fr;gap:1.2rem;padding:1.15rem 0;border-top:1px solid var(--line)}
-.when{color:var(--mut);font-size:.9rem;line-height:1.5;padding-top:.15rem}
-.rows h3{font:600 1.04rem/1.4 var(--sans)}
-.rows h3 a{color:var(--ink);text-decoration:none}
-.rows h3 a:hover{color:var(--ac);text-decoration:underline}
-.sub{color:var(--mut);font-size:.96rem;margin-top:.1rem}
-.au{color:var(--mut);font-size:.93rem;margin-top:.2rem;line-height:1.55}
-.au b{color:var(--ink);font-weight:600}
-.tag{display:block;margin:0 0 .25rem;font-size:.78rem;font-weight:600;color:var(--ac);letter-spacing:.01em}
-.rows>li:has(.tag){box-shadow:inset 3px 0 0 var(--ac);padding-left:1rem;margin-left:-1rem}
-.rows>li:has(.tag) .when{padding-left:0}
+#education{background:var(--ink);color:#fff}
+.rows{list-style:none}
+.edu{display:grid;grid-template-columns:repeat(3,1fr);gap:2.5rem}
+.edu>li{border-top:4px solid var(--cor);padding-top:1.2rem}
+.edu .when{font:800 clamp(1.7rem,3vw,2.4rem)/1.05 var(--sans);font-stretch:112%;letter-spacing:-.03em;color:var(--cor);margin-bottom:.9rem}
+.edu h3{font:700 1.3rem/1.3 var(--sans)}
+.edu .sub{color:#b9c1d4;margin-top:.3rem;font-size:1rem}
 
-details{margin-top:.2rem}
-summary{cursor:pointer;font:600 .95rem var(--sans);color:var(--ac);padding:1rem 0;list-style:none;border-top:1px solid var(--line)}
+#tools{background:var(--tint)}
+.tools{list-style:none}
+.tools li{position:relative;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:2rem;align-items:center;padding:1.4rem 1rem;margin:0 -1rem;border-top:3px solid var(--ink);transition:background .15s,color .15s}
+.tools li:last-child{border-bottom:3px solid var(--ink)}
+.tools a{font:850 clamp(1.7rem,3.8vw,3rem)/1 var(--sans);font-stretch:112%;letter-spacing:-.03em;text-decoration:none}
+.tools a::after{content:'';position:absolute;inset:0}
+.tools p{font-size:1.05rem;line-height:1.5;margin:0}
+.tools li:hover{background:var(--cob);color:#fff}
+
+#publications{background:var(--bone)}
+.rows:not(.edu)>li{display:grid;grid-template-columns:9.5rem minmax(0,1fr);gap:1.5rem;padding:1.5rem 0;border-top:3px solid var(--ink)}
+.when b{display:block;font:850 2.4rem/1 var(--sans);font-stretch:112%;letter-spacing:-.04em;margin-bottom:.4rem}
+#publications .when{font:500 .8rem/1.4 var(--mono);color:var(--mut)}
+#publications h3{font:700 1.2rem/1.35 var(--sans);letter-spacing:-.01em}
+#publications h3 a{text-decoration:none}
+#publications h3 a:hover{color:var(--cob);text-decoration:underline;text-decoration-thickness:3px}
+.au{color:var(--mut);font-size:.98rem;margin-top:.3rem}
+.au b{color:var(--ink);font-weight:700}
+.tag{display:inline-block;margin-left:.7rem;font:500 .72rem var(--mono);background:var(--cor);color:var(--ink);padding:.15rem .55rem;vertical-align:.15em}
+details{margin-top:1.4rem}
+summary{display:inline-block;cursor:pointer;font:700 1rem var(--sans);background:var(--ink);color:#fff;padding:.85rem 1.5rem;list-style:none}
 summary::-webkit-details-marker{display:none}
-summary::before{content:'+';display:inline-block;width:1.3rem}
-details[open] summary::before{content:'\2212'}
+summary:hover{background:var(--cob)}
+details[open] summary{margin-bottom:.4rem}
 
-.tools{list-style:none;font-family:var(--sans)}
-.tools li{display:grid;grid-template-columns:11rem 1fr;gap:1.2rem;padding:1rem 0;border-top:1px solid var(--line);align-items:baseline}
-.tools a{font-weight:600;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:.7rem}
-.tools a::before{content:'';width:.6rem;height:.6rem;background:var(--b);flex:none}
-.tools a:hover{color:var(--ac);text-decoration:underline}
-.tools li:nth-child(4n+1){--b:var(--a)}.tools li:nth-child(4n+2){--b:var(--c)}.tools li:nth-child(4n+3){--b:var(--g)}.tools li:nth-child(4n+4){--b:var(--u)}
-.tools p{color:var(--mut);font-size:.97rem;line-height:1.55}
-
-.contact{display:grid;grid-template-columns:1fr 1fr;gap:2rem;font-family:var(--sans);font-size:1rem;border-top:1px solid var(--line);padding-top:1.4rem}
-.contact h3{font:600 .9rem var(--sans);color:var(--mut);margin-bottom:.5rem}
+#contact{background:var(--cob);color:#fff}
+.mail{display:block;font:850 clamp(1.6rem,6vw,4.6rem)/1.05 var(--sans);font-stretch:112%;letter-spacing:-.035em;color:#fff;text-decoration:underline;text-decoration-thickness:5px;text-underline-offset:.15em;text-decoration-color:var(--cor);overflow-wrap:anywhere;margin-bottom:3rem}
+.mail:hover{text-decoration-color:#fff}
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:2rem;max-width:44rem}
+.contact h3{font:500 .85rem var(--mono);color:#dfe4ff;margin-bottom:.6rem}
 .contact ul{list-style:none}.contact li{padding:.2rem 0}
+.contact a{font-weight:600}
 address{font-style:normal;line-height:1.65}
-footer{max-width:72rem;margin:0 auto;padding:1.5rem 2rem 3rem;color:var(--mut);font:400 .9rem var(--sans)}
+#contact h2{margin-bottom:1.4rem}
+footer{background:var(--ink);color:#b9c1d4;padding:1.6rem 0;font:500 .85rem var(--mono)}
 
-@media(max-width:960px){
-.layout{display:block;padding:0 1.25rem}
-.side{position:static;height:auto;overflow:visible;padding:2rem 0 1rem}
-.side img{width:5.5rem;height:5.5rem}
-.side nav ul{flex-direction:row;flex-wrap:wrap;gap:.2rem 1.1rem}
-.side nav a{border-left:0;border-bottom:2px solid transparent;padding:.3rem 0}
-.side nav a.on{border-bottom-color:var(--ac)}
-.links{flex-direction:row;flex-wrap:wrap;gap:.3rem 1.2rem}
-.tools-row{margin-top:1.4rem;padding-top:0}
-main{padding-top:2rem}
-.rows>li,.tools li{grid-template-columns:1fr;gap:.25rem}
+@media(max-width:820px){
+.hero{padding:3rem 0 3.5rem}
+.hero .in{grid-template-columns:1fr;gap:2.5rem}
+.ph{justify-self:start;order:-1}.ph img{width:9rem;height:11rem}
+.ph::before{inset:10px -10px -10px 10px}
+.edu{grid-template-columns:1fr;gap:2rem}
+.tools li{grid-template-columns:1fr;gap:.6rem}
+.rows:not(.edu)>li{grid-template-columns:1fr;gap:.4rem}
+.when b{font-size:1.9rem}
 .contact{grid-template-columns:1fr}
-.rows>li:has(.tag){margin-left:0}
-footer{padding:1rem 1.25rem 2.5rem}
+section{padding:4rem 0}
+.brand{display:none}.top ul{justify-content:flex-start}
 }
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 </style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<div class="layout">
-<aside class="side">
-<img src="images/shubham_img.jpeg" alt="Portrait of Shubham Choudhury" width="120" height="120" onerror="this.style.display='none'">
-<h1>Shubham Choudhury</h1>
-<p class="role">PhD in Computational Biology, IIIT Delhi. Defended July 2026.</p>
-<div class="bar" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-<nav aria-label="Main">
+<nav class="top" aria-label="Main"><div class="in">
+<a class="brand" href="#">Shubham Choudhury</a>
 <ul>
 <li><a href="#about">About</a></li>
 <li><a href="#education">Education</a></li>
@@ -114,29 +126,40 @@ footer{padding:1rem 1.25rem 2.5rem}
 <li><a href="#publications">Publications</a></li>
 <li><a href="#contact">Contact</a></li>
 </ul>
-</nav>
-<ul class="links">
-<li><a href="https://scholar.google.com/citations?user=pUOPVlUAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a></li>
-<li><a href="https://orcid.org/0000-0002-4509-4683" target="_blank" rel="noopener">ORCID</a></li>
-<li><a href="https://www.linkedin.com/in/shubham-choudhury-ph-d-b22677120/" target="_blank" rel="noopener">LinkedIn</a></li>
-</ul>
-<div class="tools-row">
-<a class="cv" href="./shubham_PhD_CV.pdf" download="Shubham_Choudhury_CV.pdf">Download CV</a>
-<button id="theme" type="button" aria-label="Switch colour theme">Theme</button>
-</div>
-</aside>
+</div></nav>
 
 <main id="main">
-<section id="about">
-<p class="lead">I build machine learning tools that predict what long non-coding RNAs do, using sequence alone.</p>
-<p>My thesis is titled <em>Development of AI-based Tools for Functional Annotation of lncRNA and its Applications</em>. It asks a simple question. Can we read the function and location of a non-coding RNA from its sequence? I worked on this in Prof. G. P. S. Raghava's group at IIIT Delhi.</p>
-<p>I trained as a biologist and moved into computation through programming. That shapes how I build. I want tools that a wet-lab researcher can run without writing code, and I release them as web servers with open source code.</p>
-<p>Next, I want to apply this work to RNA-based therapeutics and translational research.</p>
-</section>
+<header class="hero">
+<div class="seq" aria-hidden="true"><div>UUUCCUCAUGCAAUUCAAAA</div><div>CCAUGUCCGUAAUGUAGGCG</div><div>AAAUAGUAAACCAUUUUACG</div><div>GAGGAUACCAAAUUCCUCCU</div><div>UAUUCAGGACCUAACCUGAG</div><div>GUAAACCAGGUCUCUCCGCC</div><div>CCCUUAUAAAAGCUGUUGCA</div><div>CCUAGCCAAGUUCAACGGCA</div><div>GCUGCAAUGGAAAUAGGCAA</div></div>
+<div class="in">
+<div>
+<h1>Reading RNA function from sequence.</h1>
+<p class="sub">I build machine learning tools that predict what long non-coding RNAs do.</p>
+<p class="meta">Shubham Choudhury. PhD in Computational Biology, IIIT Delhi. Defended July 2026.</p>
+<p class="acts">
+<a class="btn p" href="./shubham_PhD_CV.pdf" download="Shubham_Choudhury_CV.pdf">Download CV</a>
+<a class="btn" href="https://scholar.google.com/citations?user=pUOPVlUAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a>
+<a class="btn" href="https://orcid.org/0000-0002-4509-4683" target="_blank" rel="noopener">ORCID</a>
+<a class="btn" href="https://www.linkedin.com/in/shubham-choudhury-ph-d-b22677120/" target="_blank" rel="noopener">LinkedIn</a>
+</p>
+</div>
+<div class="ph"><img src="images/shubham_img.jpeg" alt="Portrait of Shubham Choudhury" width="240" height="304" onerror="this.parentNode.style.display='none'"></div>
+</div>
+</header>
 
-<section id="education">
-<h2>Education and fellowships</h2>
-<ul class="rows">
+<div class="band"><div class="in"><p>lncRNA annotation / RNA localization / peptide prediction / RNA therapeutics</p></div></div>
+
+<section id="about"><div class="in">
+<h2>About</h2>
+<p class="lead">My thesis asks whether the function and cellular location of a non-coding RNA can be read from its sequence.</p>
+<p>It is titled <em>Development of AI-based Tools for Functional Annotation of lncRNA and its Applications</em>. I worked on it in Prof. G. P. S. Raghava's group at IIIT Delhi.</p>
+<p>I trained as a biologist and moved into computation through programming. That shapes how I build. I want tools that a wet-lab researcher can run without writing code.</p>
+<p>Next, I want to apply this work to <mark>RNA-based therapeutics and translational research.</mark></p>
+</div></section>
+
+<section id="education"><div class="in">
+<h2>Education</h2>
+<ul class="rows edu">
 <li>
 <div class="when">2021 to 2026</div>
 <div><h3>PhD, Computational Biology</h3><p class="sub">Indraprastha Institute of Information Technology, New Delhi</p></div>
@@ -150,9 +173,9 @@ footer{padding:1rem 1.25rem 2.5rem}
 <div><h3>DST-INSPIRE and DBT-JRF fellowships</h3></div>
 </li>
 </ul>
-</section>
+</div></section>
 
-<section id="tools">
+<section id="tools"><div class="in">
 <h2>Tools</h2>
 <p class="note">Web servers and open source code from my doctoral work.</p>
 <ul class="tools">
@@ -163,41 +186,41 @@ footer{padding:1rem 1.25rem 2.5rem}
 <li><a href="https://github.com/raghavagps/afpropred" target="_blank" rel="noopener">AfProPred</a><p>Predicts anti-freezing proteins from evolutionary profiles.</p></li>
 <li><a href="https://github.com/raghavagps/PlantDRPpred" target="_blank" rel="noopener">PlantDRPpred</a><p>Predicts plant disease resistance proteins.</p></li>
 </ul>
-</section>
+</div></section>
 
-<section id="publications">
+<section id="publications"><div class="in">
 <h2>Publications</h2>
 <p class="note">Newest first. My name is in bold. I am first author on the three marked papers.</p>
 <ul class="rows">
-<li><div class="when">2025<br>Frontiers in Bioinformatics</div><div><h3><a href="https://doi.org/10.3389/fbinf.2025.1585794" target="_blank" rel="noopener">CytoLNCpred: A Computational Method for Predicting Cytoplasm-Associated Long Non-Coding RNAs</a><span class="tag">First author</span></h3><p class="au"><b>Choudhury, S.</b>, Mehta, N. K., Raghava, G. P. S.</p></div></li>
-<li><div class="when">2025<br>Communications Biology</div><div><h3><a href="https://doi.org/10.1038/s42003-024-05922-6" target="_blank" rel="noopener">Prediction of Hemolytic Peptides and Their Hemolytic Concentration</a></h3><p class="au">Rathore, A. S., Kumar, N., <b>Choudhury, S.</b>, Mehta, N. K., Raghava, G. P. S.</p></div></li>
-<li><div class="when">2025<br>Proteomics</div><div><h3><a href="https://doi.org/10.1002/pmic.202400261" target="_blank" rel="noopener">Prediction of Plant Resistance Proteins Using Alignment-Based and Alignment-Free Approaches</a></h3><p class="au">Gahlot, P. S., <b>Choudhury, S.</b>, Bajiya, N., Kumar, N., Raghava, G. P. S.</p></div></li>
-<li><div class="when">2025<br>Proteomics</div><div><h3><a href="https://doi.org/10.1002/pmic.202400157" target="_blank" rel="noopener">Prediction of Anti-Freezing Proteins From Their Evolutionary Profile</a></h3><p class="au">Kumar, N., <b>Choudhury, S.</b>, Bajiya, N., Patiyal, S., Raghava, G. P. S.</p></div></li>
-<li><div class="when">2024<br>Frontiers in RNA Research</div><div><h3><a href="https://doi.org/10.3389/frnar.2024.1419979" target="_blank" rel="noopener">Compilation of Resources on Subcellular Localization of lncRNA</a><span class="tag">First author</span></h3><p class="au"><b>Choudhury, S.</b>, Rathore, A. S., Raghava, G. P. S.</p></div></li>
-<li><div class="when">2024<br>Frontiers in Bioinformatics</div><div><h3><a href="https://doi.org/10.3389/fbinf.2024.1341479" target="_blank" rel="noopener">MRSLpred: A Hybrid Approach for Predicting Multi-Label Subcellular Localization of mRNA at the Genome Scale</a><span class="tag">First author</span></h3><p class="au"><b>Choudhury, S.</b>, Bajiya, N., Patiyal, S., Raghava, G. P. S.</p></div></li>
+<li><div class="when"><b>2025</b>Frontiers in Bioinformatics</div><div><h3><a href="https://doi.org/10.3389/fbinf.2025.1585794" target="_blank" rel="noopener">CytoLNCpred: A Computational Method for Predicting Cytoplasm-Associated Long Non-Coding RNAs</a><span class="tag">First author</span></h3><p class="au"><b>Choudhury, S.</b>, Mehta, N. K., Raghava, G. P. S.</p></div></li>
+<li><div class="when"><b>2025</b>Communications Biology</div><div><h3><a href="https://doi.org/10.1038/s42003-024-05922-6" target="_blank" rel="noopener">Prediction of Hemolytic Peptides and Their Hemolytic Concentration</a></h3><p class="au">Rathore, A. S., Kumar, N., <b>Choudhury, S.</b>, Mehta, N. K., Raghava, G. P. S.</p></div></li>
+<li><div class="when"><b>2025</b>Proteomics</div><div><h3><a href="https://doi.org/10.1002/pmic.202400261" target="_blank" rel="noopener">Prediction of Plant Resistance Proteins Using Alignment-Based and Alignment-Free Approaches</a></h3><p class="au">Gahlot, P. S., <b>Choudhury, S.</b>, Bajiya, N., Kumar, N., Raghava, G. P. S.</p></div></li>
+<li><div class="when"><b>2025</b>Proteomics</div><div><h3><a href="https://doi.org/10.1002/pmic.202400157" target="_blank" rel="noopener">Prediction of Anti-Freezing Proteins From Their Evolutionary Profile</a></h3><p class="au">Kumar, N., <b>Choudhury, S.</b>, Bajiya, N., Patiyal, S., Raghava, G. P. S.</p></div></li>
+<li><div class="when"><b>2024</b>Frontiers in RNA Research</div><div><h3><a href="https://doi.org/10.3389/frnar.2024.1419979" target="_blank" rel="noopener">Compilation of Resources on Subcellular Localization of lncRNA</a><span class="tag">First author</span></h3><p class="au"><b>Choudhury, S.</b>, Rathore, A. S., Raghava, G. P. S.</p></div></li>
+<li><div class="when"><b>2024</b>Frontiers in Bioinformatics</div><div><h3><a href="https://doi.org/10.3389/fbinf.2024.1341479" target="_blank" rel="noopener">MRSLpred: A Hybrid Approach for Predicting Multi-Label Subcellular Localization of mRNA at the Genome Scale</a><span class="tag">First author</span></h3><p class="au"><b>Choudhury, S.</b>, Bajiya, N., Patiyal, S., Raghava, G. P. S.</p></div></li>
 </ul>
 
 <details>
 <summary>Show 9 more publications</summary>
 <ul class="rows">
-<li><div class="when">2024<br>Computers in Biology and Medicine</div><div><h3><a href="https://doi.org/10.1016/j.compbiomed.2024.108926" target="_blank" rel="noopener">ToxinPred 3.0: An Improved Method for Predicting the Toxicity of Peptides</a></h3><p class="au">Rathore, A. S., <b>Choudhury, S.</b>, Arora, A., Tijare, P., Raghava, G. P. S.</p></div></li>
-<li><div class="when">2024<br>Antibiotics</div><div><h3><a href="https://doi.org/10.3390/antibiotics13020168" target="_blank" rel="noopener">AntiBP3: A Method for Predicting Antibacterial Peptides against Gram-Positive, Gram-Negative and Gram-Variable Bacteria</a></h3><p class="au">Bajiya, N., <b>Choudhury, S.</b>, Dhall, A., Raghava, G. P. S.</p></div></li>
-<li><div class="when">2023<br>Frontiers in Microbiology</div><div><h3><a href="https://doi.org/10.3389/fmicb.2023.1148579" target="_blank" rel="noopener">An Ensemble Method for Prediction of Phage-Based Therapy against Bacterial Infections</a></h3><p class="au">Aggarwal, S., Dhall, A., Patiyal, S., <b>Choudhury, S.</b>, Arora, A., Raghava, G. P. S.</p></div></li>
-<li><div class="when">2023<br>Computers in Biology and Medicine</div><div><h3><a href="https://doi.org/10.1016/j.compbiomed.2023.106929" target="_blank" rel="noopener">TNFepitope: A Webserver for the Prediction of TNF-α Inducing Epitopes</a></h3><p class="au">Dhall, A., Patiyal, S., <b>Choudhury, S.</b>, Jain, S., Narang, K., Raghava, G. P. S.</p></div></li>
-<li><div class="when">2023<br>Virus Research</div><div><h3><a href="https://doi.org/10.1016/j.virusres.2023.199110" target="_blank" rel="noopener">Metaviromic Analyses of DNA Virus Community from Sediments of the N-Choe Stream, North India</a></h3><p class="au">Mukhopadhyay, A., <b>Choudhury, S.</b>, Kumar, M.</p></div></li>
-<li><div class="when">2023<br>Briefings in Bioinformatics</div><div><h3><a href="https://doi.org/10.1093/bib/bbac525" target="_blank" rel="noopener">DMPPred: A Tool for Identification of Antigenic Regions Responsible for Inducing Type 1 Diabetes Mellitus</a></h3><p class="au">Kumar, N., Patiyal, S., <b>Choudhury, S.</b>, Tomer, R., Dhall, A., Raghava, G. P. S.</p></div></li>
-<li><div class="when">2021<br>Computers in Biology and Medicine</div><div><h3><a href="https://doi.org/10.1016/j.compbiomed.2021.104677" target="_blank" rel="noopener">Computational Identification of Repurposed Drugs against Viruses Causing Epidemics and Pandemics via Drug-Target Network Analysis</a></h3><p class="au">Rajput, A., Thakur, A., Rastogi, A., <b>Choudhury, S.</b>, Kumar, M.</p></div></li>
-<li><div class="when">2020<br>Frontiers in Microbiology</div><div><h3><a href="https://doi.org/10.3389/fmicb.2020.01858" target="_blank" rel="noopener">CoronaVR: A Computational Resource and Analysis of Epitopes and Therapeutics for SARS-CoV-2</a></h3><p class="au">Gupta, A. K., Khan, M. S., <b>Choudhury, S.</b>, Mukhopadhyay, A., et al.</p></div></li>
+<li><div class="when"><b>2024</b>Computers in Biology and Medicine</div><div><h3><a href="https://doi.org/10.1016/j.compbiomed.2024.108926" target="_blank" rel="noopener">ToxinPred 3.0: An Improved Method for Predicting the Toxicity of Peptides</a></h3><p class="au">Rathore, A. S., <b>Choudhury, S.</b>, Arora, A., Tijare, P., Raghava, G. P. S.</p></div></li>
+<li><div class="when"><b>2024</b>Antibiotics</div><div><h3><a href="https://doi.org/10.3390/antibiotics13020168" target="_blank" rel="noopener">AntiBP3: A Method for Predicting Antibacterial Peptides against Gram-Positive, Gram-Negative and Gram-Variable Bacteria</a></h3><p class="au">Bajiya, N., <b>Choudhury, S.</b>, Dhall, A., Raghava, G. P. S.</p></div></li>
+<li><div class="when"><b>2023</b>Frontiers in Microbiology</div><div><h3><a href="https://doi.org/10.3389/fmicb.2023.1148579" target="_blank" rel="noopener">An Ensemble Method for Prediction of Phage-Based Therapy against Bacterial Infections</a></h3><p class="au">Aggarwal, S., Dhall, A., Patiyal, S., <b>Choudhury, S.</b>, Arora, A., Raghava, G. P. S.</p></div></li>
+<li><div class="when"><b>2023</b>Computers in Biology and Medicine</div><div><h3><a href="https://doi.org/10.1016/j.compbiomed.2023.106929" target="_blank" rel="noopener">TNFepitope: A Webserver for the Prediction of TNF-α Inducing Epitopes</a></h3><p class="au">Dhall, A., Patiyal, S., <b>Choudhury, S.</b>, Jain, S., Narang, K., Raghava, G. P. S.</p></div></li>
+<li><div class="when"><b>2023</b>Virus Research</div><div><h3><a href="https://doi.org/10.1016/j.virusres.2023.199110" target="_blank" rel="noopener">Metaviromic Analyses of DNA Virus Community from Sediments of the N-Choe Stream, North India</a></h3><p class="au">Mukhopadhyay, A., <b>Choudhury, S.</b>, Kumar, M.</p></div></li>
+<li><div class="when"><b>2023</b>Briefings in Bioinformatics</div><div><h3><a href="https://doi.org/10.1093/bib/bbac525" target="_blank" rel="noopener">DMPPred: A Tool for Identification of Antigenic Regions Responsible for Inducing Type 1 Diabetes Mellitus</a></h3><p class="au">Kumar, N., Patiyal, S., <b>Choudhury, S.</b>, Tomer, R., Dhall, A., Raghava, G. P. S.</p></div></li>
+<li><div class="when"><b>2021</b>Computers in Biology and Medicine</div><div><h3><a href="https://doi.org/10.1016/j.compbiomed.2021.104677" target="_blank" rel="noopener">Computational Identification of Repurposed Drugs against Viruses Causing Epidemics and Pandemics via Drug-Target Network Analysis</a></h3><p class="au">Rajput, A., Thakur, A., Rastogi, A., <b>Choudhury, S.</b>, Kumar, M.</p></div></li>
+<li><div class="when"><b>2020</b>Frontiers in Microbiology</div><div><h3><a href="https://doi.org/10.3389/fmicb.2020.01858" target="_blank" rel="noopener">CoronaVR: A Computational Resource and Analysis of Epitopes and Therapeutics for SARS-CoV-2</a></h3><p class="au">Gupta, A. K., Khan, M. S., <b>Choudhury, S.</b>, Mukhopadhyay, A., et al.</p></div></li>
 </ul>
 </details>
-</section>
+</div></section>
 
-<section id="contact">
-<h2>Contact</h2>
+<section id="contact"><div class="in">
+<h2>Get in touch</h2>
+<a class="mail" href="mailto:shubhamc@outlook.in">shubhamc@outlook.in</a>
 <div class="contact">
 <div>
-<h3>Email</h3>
-<ul><li><a href="mailto:shubhamc@outlook.in">shubhamc@outlook.in</a></li></ul>
+
 <h3 style="margin-top:1.2rem">Profiles</h3>
 <ul>
 <li><a href="https://scholar.google.com/citations?user=pUOPVlUAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a></li>
@@ -210,25 +233,8 @@ footer{padding:1rem 1.25rem 2.5rem}
 <address>Lab A-318, R&amp;D Building<br>Indraprastha Institute of Information Technology<br>Okhla Phase 3, New Delhi 110020, India</address>
 </div>
 </div>
-</section>
+</div></section>
 </main>
-</div>
-<footer>&copy; 2026 Shubham Choudhury</footer>
-<script>
-(function(){
-document.getElementById('theme').addEventListener('click',function(){
-var d=document.documentElement.dataset.theme==='dark'?'light':'dark';
-document.documentElement.dataset.theme=d;
-try{localStorage.setItem('theme',d)}catch(e){}
-});
-var links=document.querySelectorAll('.side nav a');
-var io=new IntersectionObserver(function(es){
-es.forEach(function(e){
-if(e.isIntersecting){links.forEach(function(l){l.classList.toggle('on',l.getAttribute('href')==='#'+e.target.id)})}
-});
-},{rootMargin:'-30% 0px -60% 0px'});
-document.querySelectorAll('section[id]').forEach(function(s){io.observe(s)});
-})();
-</script>
+<footer><div class="in">&copy; 2026 Shubham Choudhury</div></footer>
 </body>
 </html>
