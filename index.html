@@ -1,1354 +1,234 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Shubham Choudhury — Computational Biologist</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <style>
-    :root {
-      --bg: #eef4f4;
-      --bg-alt: rgba(255,255,255,0.24);
-      --surface: rgba(255,255,255,0.48);
-      --surface-strong: rgba(255,255,255,0.68);
-      --ink: #0b1517;
-      --ink-2: #344346;
-      --muted: #68777a;
-      --faint: #8d9a9c;
-      --accent: #087f79;
-      --accent-hover: #0a9d95;
-      --accent-soft: rgba(14, 165, 154, 0.11);
-      --border: rgba(255,255,255,0.62);
-      --border-strong: rgba(255,255,255,0.82);
-      --shadow: 0 12px 45px rgba(28, 68, 71, 0.10), 0 2px 10px rgba(28,68,71,0.05);
-      --shadow-lg: 0 24px 80px rgba(28, 68, 71, 0.15), 0 8px 24px rgba(28,68,71,0.08);
-      --radius: 24px;
-      --display: 'Doto', 'Inter', system-ui, sans-serif;
-      --sans: 'Inter', system-ui, -apple-system, sans-serif;
-      --mono: 'JetBrains Mono', ui-monospace, monospace;
-      --ease: cubic-bezier(0.16, 1, 0.3, 1);
-      --glass-blur: blur(28px) saturate(155%);
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      background:
-        radial-gradient(circle at 8% 12%, rgba(69, 202, 190, 0.18), transparent 30rem),
-        radial-gradient(circle at 92% 9%, rgba(144, 123, 230, 0.13), transparent 28rem),
-        radial-gradient(circle at 72% 72%, rgba(76, 183, 208, 0.11), transparent 32rem),
-        linear-gradient(135deg, #edf5f5 0%, #f5f7f7 48%, #eef3f6 100%);
-      background-attachment: fixed;
-      color: var(--ink);
-      font-family: var(--sans);
-      font-size: 16px;
-      line-height: 1.65;
-      min-height: 100vh;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-    }
-    body::before,
-    body::after {
-      content: '';
-      position: fixed;
-      z-index: -1;
-      pointer-events: none;
-      border-radius: 999px;
-      filter: blur(80px);
-      opacity: .55;
-    }
-    body::before {
-      width: 28rem;
-      height: 28rem;
-      left: -13rem;
-      top: 28rem;
-      background: rgba(52, 196, 181, 0.16);
-    }
-    body::after {
-      width: 24rem;
-      height: 24rem;
-      right: -10rem;
-      top: 48rem;
-      background: rgba(132, 112, 220, 0.12);
-    }
-
-    /* Floating glass navigation */
-    .nav {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      padding: 14px 0;
-      background: transparent;
-      border: 0;
-    }
-    .nav-inner {
-      max-width: 1080px;
-      margin: 0 auto;
-      padding: 0.55rem 0.65rem 0.55rem 1.15rem;
-      min-height: 58px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: rgba(255,255,255,0.42);
-      border: 1px solid rgba(255,255,255,0.72);
-      border-radius: 999px;
-      box-shadow: 0 12px 50px rgba(37, 74, 77, 0.10), inset 0 1px 0 rgba(255,255,255,0.82);
-      backdrop-filter: var(--glass-blur);
-      -webkit-backdrop-filter: var(--glass-blur);
-    }
-    .nav-logo {
-      font-family: var(--display);
-      font-weight: 650;
-      font-size: 0.95rem;
-      color: var(--ink);
-      text-decoration: none;
-      letter-spacing: -0.02em;
-      padding-right: .7rem;
-    }
-    .nav-logo span { color: var(--accent); }
-    .nav-links {
-      display: flex;
-      gap: 0.12rem;
-      list-style: none;
-    }
-    .nav-links a {
-      padding: 0.42rem 0.85rem;
-      font-size: 0.82rem;
-      font-weight: 550;
-      color: var(--muted);
-      text-decoration: none;
-      border-radius: 999px;
-      transition: color 0.2s, background 0.2s, transform 0.2s var(--ease);
-    }
-    .nav-links a:hover,
-    .nav-links a.active {
-      color: var(--ink);
-      background: rgba(255,255,255,0.52);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.7);
-      transform: translateY(-1px);
-    }
-    .nav-right {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.58rem 1rem;
-      font-size: 0.79rem;
-      font-weight: 650;
-      border-radius: 999px;
-      text-decoration: none;
-      cursor: pointer;
-      transition: all 0.25s var(--ease);
-      border: 1px solid rgba(255,255,255,.58);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.55);
-    }
-    .btn-primary {
-      background: linear-gradient(135deg, rgba(8,127,121,.92), rgba(14,165,154,.78));
-      color: #fff;
-      border-color: rgba(255,255,255,.28);
-      box-shadow: 0 8px 24px rgba(8,127,121,.20), inset 0 1px 0 rgba(255,255,255,.25);
-    }
-    .btn-primary:hover {
-      background: linear-gradient(135deg, rgba(10,157,149,.96), rgba(8,127,121,.88));
-      transform: translateY(-2px);
-      box-shadow: 0 12px 30px rgba(8,127,121,.25), inset 0 1px 0 rgba(255,255,255,.28);
-    }
-    .btn-ghost {
-      background: rgba(255,255,255,.34);
-      color: var(--ink-2);
-      border-color: rgba(255,255,255,.68);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-    }
-    .btn-ghost:hover {
-      border-color: rgba(8,127,121,.35);
-      color: var(--accent);
-      background: rgba(255,255,255,.55);
-      transform: translateY(-2px);
-    }
-    .theme-toggle {
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      border: 1px solid rgba(255,255,255,.72);
-      background: rgba(255,255,255,.38);
-      color: var(--ink-2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.2s var(--ease);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.65);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-    }
-    .theme-toggle:hover {
-      border-color: rgba(8,127,121,.35);
-      color: var(--accent);
-      transform: rotate(8deg) translateY(-1px);
-    }
-
-    .wrap {
-      max-width: 1080px;
-      margin: 0 auto;
-      padding: 0 1.5rem;
-    }
-
-    /* Hero */
-    .hero {
-      padding: 5.2rem 0 5rem;
-      display: grid;
-      grid-template-columns: 1.18fr 0.82fr;
-      gap: 4rem;
-      align-items: center;
-      min-height: 650px;
-    }
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-family: var(--mono);
-      font-size: 0.68rem;
-      font-weight: 500;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--accent);
-      background: rgba(255,255,255,.42);
-      border: 1px solid rgba(255,255,255,.7);
-      padding: 0.4rem 0.8rem;
-      border-radius: 100px;
-      margin-bottom: 1.35rem;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.7);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-    }
-    .hero-badge::before {
-      content: '';
-      width: 6px;
-      height: 6px;
-      background: var(--accent);
-      border-radius: 50%;
-      box-shadow: 0 0 0 5px rgba(14,165,154,.08), 0 0 14px rgba(14,165,154,.5);
-      animation: blink 2s ease-in-out infinite;
-    }
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.35; }
-    }
-    .hero h1 {
-      font-family: var(--display);
-      font-size: clamp(2.65rem, 5vw, 4rem);
-      font-weight: 600;
-      letter-spacing: -0.025em;
-      line-height: 1.05;
-      color: var(--ink);
-      margin-bottom: 1.15rem;
-      max-width: 12ch;
-    }
-    .hero h1 em {
-      font-style: normal;
-      color: var(--accent);
-      text-shadow: 0 8px 35px rgba(14,165,154,.16);
-    }
-    .hero-sub {
-      font-size: 1.08rem;
-      color: var(--ink-2);
-      max-width: 39ch;
-      margin-bottom: 1.8rem;
-      line-height: 1.65;
-    }
-    .hero-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 2rem;
-    }
-    .tag {
-      font-size: 0.73rem;
-      font-weight: 520;
-      padding: 0.4rem 0.78rem;
-      background: rgba(255,255,255,.34);
-      border: 1px solid rgba(255,255,255,.66);
-      border-radius: 999px;
-      color: var(--ink-2);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.55);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-    }
-    .hero-cta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.7rem;
-    }
-    .hero-visual {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-    }
-    .photo-frame {
-      position: relative;
-      width: 258px;
-      height: 258px;
-      padding: 9px;
-      border-radius: 34px;
-      background: rgba(255,255,255,.34);
-      border: 1px solid rgba(255,255,255,.75);
-      box-shadow: 0 28px 80px rgba(39, 85, 89, .16), inset 0 1px 0 rgba(255,255,255,.85);
-      backdrop-filter: blur(24px) saturate(160%);
-      -webkit-backdrop-filter: blur(24px) saturate(160%);
-    }
-    .photo-frame::before {
-      content: '';
-      position: absolute;
-      inset: -34px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(45, 203, 188, .17), transparent 68%);
-      z-index: -1;
-      filter: blur(12px);
-    }
-    .photo-frame img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 27px;
-      box-shadow: 0 12px 35px rgba(22,55,58,.14);
-    }
-    .photo-ring {
-      position: absolute;
-      inset: -11px;
-      border: 1px solid rgba(255,255,255,.78);
-      border-radius: 38px;
-      opacity: 0.9;
-      pointer-events: none;
-      box-shadow: 0 0 0 1px rgba(8,127,121,.06);
-    }
-    .loc {
-      font-size: 0.78rem;
-      color: var(--muted);
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: .4rem .75rem;
-      border-radius: 999px;
-      background: rgba(255,255,255,.3);
-      border: 1px solid rgba(255,255,255,.58);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-    }
-    .loc i { color: var(--accent); font-size: 0.68rem; }
-
-    /* Sections */
-    section { padding: 5.5rem 0; position: relative; }
-    .band {
-      background: rgba(255,255,255,.18);
-      border-top: 1px solid rgba(255,255,255,.46);
-      border-bottom: 1px solid rgba(255,255,255,.46);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-    }
-    .sec-label {
-      font-family: var(--display);
-      font-size: 0.68rem;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 0.55rem;
-    }
-    .sec-title {
-      font-family: var(--display);
-      font-size: clamp(1.8rem, 3vw, 2.35rem);
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      color: var(--ink);
-      margin-bottom: 0.55rem;
-    }
-    .sec-desc {
-      font-size: 0.98rem;
-      color: var(--muted);
-      max-width: 44ch;
-      margin-bottom: 2.5rem;
-    }
-
-    /* About */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1.5fr 1fr;
-      gap: 3.5rem;
-      align-items: start;
-    }
-    .about-text {
-      padding: 2rem;
-      border-radius: var(--radius);
-      background: rgba(255,255,255,.30);
-      border: 1px solid rgba(255,255,255,.62);
-      box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,.7);
-      backdrop-filter: var(--glass-blur);
-      -webkit-backdrop-filter: var(--glass-blur);
-    }
-    .about-text p {
-      font-size: 1.035rem;
-      color: var(--ink-2);
-      margin-bottom: 1.25rem;
-      line-height: 1.78;
-    }
-    .about-text p:last-child { margin-bottom: 0; }
-    .about-text p:first-child {
-      font-size: 1.15rem;
-      color: var(--ink);
-      font-weight: 500;
-    }
-    .about-text strong { color: var(--accent); font-weight: 650; }
-
-    .stats {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-    .stat {
-      background: rgba(255,255,255,.34);
-      border: 1px solid rgba(255,255,255,.64);
-      border-radius: var(--radius);
-      padding: 1.35rem 1.5rem;
-      display: flex;
-      align-items: baseline;
-      gap: 1rem;
-      transition: transform 0.25s var(--ease), border-color 0.25s, box-shadow 0.25s;
-      box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,.68);
-      backdrop-filter: var(--glass-blur);
-      -webkit-backdrop-filter: var(--glass-blur);
-    }
-    .stat:hover {
-      border-color: rgba(8,127,121,.25);
-      box-shadow: var(--shadow-lg), inset 0 1px 0 rgba(255,255,255,.75);
-      transform: translateY(-3px);
-    }
-    .stat-n {
-      font-family: var(--display);
-      font-size: 2.25rem;
-      font-weight: 720;
-      letter-spacing: -0.05em;
-      color: var(--accent);
-      line-height: 1;
-    }
-    .stat-l {
-      font-size: 0.875rem;
-      color: var(--muted);
-      font-weight: 500;
-    }
-
-    /* Education */
-    .edu-stack {
-      display: flex;
-      flex-direction: column;
-      gap: 0.85rem;
-    }
-    .edu {
-      background: rgba(255,255,255,.34);
-      border: 1px solid rgba(255,255,255,.64);
-      border-radius: var(--radius);
-      padding: 1.5rem 1.75rem;
-      display: grid;
-      grid-template-columns: 150px 1fr auto;
-      gap: 1.25rem;
-      align-items: center;
-      transition: transform 0.25s var(--ease), border-color 0.25s, box-shadow 0.25s;
-      box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,.68);
-      backdrop-filter: var(--glass-blur);
-      -webkit-backdrop-filter: var(--glass-blur);
-    }
-    .edu:hover {
-      border-color: rgba(8,127,121,.23);
-      box-shadow: var(--shadow-lg), inset 0 1px 0 rgba(255,255,255,.75);
-      transform: translateY(-2px);
-    }
-    .edu-date {
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      color: var(--faint);
-    }
-    .edu-deg {
-      font-size: 1.035rem;
-      font-weight: 650;
-      color: var(--ink);
-      letter-spacing: -0.01em;
-      margin-bottom: 0.15rem;
-    }
-    .edu-inst {
-      font-size: 0.9rem;
-      color: var(--ink-2);
-    }
-    .edu-inst small {
-      display: block;
-      font-size: 0.8rem;
-      color: var(--faint);
-      margin-top: 0.1rem;
-    }
-    .edu-badge {
-      font-family: var(--mono);
-      font-size: 0.68rem;
-      font-weight: 500;
-      padding: 0.38rem 0.72rem;
-      background: rgba(14,165,154,.10);
-      border: 1px solid rgba(14,165,154,.12);
-      color: var(--accent);
-      border-radius: 999px;
-      white-space: nowrap;
-    }
-
-    /* Publications */
-    .pubs {
-      display: flex;
-      flex-direction: column;
-      gap: 0.85rem;
-    }
-    .pub {
-      background: rgba(255,255,255,.34);
-      border: 1px solid rgba(255,255,255,.64);
-      border-radius: var(--radius);
-      padding: 1.5rem 1.65rem;
-      transition: all 0.28s var(--ease);
-      position: relative;
-      box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,.68);
-      backdrop-filter: var(--glass-blur);
-      -webkit-backdrop-filter: var(--glass-blur);
-      overflow: hidden;
-    }
-    .pub::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 1.1rem;
-      bottom: 1.1rem;
-      width: 3px;
-      background: linear-gradient(to bottom, rgba(14,165,154,.1), var(--accent), rgba(14,165,154,.1));
-      border-radius: 0 3px 3px 0;
-      opacity: 0;
-      transition: opacity 0.2s;
-    }
-    .pub:hover {
-      border-color: rgba(8,127,121,.22);
-      box-shadow: var(--shadow-lg), inset 0 1px 0 rgba(255,255,255,.75);
-      transform: translateY(-3px);
-    }
-    .pub:hover::before { opacity: 1; }
-
-    .pub-top {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 0.6rem;
-    }
-    .pub-year {
-      font-family: var(--mono);
-      font-size: 0.70rem;
-      font-weight: 500;
-      color: var(--ink-2);
-      padding: 0.18rem 0.58rem;
-      border: 1px solid rgba(80,105,108,.22);
-      border-radius: 999px;
-      background: rgba(255,255,255,.46);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.68);
-      white-space: nowrap;
-    }
-    .pub-j {
-      font-family: var(--mono);
-      font-size: 0.68rem;
-      font-weight: 500;
-      color: var(--accent);
-    }
-    .pub-t {
-      font-size: 1.04rem;
-      font-weight: 620;
-      letter-spacing: -0.015em;
-      color: var(--ink);
-      line-height: 1.45;
-      margin-bottom: 0.4rem;
-    }
-    .pub-a {
-      font-size: 0.84rem;
-      color: var(--faint);
-      margin-bottom: 0.65rem;
-    }
-    .pub-a strong { color: var(--accent); font-weight: 600; }
-    .pub-doi {
-      font-family: var(--mono);
-      font-size: 0.7rem;
-      color: var(--accent);
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      padding: .25rem .5rem;
-      margin-left: -.5rem;
-      border-radius: 999px;
-      transition: background .2s;
-    }
-    .pub-doi:hover {
-      text-decoration: none;
-      background: rgba(14,165,154,.08);
-    }
-
-    .more-btn {
-      width: 100%;
-      margin-top: 1.25rem;
-      padding: 0.95rem;
-      background: rgba(255,255,255,.24);
-      border: 1px solid rgba(255,255,255,.65);
-      border-radius: 999px;
-      font-size: 0.8125rem;
-      font-weight: 550;
-      color: var(--muted);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      transition: all 0.25s var(--ease);
-      font-family: var(--sans);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.65);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-    }
-    .more-btn:hover {
-      background: rgba(8,127,121,.9);
-      border-color: rgba(255,255,255,.2);
-      color: #fff;
-      transform: translateY(-2px);
-      box-shadow: 0 12px 30px rgba(8,127,121,.18);
-    }
-
-    #hidden-pubs {
-      display: none;
-      flex-direction: column;
-      gap: 0.85rem;
-      margin-top: 0.85rem;
-      animation: up 0.35s var(--ease);
-    }
-    @keyframes up {
-      from { opacity: 0; transform: translateY(8px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Repositories */
-    .repo-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-    }
-    .repo {
-      background: rgba(255,255,255,.34);
-      border: 1px solid rgba(255,255,255,.64);
-      border-radius: var(--radius);
-      padding: 1.5rem;
-      text-decoration: none;
-      color: inherit;
-      display: flex;
-      flex-direction: column;
-      transition: all 0.28s var(--ease);
-      position: relative;
-      overflow: hidden;
-      box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,.68);
-      backdrop-filter: var(--glass-blur);
-      -webkit-backdrop-filter: var(--glass-blur);
-    }
-    .repo::after {
-      content: '';
-      position: absolute;
-      top: 0; left: 10%; right: 10%;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--accent), transparent);
-      transform: scaleX(0);
-      transition: transform 0.28s var(--ease);
-    }
-    .repo:hover {
-      box-shadow: var(--shadow-lg), inset 0 1px 0 rgba(255,255,255,.75);
-      transform: translateY(-5px);
-      border-color: rgba(8,127,121,.18);
-    }
-    .repo:hover::after { transform: scaleX(1); }
-
-    .repo-ico {
-      width: 42px;
-      height: 42px;
-      background: rgba(14,165,154,.10);
-      border: 1px solid rgba(255,255,255,.48);
-      border-radius: 13px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--accent);
-      font-size: 1rem;
-      margin-bottom: 1rem;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.55);
-    }
-    .repo-name {
-      font-family: var(--display);
-      font-size: 0.88rem;
-      font-weight: 500;
-      color: var(--ink);
-      margin-bottom: 0.4rem;
-      display: flex;
-      align-items: center;
-      gap: 0.35rem;
-    }
-    .repo-name i { font-size: 0.6rem; color: var(--faint); }
-    .repo-desc {
-      font-size: 0.84rem;
-      color: var(--ink-2);
-      line-height: 1.55;
-      flex: 1;
-      margin-bottom: 1rem;
-    }
-    .repo-lang {
-      font-family: var(--mono);
-      font-size: 0.69rem;
-      color: var(--faint);
-      display: flex;
-      align-items: center;
-      gap: 0.35rem;
-    }
-    .dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: #3178c6;
-      box-shadow: 0 0 10px rgba(49,120,198,.28);
-    }
-
-    /* Contact */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.25rem;
-    }
-    .c-card {
-      border-radius: var(--radius);
-      padding: 2rem;
-      box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,.7);
-      backdrop-filter: var(--glass-blur);
-      -webkit-backdrop-filter: var(--glass-blur);
-    }
-    .c-card.filled {
-      background: linear-gradient(135deg, rgba(8,127,121,.84), rgba(14,165,154,.58));
-      color: #fff;
-      border: 1px solid rgba(255,255,255,.28);
-    }
-    .c-card.outline {
-      background: rgba(255,255,255,.34);
-      border: 1px solid rgba(255,255,255,.64);
-    }
-    .c-label {
-      font-family: var(--mono);
-      font-size: 0.68rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-      opacity: 0.7;
-    }
-    .c-card.filled .c-label { color: #b7fff5; }
-    .c-card.outline .c-label { color: var(--accent); }
-    .c-addr {
-      font-size: 0.95rem;
-      line-height: 1.8;
-      opacity: 0.95;
-    }
-    .c-links { display: flex; flex-direction: column; }
-    .c-link {
-      display: flex;
-      align-items: center;
-      gap: 0.85rem;
-      padding: 0.8rem 0;
-      border-bottom: 1px solid rgba(20,50,52,.10);
-      text-decoration: none;
-      font-size: 0.93rem;
-      color: var(--ink);
-      transition: all 0.18s var(--ease);
-    }
-    .c-link:last-child { border-bottom: none; }
-    .c-link:hover {
-      color: var(--accent);
-      padding-left: 0.35rem;
-    }
-    .c-link i {
-      width: 35px;
-      height: 35px;
-      background: rgba(14,165,154,.10);
-      border: 1px solid rgba(255,255,255,.48);
-      border-radius: 11px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--accent);
-      font-size: 0.85rem;
-      flex-shrink: 0;
-    }
-
-    footer {
-      padding: 2.5rem 0;
-      border-top: 1px solid rgba(255,255,255,.5);
-      text-align: center;
-      background: rgba(255,255,255,.12);
-    }
-    .foot {
-      font-family: var(--mono);
-      font-size: 0.68rem;
-      color: var(--faint);
-      letter-spacing: 0.02em;
-    }
-
-    /* Dark glass */
-    body.dark {
-      --bg: #071012;
-      --bg-alt: rgba(12,28,31,.28);
-      --surface: rgba(18,31,34,.48);
-      --surface-strong: rgba(24,42,45,.68);
-      --ink: #f3fbfa;
-      --ink-2: #c9d8d8;
-      --muted: #8ea3a4;
-      --faint: #6f8586;
-      --accent: #42d8ca;
-      --accent-hover: #72eee2;
-      --accent-soft: rgba(66,216,202,.11);
-      --border: rgba(210,255,250,.13);
-      --border-strong: rgba(210,255,250,.20);
-      --shadow: 0 16px 55px rgba(0,0,0,.28), 0 2px 12px rgba(0,0,0,.18);
-      --shadow-lg: 0 26px 90px rgba(0,0,0,.38), 0 8px 28px rgba(0,0,0,.22);
-    }
-    body.dark {
-      background:
-        radial-gradient(circle at 10% 10%, rgba(31, 179, 164, .13), transparent 30rem),
-        radial-gradient(circle at 88% 8%, rgba(119, 95, 212, .13), transparent 28rem),
-        radial-gradient(circle at 70% 75%, rgba(49, 136, 171, .10), transparent 34rem),
-        linear-gradient(135deg, #061011 0%, #0a1518 50%, #081214 100%);
-    }
-    body.dark::before { background: rgba(20, 181, 168, .10); }
-    body.dark::after { background: rgba(113, 93, 207, .09); }
-    body.dark .nav-inner {
-      background: rgba(8,18,20,.48);
-      border-color: rgba(210,255,250,.14);
-      box-shadow: 0 16px 55px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.07);
-    }
-    body.dark .nav-links a:hover,
-    body.dark .nav-links a.active { background: rgba(255,255,255,.07); }
-    body.dark .btn-ghost,
-    body.dark .theme-toggle,
-    body.dark .hero-badge,
-    body.dark .tag,
-    body.dark .loc {
-      background: rgba(18,34,37,.38);
-      border-color: rgba(210,255,250,.13);
-    }
-    body.dark .about-text,
-    body.dark .stat,
-    body.dark .edu,
-    body.dark .pub,
-    body.dark .repo,
-    body.dark .c-card.outline {
-      background: rgba(14,28,31,.43);
-      border-color: rgba(210,255,250,.13);
-      box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,.06);
-    }
-    body.dark .pub-year {
-      color: var(--ink-2);
-      background: rgba(255,255,255,.08);
-      border-color: rgba(210,255,250,.18);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.07);
-    }
-    body.dark .c-link { border-bottom-color: rgba(210,255,250,.09); }
-    body.dark .band { background: rgba(9,24,27,.22); border-color: rgba(210,255,250,.09); }
-    body.dark .c-card.filled {
-      background: linear-gradient(135deg, rgba(8,127,121,.76), rgba(20,105,111,.56));
-    }
-    body.dark .more-btn {
-      background: rgba(18,34,37,.35);
-      border-color: rgba(210,255,250,.13);
-    }
-    body.dark footer { background: rgba(7,17,19,.18); border-color: rgba(210,255,250,.09); }
-
-    /* Responsive */
-    @media (max-width: 880px) {
-      .nav { padding: 10px 0; }
-      .nav-inner { margin: 0 1rem; }
-      .hero {
-        grid-template-columns: 1fr;
-        text-align: center;
-        gap: 2.5rem;
-        padding: 3.5rem 0 3rem;
-        min-height: auto;
-      }
-      .hero h1 { margin-left: auto; margin-right: auto; }
-      .hero-sub { margin-left: auto; margin-right: auto; }
-      .hero-tags, .hero-cta { justify-content: center; }
-      .hero-visual { order: -1; }
-      .about-grid { grid-template-columns: 1fr; gap: 1.5rem; }
-      .edu {
-        grid-template-columns: 1fr;
-        gap: 0.4rem;
-      }
-      .repo-grid { grid-template-columns: 1fr 1fr; }
-      .contact-grid { grid-template-columns: 1fr; }
-      .nav-links { display: none; }
-    }
-    @media (max-width: 540px) {
-      .wrap { padding: 0 1.15rem; }
-      .nav-inner { margin: 0 .7rem; padding-left: .95rem; }
-      .nav-logo { font-size: .88rem; }
-      .repo-grid { grid-template-columns: 1fr; }
-      .photo-frame { width: 190px; height: 190px; }
-      section { padding: 3.8rem 0; }
-      .hero h1 { font-size: clamp(2.35rem, 12vw, 3.1rem); }
-      .hero-sub { font-size: 1rem; }
-      .about-text { padding: 1.45rem; }
-      .c-card { padding: 1.45rem; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      *, *::before, *::after {
-        animation-duration: .01ms !important;
-        transition-duration: .01ms !important;
-      }
-    }
-
-  </style>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Doto:wght@100..900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  </head>
-<body>
-
-<nav class="nav">
-  <div class="nav-inner">
-    <a href="#" class="nav-logo">Shubham <span>Choudhury</span></a>
-    <ul class="nav-links">
-      <li><a href="#about" class="active">About</a></li>
-      <li><a href="#education">Education</a></li>
-      <li><a href="#publications">Publications</a></li>
-      <li><a href="#repositories">Code</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <div class="nav-right">
-      <a href="./shubham_PhD_CV.pdf" download="Shubham_Choudhury_CV.pdf" class="btn btn-primary">
-        <i class="fas fa-download"></i> CV
-      </a>
-      <button class="theme-toggle" id="themeBtn" aria-label="Toggle theme">
-        <i class="fas fa-moon" id="themeIcon"></i>
-      </button>
-    </div>
-  </div>
-</nav>
-
-<main>
-  <!-- Hero -->
-  <div class="wrap">
-    <header class="hero">
-      <div>
-        <div class="hero-badge">PhD · Computational Biology</div>
-        <h1>Tools that <em>decode</em><br>biology at scale</h1>
-        <p class="hero-sub">
-          RNA biology, machine learning, and large-scale biological data — turning molecular complexity into actionable insight.
-        </p>
-        <div class="hero-tags">
-          <span class="tag">RNA Biology</span>
-          <span class="tag">Machine Learning</span>
-          <span class="tag">Bioinformatics</span>
-          <span class="tag">Big Data</span>
-        </div>
-        <div class="hero-cta">
-          <a href="#publications" class="btn btn-primary">
-            Publications <i class="fas fa-arrow-down" style="font-size:0.7rem"></i>
-          </a>
-          <a href="https://scholar.google.com/citations?user=pUOPVlUAAAAJ&hl=en&authuser=1" target="_blank" class="btn btn-ghost">
-            <i class="fas fa-graduation-cap"></i> Scholar
-          </a>
-          <a href="https://orcid.org/0000-0002-4509-4683" target="_blank" class="btn btn-ghost">
-            <i class="fab fa-orcid"></i> ORCID
-          </a>
-          <a href="https://www.linkedin.com/in/shubham-choudhury-ph-d-b22677120/" target="_blank" class="btn btn-ghost">
-            <i class="fab fa-linkedin"></i> LinkedIn
-          </a>
-        </div>
-      </div>
-      <div class="hero-visual">
-        <div class="photo-frame">
-          <div class="photo-ring"></div>
-          <img
-            src="images/shubham_img.jpeg"
-            alt="Shubham Choudhury"
-            onerror="this.src='https://ui-avatars.com/api/?name=Shubham+Choudhury&background=0f766e&color=f4f4f5&size=480'"
-          >
-        </div>
-        <div class="loc">
-          <i class="fas fa-map-marker-alt"></i>
-          IIIT-Delhi, New Delhi
-        </div>
-      </div>
-    </header>
-  </div>
-
-  <!-- About -->
-  <section id="about" class="band">
-    <div class="wrap">
-      <div class="sec-label">01 — About</div>
-      <h2 class="sec-title">Hello, World.</h2>
-      <div class="about-grid" style="margin-top: 2.5rem;">
-        <div class="about-text">
-          <p>
-            I'm a <strong>PhD scholar in Computational Biology</strong> at IIIT-Delhi,
-            working at the intersection of RNA biology, machine learning, and large-scale biological data.
-          </p>
-          <p>
-            My research focuses on building predictive computational tools for understanding
-            non-coding RNA subcellular localization, antimicrobial peptides, and therapeutic
-            target identification — connecting molecular biology to actionable bioinformatic insights.
-          </p>
-          <p>
-            I'm passionate about <strong>open science</strong>, reproducible research,
-            and lowering the barrier to computational biology for wet-lab researchers through
-            accessible, well-documented tools.
-          </p>
-        </div>
-        <div class="stats">
-          <div class="stat">
-            <div class="stat-n">14</div>
-            <div class="stat-l">Peer-reviewed publications</div>
-          </div>
-          <div class="stat">
-            <div class="stat-n">6</div>
-            <div class="stat-l">Open-source tools released</div>
-          </div>
-          <div class="stat">
-            <div class="stat-n">5+</div>
-            <div class="stat-l">Years of PhD research</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Education -->
-  <section id="education">
-    <div class="wrap">
-      <div class="sec-label">02 — Education</div>
-      <h2 class="sec-title">Academic Journey</h2>
-      <div class="edu-stack" style="margin-top: 2.5rem;">
-        <div class="edu">
-          <div class="edu-date">Jan 2021 — Present</div>
-          <div>
-            <div class="edu-deg">Doctoral Student</div>
-            <div class="edu-inst">
-              Indraprastha Institute of Information Technology, New Delhi
-              <small>Dept. of Computational Biology</small>
-            </div>
-          </div>
-          <div class="edu-badge">CGPA 8.29 / 10</div>
-        </div>
-        <div class="edu">
-          <div class="edu-date">July 2014 — June 2019</div>
-          <div>
-            <div class="edu-deg">BS-MS Dual Degree</div>
-            <div class="edu-inst">Indian Institute of Science Education and Research (IISER), Kolkata</div>
-          </div>
-          <div class="edu-badge">CGPA 7.11 / 10</div>
-        </div>
-        <div class="edu">
-          <div class="edu-date">Aug 2011 — June 2013</div>
-          <div>
-            <div class="edu-deg">Higher Secondary</div>
-            <div class="edu-inst">Khallikote Junior College, Berhampur</div>
-          </div>
-          <div class="edu-badge">80.33%</div>
-        </div>
-        <div class="edu">
-          <div class="edu-date">July 1999 — June 2011</div>
-          <div>
-            <div class="edu-deg">ICSE Schooling</div>
-            <div class="edu-inst">St. Vincent's Convent School, Berhampur</div>
-          </div>
-          <div class="edu-badge">93.5%</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Publications -->
-  <section id="publications" class="band">
-    <div class="wrap">
-      <div class="sec-label">03 — Research</div>
-      <h2 class="sec-title">Publications</h2>
-      <p class="sec-desc">Peer-reviewed work spanning RNA localization, peptide prediction, and computational therapeutics.</p>
-
-      <div class="pubs" id="pub-visible">
-        <div class="pub">
-          <div class="pub-top">
-            <span class="pub-year">2025</span>
-            <span class="pub-j">Frontiers in Bioinformatics</span>
-          </div>
-          <div class="pub-t">CytoLNCpred: A Computational Method for Predicting Cytoplasm-Associated Long Non-Coding RNAs</div>
-          <div class="pub-a"><strong>Choudhury, S.</strong>, Mehta, N. K., & Raghava, G. P. S.</div>
-          <a href="https://doi.org/10.3389/fbinf.2025.1585794" target="_blank" class="pub-doi">
-            <i class="fas fa-arrow-up-right-from-square"></i> 10.3389/fbinf.2025.1585794
-          </a>
-        </div>
-        <div class="pub">
-          <div class="pub-top">
-            <span class="pub-year">2024</span>
-            <span class="pub-j">Frontiers in RNA Research</span>
-          </div>
-          <div class="pub-t">Compilation of Resources on Subcellular Localization of lncRNA</div>
-          <div class="pub-a"><strong>Choudhury, S.</strong>, Rathore, A. S., & Raghava, G. P. S.</div>
-          <a href="https://doi.org/10.3389/frnar.2024.1419979" target="_blank" class="pub-doi">
-            <i class="fas fa-arrow-up-right-from-square"></i> 10.3389/frnar.2024.1419979
-          </a>
-        </div>
-        <div class="pub">
-          <div class="pub-top">
-            <span class="pub-year">2024</span>
-            <span class="pub-j">Frontiers in Bioinformatics</span>
-          </div>
-          <div class="pub-t">MRSLpred: A Hybrid Approach for Predicting Multi-Label Subcellular Localization of mRNA at the Genome Scale</div>
-          <div class="pub-a"><strong>Choudhury, S.</strong>, Bajiya, N., Patiyal, S., & Raghava, G. P. S.</div>
-          <a href="https://doi.org/10.3389/fbinf.2024.1341479" target="_blank" class="pub-doi">
-            <i class="fas fa-arrow-up-right-from-square"></i> 10.3389/fbinf.2024.1341479
-          </a>
-        </div>
-        <div class="pub">
-          <div class="pub-top">
-            <span class="pub-year">2024</span>
-            <span class="pub-j">Computers in Biology and Medicine</span>
-          </div>
-          <div class="pub-t">ToxinPred 3.0: An Improved Method for Predicting the Toxicity of Peptides</div>
-          <div class="pub-a">Rathore, A. S., <strong>Choudhury, S.</strong>, Arora, A., Tijare, P., & Raghava, G. P. S.</div>
-          <a href="https://doi.org/10.1016/j.compbiomed.2024.108926" target="_blank" class="pub-doi">
-            <i class="fas fa-arrow-up-right-from-square"></i> 10.1016/j.compbiomed.2024.108926
-          </a>
-        </div>
-        <div class="pub">
-          <div class="pub-top">
-            <span class="pub-year">2024</span>
-            <span class="pub-j">Antibiotics</span>
-          </div>
-          <div class="pub-t">AntiBP3: A Method for Predicting Antibacterial Peptides against Gram-Positive/Negative/Variable Bacteria</div>
-          <div class="pub-a">Bajiya, N., <strong>Choudhury, S.</strong>, Dhall, A., & Raghava, G. P. S.</div>
-          <a href="https://doi.org/10.3390/antibiotics13020168" target="_blank" class="pub-doi">
-            <i class="fas fa-arrow-up-right-from-square"></i> 10.3390/antibiotics13020168
-          </a>
-        </div>
-      </div>
-
-      <div id="hidden-pubs">
-        <div class="pub">
-          <div class="pub-top"><span class="pub-year">2025</span><span class="pub-j">Communications Biology</span></div>
-          <div class="pub-t">Prediction of Hemolytic Peptides and Their Hemolytic Concentration</div>
-          <div class="pub-a">Rathore, A. S., Kumar, N., <strong>Choudhury, S.</strong>, Mehta, N. K., & Raghava, G. P. S.</div>
-          <a href="https://doi.org/10.1038/s42003-024-05922-6" target="_blank" class="pub-doi"><i class="fas fa-arrow-up-right-from-square"></i> 10.1038/s42003-024-05922-6</a>
-        </div>
-        <div class="pub">
-          <div class="pub-top"><span class="pub-year">2025</span><span class="pub-j">Proteomics</span></div>
-          <div class="pub-t">Prediction of Plant Resistance Proteins Using Alignment-Based and Alignment-Free Approaches</div>
-          <div class="pub-a">Gahlot, P. S., <strong>Choudhury, S.</strong>, Bajiya, N., Kumar, N., & Raghava, G. P. S.</div>
-          <a href="https://doi.org/10.1002/pmic.202400261" target="_blank" class="pub-doi"><i class="fas fa-arrow-up-right-from-square"></i> 10.1002/pmic.202400261</a>
-        </div>
-        <div class="pub">
-          <div class="pub-top"><span class="pub-year">2025</span><span class="pub-j">Proteomics</span></div>
-          <div class="pub-t">Prediction of Anti-Freezing Proteins From Their Evolutionary Profile</div>
-          <div class="pub-a">Kumar, N., <strong>Choudhury, S.</strong>, Bajiya, N., Patiyal, S., & Raghava, G. P. S.</div>
-          <a href="https://doi.org/10.1002/pmic.202400157" target="_blank" class="pub-doi"><i class="fas fa-arrow-up-right-from-square"></i> 10.1002/pmic.202400157</a>
-        </div>
-        <div class="pub">
-          <div class="pub-top"><span class="pub-year">2023</span><span class="pub-j">Frontiers in Microbiology</span></div>
-          <div class="pub-t">An Ensemble Method for Prediction of Phage-Based Therapy against Bacterial Infections</div>
-          <div class="pub-a">Aggarwal, S., Dhall, A., Patiyal, S., <strong>Choudhury, S.</strong>, Arora, A., & Raghava, G. P. S.</div>
-          <a href="https://doi.org/10.3389/fmicb.2023.1148579" target="_blank" class="pub-doi"><i class="fas fa-arrow-up-right-from-square"></i> 10.3389/fmicb.2023.1148579</a>
-        </div>
-        <div class="pub">
-          <div class="pub-top"><span class="pub-year">2023</span><span class="pub-j">Computers in Biology and Medicine</span></div>
-          <div class="pub-t">TNFepitope: A Webserver for the Prediction of TNF-α Inducing Epitopes</div>
-          <div class="pub-a">Dhall, A., Patiyal, S., <strong>Choudhury, S.</strong>, Jain, S., Narang, K., & Raghava, G. P. S.</div>
-          <a href="https://doi.org/10.1016/j.compbiomed.2023.106929" target="_blank" class="pub-doi"><i class="fas fa-arrow-up-right-from-square"></i> 10.1016/j.compbiomed.2023.106929</a>
-        </div>
-        <div class="pub">
-          <div class="pub-top"><span class="pub-year">2023</span><span class="pub-j">Virus Research</span></div>
-          <div class="pub-t">Metaviromic Analyses of DNA Virus Community from Sediments of the N-Choe Stream, North India</div>
-          <div class="pub-a">Mukhopadhyay, A., <strong>Choudhury, S.</strong>, & Kumar, M.</div>
-          <a href="https://doi.org/10.1016/j.virusres.2023.199110" target="_blank" class="pub-doi"><i class="fas fa-arrow-up-right-from-square"></i> 10.1016/j.virusres.2023.199110</a>
-        </div>
-        <div class="pub">
-          <div class="pub-top"><span class="pub-year">2023</span><span class="pub-j">Briefings in Bioinformatics</span></div>
-          <div class="pub-t">DMPPred: A Tool for Identification of Antigenic Regions Responsible for Inducing Type 1 Diabetes Mellitus</div>
-          <div class="pub-a">Kumar, N., Patiyal, S., <strong>Choudhury, S.</strong>, Tomer, R., Dhall, A., & Raghava, G. P. S.</div>
-          <a href="https://doi.org/10.1093/bib/bbac525" target="_blank" class="pub-doi"><i class="fas fa-arrow-up-right-from-square"></i> 10.1093/bib/bbac525</a>
-        </div>
-        <div class="pub">
-          <div class="pub-top"><span class="pub-year">2021</span><span class="pub-j">Computers in Biology and Medicine</span></div>
-          <div class="pub-t">Computational Identification of Repurposed Drugs against Viruses Causing Epidemics and Pandemics via Drug-Target Network Analysis</div>
-          <div class="pub-a">Rajput, A., Thakur, A., Rastogi, A., <strong>Choudhury, S.</strong>, & Kumar, M.</div>
-          <a href="https://doi.org/10.1016/j.compbiomed.2021.104677" target="_blank" class="pub-doi"><i class="fas fa-arrow-up-right-from-square"></i> 10.1016/j.compbiomed.2021.104677</a>
-        </div>
-        <div class="pub">
-          <div class="pub-top"><span class="pub-year">2020</span><span class="pub-j">Frontiers in Microbiology</span></div>
-          <div class="pub-t">CoronaVR: A Computational Resource and Analysis of Epitopes and Therapeutics for SARS-CoV-2</div>
-          <div class="pub-a">Gupta, A. K., Khan, M. S., <strong>Choudhury, S.</strong>, Mukhopadhyay, A., et al.</div>
-          <a href="https://doi.org/10.3389/fmicb.2020.01858" target="_blank" class="pub-doi"><i class="fas fa-arrow-up-right-from-square"></i> 10.3389/fmicb.2020.01858</a>
-        </div>
-      </div>
-
-      <button class="more-btn" id="togglePubs" type="button">
-        <i class="fas fa-plus" id="toggleIcon"></i>
-        <span id="toggleText">Show all 14 publications</span>
-      </button>
-    </div>
-  </section>
-
-  <!-- Repositories -->
-  <section id="repositories">
-    <div class="wrap">
-      <div class="sec-label">04 — Code</div>
-      <h2 class="sec-title">Open Source Tools</h2>
-      <p class="sec-desc">Predictive models and web servers released for the community.</p>
-      <div class="repo-grid">
-        <a href="https://github.com/raghavagps/cytolncpred" target="_blank" class="repo">
-          <div class="repo-ico"><i class="fas fa-dna"></i></div>
-          <div class="repo-name">CytoLNCpred <i class="fas fa-external-link-alt"></i></div>
-          <div class="repo-desc">Prediction of cytoplasm-associated long non-coding RNAs using sequence features and ML.</div>
-          <div class="repo-lang"><span class="dot"></span> Python</div>
-        </a>
-        <a href="https://github.com/raghavagps/mrslpred" target="_blank" class="repo">
-          <div class="repo-ico"><i class="fas fa-microscope"></i></div>
-          <div class="repo-name">MRSLpred <i class="fas fa-external-link-alt"></i></div>
-          <div class="repo-desc">Multi-label subcellular localization prediction of mRNA sequences at genome scale.</div>
-          <div class="repo-lang"><span class="dot"></span> Python</div>
-        </a>
-        <a href="https://github.com/raghavagps/afpropred" target="_blank" class="repo">
-          <div class="repo-ico"><i class="fas fa-snowflake"></i></div>
-          <div class="repo-name">AfProPred <i class="fas fa-external-link-alt"></i></div>
-          <div class="repo-desc">Predict anti-freezing proteins from evolutionary and sequence features.</div>
-          <div class="repo-lang"><span class="dot"></span> Python</div>
-        </a>
-        <a href="https://github.com/raghavagps/pdac_pred_llm" target="_blank" class="repo">
-          <div class="repo-ico"><i class="fas fa-brain"></i></div>
-          <div class="repo-name">PDACpredLLM <i class="fas fa-external-link-alt"></i></div>
-          <div class="repo-desc">Pancreatic ductal adenocarcinoma biomarker prediction using large language models.</div>
-          <div class="repo-lang"><span class="dot"></span> Python</div>
-        </a>
-        <a href="https://github.com/raghavagps/toxinpred3" target="_blank" class="repo">
-          <div class="repo-ico"><i class="fas fa-flask"></i></div>
-          <div class="repo-name">ToxinPred 3.0 <i class="fas fa-external-link-alt"></i></div>
-          <div class="repo-desc">Predict toxicity of peptides and design non-toxic analogs.</div>
-          <div class="repo-lang"><span class="dot"></span> Python</div>
-        </a>
-        <a href="https://github.com/raghavagps/PlantDRPpred" target="_blank" class="repo">
-          <div class="repo-ico"><i class="fas fa-leaf"></i></div>
-          <div class="repo-name">PlantDRPpred <i class="fas fa-external-link-alt"></i></div>
-          <div class="repo-desc">Alignment-based and free approaches for plant disease resistance proteins.</div>
-          <div class="repo-lang"><span class="dot"></span> Python</div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section id="contact" class="band">
-    <div class="wrap">
-      <div class="sec-label">05 — Contact</div>
-      <h2 class="sec-title">Get in Touch</h2>
-      <div class="contact-grid" style="margin-top: 2.5rem;">
-        <div class="c-card filled">
-          <div class="c-label">Mailing Address</div>
-          <div class="c-addr">
-            Lab No. A-318, R&D Building<br>
-            Indraprastha Institute of Information Technology<br>
-            Okhla Phase 3<br>
-            New Delhi — 110020, India
-          </div>
-        </div>
-        <div class="c-card outline">
-          <div class="c-label">Reach Out</div>
-          <div class="c-links">
-            <a href="mailto:shubhamc@outlook.in" class="c-link">
-              <i class="fas fa-at"></i> shubhamc@outlook.in
-            </a>
-            <a href="tel:+919040468955" class="c-link">
-              <i class="fas fa-phone"></i> +91 904 046 8955
-            </a>
-            <a href="https://scholar.google.com/citations?user=pUOPVlUAAAAJ&hl=en&authuser=1" target="_blank" class="c-link">
-              <i class="fas fa-graduation-cap"></i> Google Scholar
-            </a>
-            <a href="https://orcid.org/0000-0002-4509-4683" target="_blank" class="c-link">
-              <i class="fab fa-orcid"></i> ORCID 0000-0002-4509-4683
-            </a>
-            <a href="https://www.linkedin.com/in/shubham-choudhury-ph-d-b22677120/" target="_blank" class="c-link">
-              <i class="fab fa-linkedin"></i> LinkedIn
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-</main>
-
-<footer>
-  <div class="wrap">
-    <p class="foot">© 2026 Shubham Choudhury · IIIT-Delhi · Built with HTML · CSS · JS</p>
-  </div>
-</footer>
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shubham Choudhury, Computational Biologist</title>
+<meta name="description" content="PhD in Computational Biology, IIIT Delhi. Machine learning tools that predict the function of long non-coding RNAs from sequence.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
 <script>
-  // Theme toggle
-  const themeBtn = document.getElementById('themeBtn');
-  const themeIcon = document.getElementById('themeIcon');
-  if (localStorage.getItem('theme') === 'dark') {
-    document.body.classList.add('dark');
-    themeIcon.className = 'fas fa-sun';
-  }
-  themeBtn.addEventListener('click', () => {
-    document.body.classList.toggle('dark');
-    const isDark = document.body.classList.contains('dark');
-    localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    themeIcon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
-  });
+try{var t=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');document.documentElement.dataset.theme=t}catch(e){}
+</script>
+<style>
+:root{--bg:#f4f6f7;--ink:#14191c;--mut:#4a565c;--line:#d8dee1;--ac:#1c5a85;--a:#3f8f6b;--c:#3b6fa8;--g:#b98a2e;--u:#b5476b;--sans:'Schibsted Grotesk',system-ui,sans-serif;--serif:'Source Serif 4',Georgia,serif}
+[data-theme=dark]{--bg:#0e1215;--ink:#e8edf0;--mut:#9ba8ae;--line:#263137;--ac:#86bbe0;--a:#6fbf9a;--c:#86a9dd;--g:#d9ae5a;--u:#d98aa6}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:2rem}
+body{background:var(--bg);color:var(--ink);font:400 1.125rem/1.72 var(--serif);-webkit-font-smoothing:antialiased}
+a{color:var(--ac);text-underline-offset:3px;text-decoration-thickness:1px}
+a:hover{text-decoration-thickness:2px}
+:focus-visible{outline:3px solid var(--ac);outline-offset:3px;border-radius:3px}
+.skip{position:absolute;left:-999px}.skip:focus{left:1rem;top:1rem;background:var(--bg);padding:.5rem;z-index:99}
+.layout{max-width:72rem;margin:0 auto;display:grid;grid-template-columns:17rem minmax(0,1fr);column-gap:5rem;padding:0 2rem}
 
-  // Publications toggle
-  const toggleBtn = document.getElementById('togglePubs');
-  const hiddenPubs = document.getElementById('hidden-pubs');
-  const toggleText = document.getElementById('toggleText');
-  const toggleIcon = document.getElementById('toggleIcon');
-  let expanded = false;
+.side{position:sticky;top:0;height:100vh;overflow:auto;padding:3.5rem 0 2rem;display:flex;flex-direction:column;font-family:var(--sans)}
+.side img{width:7.5rem;height:7.5rem;border-radius:6px;object-fit:cover;margin-bottom:1.5rem}
+.side h1{font:700 1.9rem/1.1 var(--sans);letter-spacing:-.02em}
+.role{color:var(--mut);font-size:.98rem;line-height:1.5;margin-top:.6rem}
+.bar{display:flex;height:3px;width:3.5rem;margin:1.3rem 0 1.8rem}
+.bar i{flex:1}.bar i:nth-child(1){background:var(--a)}.bar i:nth-child(2){background:var(--c)}.bar i:nth-child(3){background:var(--g)}.bar i:nth-child(4){background:var(--u)}
+.side nav ul{list-style:none;display:flex;flex-direction:column;gap:.15rem}
+.side nav a{display:block;padding:.35rem 0 .35rem 1rem;border-left:2px solid var(--line);color:var(--mut);text-decoration:none;font-size:.97rem;font-weight:500}
+.side nav a:hover{color:var(--ink)}
+.side nav a.on{color:var(--ink);border-left-color:var(--ac);font-weight:600}
+.links{list-style:none;margin-top:2rem;display:flex;flex-direction:column;gap:.3rem;font-size:.95rem;font-weight:500}
+.tools-row{margin-top:auto;padding-top:2rem;display:flex;gap:.6rem;align-items:center}
+.cv{font:600 .9rem var(--sans);text-decoration:none;color:var(--bg);background:var(--ink);padding:.5rem 1rem;border-radius:4px}
+.cv:hover{background:var(--ac)}
+#theme{background:none;border:1px solid var(--line);color:var(--ink);font:500 .88rem var(--sans);padding:.46rem .8rem;border-radius:4px;cursor:pointer}
+#theme:hover{border-color:var(--ac)}
 
-  toggleBtn.addEventListener('click', () => {
-    expanded = !expanded;
-    if (expanded) {
-      hiddenPubs.style.display = 'flex';
-      toggleText.textContent = 'Show fewer publications';
-      toggleIcon.className = 'fas fa-minus';
-    } else {
-      hiddenPubs.style.display = 'none';
-      toggleText.textContent = 'Show all 14 publications';
-      toggleIcon.className = 'fas fa-plus';
-    }
-  });
+main{max-width:42rem;padding:3.5rem 0 2rem}
+section{padding:0 0 4.5rem}
+h2{font:700 1.5rem/1.2 var(--sans);letter-spacing:-.015em;margin-bottom:1.5rem}
+.lead{font:600 clamp(1.7rem,3.4vw,2.35rem)/1.25 var(--sans);letter-spacing:-.02em;margin-bottom:2rem}
+p+p{margin-top:1.1rem}
+.note{color:var(--mut);font:400 .98rem/1.6 var(--sans);margin-bottom:1.2rem}
 
-  // Active nav on scroll
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-links a');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        navLinks.forEach(l => l.classList.remove('active'));
-        const a = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
-        if (a) a.classList.add('active');
-      }
-    });
-  }, { threshold: 0.25 });
-  sections.forEach(s => observer.observe(s));
+.rows{list-style:none;font-family:var(--sans)}
+.rows>li{display:grid;grid-template-columns:8.5rem 1fr;gap:1.2rem;padding:1.15rem 0;border-top:1px solid var(--line)}
+.when{color:var(--mut);font-size:.9rem;line-height:1.5;padding-top:.15rem}
+.rows h3{font:600 1.04rem/1.4 var(--sans)}
+.rows h3 a{color:var(--ink);text-decoration:none}
+.rows h3 a:hover{color:var(--ac);text-decoration:underline}
+.sub{color:var(--mut);font-size:.96rem;margin-top:.1rem}
+.au{color:var(--mut);font-size:.93rem;margin-top:.2rem;line-height:1.55}
+.au b{color:var(--ink);font-weight:600}
+.tag{display:block;margin:0 0 .25rem;font-size:.78rem;font-weight:600;color:var(--ac);letter-spacing:.01em}
+.rows>li:has(.tag){box-shadow:inset 3px 0 0 var(--ac);padding-left:1rem;margin-left:-1rem}
+.rows>li:has(.tag) .when{padding-left:0}
+
+details{margin-top:.2rem}
+summary{cursor:pointer;font:600 .95rem var(--sans);color:var(--ac);padding:1rem 0;list-style:none;border-top:1px solid var(--line)}
+summary::-webkit-details-marker{display:none}
+summary::before{content:'+';display:inline-block;width:1.3rem}
+details[open] summary::before{content:'\2212'}
+
+.tools{list-style:none;font-family:var(--sans)}
+.tools li{display:grid;grid-template-columns:11rem 1fr;gap:1.2rem;padding:1rem 0;border-top:1px solid var(--line);align-items:baseline}
+.tools a{font-weight:600;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:.7rem}
+.tools a::before{content:'';width:.6rem;height:.6rem;background:var(--b);flex:none}
+.tools a:hover{color:var(--ac);text-decoration:underline}
+.tools li:nth-child(4n+1){--b:var(--a)}.tools li:nth-child(4n+2){--b:var(--c)}.tools li:nth-child(4n+3){--b:var(--g)}.tools li:nth-child(4n+4){--b:var(--u)}
+.tools p{color:var(--mut);font-size:.97rem;line-height:1.55}
+
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:2rem;font-family:var(--sans);font-size:1rem;border-top:1px solid var(--line);padding-top:1.4rem}
+.contact h3{font:600 .9rem var(--sans);color:var(--mut);margin-bottom:.5rem}
+.contact ul{list-style:none}.contact li{padding:.2rem 0}
+address{font-style:normal;line-height:1.65}
+footer{max-width:72rem;margin:0 auto;padding:1.5rem 2rem 3rem;color:var(--mut);font:400 .9rem var(--sans)}
+
+@media(max-width:960px){
+.layout{display:block;padding:0 1.25rem}
+.side{position:static;height:auto;overflow:visible;padding:2rem 0 1rem}
+.side img{width:5.5rem;height:5.5rem}
+.side nav ul{flex-direction:row;flex-wrap:wrap;gap:.2rem 1.1rem}
+.side nav a{border-left:0;border-bottom:2px solid transparent;padding:.3rem 0}
+.side nav a.on{border-bottom-color:var(--ac)}
+.links{flex-direction:row;flex-wrap:wrap;gap:.3rem 1.2rem}
+.tools-row{margin-top:1.4rem;padding-top:0}
+main{padding-top:2rem}
+.rows>li,.tools li{grid-template-columns:1fr;gap:.25rem}
+.contact{grid-template-columns:1fr}
+.rows>li:has(.tag){margin-left:0}
+footer{padding:1rem 1.25rem 2.5rem}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="layout">
+<aside class="side">
+<img src="images/shubham_img.jpeg" alt="Portrait of Shubham Choudhury" width="120" height="120" onerror="this.style.display='none'">
+<h1>Shubham Choudhury</h1>
+<p class="role">PhD in Computational Biology, IIIT Delhi. Defended July 2026.</p>
+<div class="bar" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+<nav aria-label="Main">
+<ul>
+<li><a href="#about">About</a></li>
+<li><a href="#education">Education</a></li>
+<li><a href="#tools">Tools</a></li>
+<li><a href="#publications">Publications</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+<ul class="links">
+<li><a href="https://scholar.google.com/citations?user=pUOPVlUAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a></li>
+<li><a href="https://orcid.org/0000-0002-4509-4683" target="_blank" rel="noopener">ORCID</a></li>
+<li><a href="https://www.linkedin.com/in/shubham-choudhury-ph-d-b22677120/" target="_blank" rel="noopener">LinkedIn</a></li>
+</ul>
+<div class="tools-row">
+<a class="cv" href="./shubham_PhD_CV.pdf" download="Shubham_Choudhury_CV.pdf">Download CV</a>
+<button id="theme" type="button" aria-label="Switch colour theme">Theme</button>
+</div>
+</aside>
+
+<main id="main">
+<section id="about">
+<p class="lead">I build machine learning tools that predict what long non-coding RNAs do, using sequence alone.</p>
+<p>My thesis is titled <em>Development of AI-based Tools for Functional Annotation of lncRNA and its Applications</em>. It asks a simple question. Can we read the function and location of a non-coding RNA from its sequence? I worked on this in Prof. G. P. S. Raghava's group at IIIT Delhi.</p>
+<p>I trained as a biologist and moved into computation through programming. That shapes how I build. I want tools that a wet-lab researcher can run without writing code, and I release them as web servers with open source code.</p>
+<p>Next, I want to apply this work to RNA-based therapeutics and translational research.</p>
+</section>
+
+<section id="education">
+<h2>Education and fellowships</h2>
+<ul class="rows">
+<li>
+<div class="when">2021 to 2026</div>
+<div><h3>PhD, Computational Biology</h3><p class="sub">Indraprastha Institute of Information Technology, New Delhi</p></div>
+</li>
+<li>
+<div class="when">2014 to 2019</div>
+<div><h3>BS-MS, Biological Sciences</h3><p class="sub">Indian Institute of Science Education and Research, Kolkata</p></div>
+</li>
+<li>
+<div class="when">PhD funding</div>
+<div><h3>DST-INSPIRE and DBT-JRF fellowships</h3></div>
+</li>
+</ul>
+</section>
+
+<section id="tools">
+<h2>Tools</h2>
+<p class="note">Web servers and open source code from my doctoral work.</p>
+<ul class="tools">
+<li><a href="https://github.com/raghavagps/cytolncpred" target="_blank" rel="noopener">CytoLNCpred</a><p>Predicts cytoplasm-associated lncRNAs from sequence features.</p></li>
+<li><a href="https://github.com/raghavagps/mrslpred" target="_blank" rel="noopener">MRSLpred</a><p>Predicts multi-label subcellular localization of mRNA at genome scale.</p></li>
+<li><a href="https://github.com/raghavagps/pdac_pred_llm" target="_blank" rel="noopener">PDACpredLLM</a><p>Predicts pancreatic cancer biomarkers using large language models.</p></li>
+<li><a href="https://github.com/raghavagps/toxinpred3" target="_blank" rel="noopener">ToxinPred 3.0</a><p>Predicts peptide toxicity and designs non-toxic analogs.</p></li>
+<li><a href="https://github.com/raghavagps/afpropred" target="_blank" rel="noopener">AfProPred</a><p>Predicts anti-freezing proteins from evolutionary profiles.</p></li>
+<li><a href="https://github.com/raghavagps/PlantDRPpred" target="_blank" rel="noopener">PlantDRPpred</a><p>Predicts plant disease resistance proteins.</p></li>
+</ul>
+</section>
+
+<section id="publications">
+<h2>Publications</h2>
+<p class="note">Newest first. My name is in bold. I am first author on the three marked papers.</p>
+<ul class="rows">
+<li><div class="when">2025<br>Frontiers in Bioinformatics</div><div><h3><a href="https://doi.org/10.3389/fbinf.2025.1585794" target="_blank" rel="noopener">CytoLNCpred: A Computational Method for Predicting Cytoplasm-Associated Long Non-Coding RNAs</a><span class="tag">First author</span></h3><p class="au"><b>Choudhury, S.</b>, Mehta, N. K., Raghava, G. P. S.</p></div></li>
+<li><div class="when">2025<br>Communications Biology</div><div><h3><a href="https://doi.org/10.1038/s42003-024-05922-6" target="_blank" rel="noopener">Prediction of Hemolytic Peptides and Their Hemolytic Concentration</a></h3><p class="au">Rathore, A. S., Kumar, N., <b>Choudhury, S.</b>, Mehta, N. K., Raghava, G. P. S.</p></div></li>
+<li><div class="when">2025<br>Proteomics</div><div><h3><a href="https://doi.org/10.1002/pmic.202400261" target="_blank" rel="noopener">Prediction of Plant Resistance Proteins Using Alignment-Based and Alignment-Free Approaches</a></h3><p class="au">Gahlot, P. S., <b>Choudhury, S.</b>, Bajiya, N., Kumar, N., Raghava, G. P. S.</p></div></li>
+<li><div class="when">2025<br>Proteomics</div><div><h3><a href="https://doi.org/10.1002/pmic.202400157" target="_blank" rel="noopener">Prediction of Anti-Freezing Proteins From Their Evolutionary Profile</a></h3><p class="au">Kumar, N., <b>Choudhury, S.</b>, Bajiya, N., Patiyal, S., Raghava, G. P. S.</p></div></li>
+<li><div class="when">2024<br>Frontiers in RNA Research</div><div><h3><a href="https://doi.org/10.3389/frnar.2024.1419979" target="_blank" rel="noopener">Compilation of Resources on Subcellular Localization of lncRNA</a><span class="tag">First author</span></h3><p class="au"><b>Choudhury, S.</b>, Rathore, A. S., Raghava, G. P. S.</p></div></li>
+<li><div class="when">2024<br>Frontiers in Bioinformatics</div><div><h3><a href="https://doi.org/10.3389/fbinf.2024.1341479" target="_blank" rel="noopener">MRSLpred: A Hybrid Approach for Predicting Multi-Label Subcellular Localization of mRNA at the Genome Scale</a><span class="tag">First author</span></h3><p class="au"><b>Choudhury, S.</b>, Bajiya, N., Patiyal, S., Raghava, G. P. S.</p></div></li>
+</ul>
+
+<details>
+<summary>Show 9 more publications</summary>
+<ul class="rows">
+<li><div class="when">2024<br>Computers in Biology and Medicine</div><div><h3><a href="https://doi.org/10.1016/j.compbiomed.2024.108926" target="_blank" rel="noopener">ToxinPred 3.0: An Improved Method for Predicting the Toxicity of Peptides</a></h3><p class="au">Rathore, A. S., <b>Choudhury, S.</b>, Arora, A., Tijare, P., Raghava, G. P. S.</p></div></li>
+<li><div class="when">2024<br>Antibiotics</div><div><h3><a href="https://doi.org/10.3390/antibiotics13020168" target="_blank" rel="noopener">AntiBP3: A Method for Predicting Antibacterial Peptides against Gram-Positive, Gram-Negative and Gram-Variable Bacteria</a></h3><p class="au">Bajiya, N., <b>Choudhury, S.</b>, Dhall, A., Raghava, G. P. S.</p></div></li>
+<li><div class="when">2023<br>Frontiers in Microbiology</div><div><h3><a href="https://doi.org/10.3389/fmicb.2023.1148579" target="_blank" rel="noopener">An Ensemble Method for Prediction of Phage-Based Therapy against Bacterial Infections</a></h3><p class="au">Aggarwal, S., Dhall, A., Patiyal, S., <b>Choudhury, S.</b>, Arora, A., Raghava, G. P. S.</p></div></li>
+<li><div class="when">2023<br>Computers in Biology and Medicine</div><div><h3><a href="https://doi.org/10.1016/j.compbiomed.2023.106929" target="_blank" rel="noopener">TNFepitope: A Webserver for the Prediction of TNF-α Inducing Epitopes</a></h3><p class="au">Dhall, A., Patiyal, S., <b>Choudhury, S.</b>, Jain, S., Narang, K., Raghava, G. P. S.</p></div></li>
+<li><div class="when">2023<br>Virus Research</div><div><h3><a href="https://doi.org/10.1016/j.virusres.2023.199110" target="_blank" rel="noopener">Metaviromic Analyses of DNA Virus Community from Sediments of the N-Choe Stream, North India</a></h3><p class="au">Mukhopadhyay, A., <b>Choudhury, S.</b>, Kumar, M.</p></div></li>
+<li><div class="when">2023<br>Briefings in Bioinformatics</div><div><h3><a href="https://doi.org/10.1093/bib/bbac525" target="_blank" rel="noopener">DMPPred: A Tool for Identification of Antigenic Regions Responsible for Inducing Type 1 Diabetes Mellitus</a></h3><p class="au">Kumar, N., Patiyal, S., <b>Choudhury, S.</b>, Tomer, R., Dhall, A., Raghava, G. P. S.</p></div></li>
+<li><div class="when">2021<br>Computers in Biology and Medicine</div><div><h3><a href="https://doi.org/10.1016/j.compbiomed.2021.104677" target="_blank" rel="noopener">Computational Identification of Repurposed Drugs against Viruses Causing Epidemics and Pandemics via Drug-Target Network Analysis</a></h3><p class="au">Rajput, A., Thakur, A., Rastogi, A., <b>Choudhury, S.</b>, Kumar, M.</p></div></li>
+<li><div class="when">2020<br>Frontiers in Microbiology</div><div><h3><a href="https://doi.org/10.3389/fmicb.2020.01858" target="_blank" rel="noopener">CoronaVR: A Computational Resource and Analysis of Epitopes and Therapeutics for SARS-CoV-2</a></h3><p class="au">Gupta, A. K., Khan, M. S., <b>Choudhury, S.</b>, Mukhopadhyay, A., et al.</p></div></li>
+</ul>
+</details>
+</section>
+
+<section id="contact">
+<h2>Contact</h2>
+<div class="contact">
+<div>
+<h3>Email</h3>
+<ul><li><a href="mailto:shubhamc@outlook.in">shubhamc@outlook.in</a></li></ul>
+<h3 style="margin-top:1.2rem">Profiles</h3>
+<ul>
+<li><a href="https://scholar.google.com/citations?user=pUOPVlUAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a></li>
+<li><a href="https://orcid.org/0000-0002-4509-4683" target="_blank" rel="noopener">ORCID 0000-0002-4509-4683</a></li>
+<li><a href="https://www.linkedin.com/in/shubham-choudhury-ph-d-b22677120/" target="_blank" rel="noopener">LinkedIn</a></li>
+</ul>
+</div>
+<div>
+<h3>Address</h3>
+<address>Lab A-318, R&amp;D Building<br>Indraprastha Institute of Information Technology<br>Okhla Phase 3, New Delhi 110020, India</address>
+</div>
+</div>
+</section>
+</main>
+</div>
+<footer>&copy; 2026 Shubham Choudhury</footer>
+<script>
+(function(){
+document.getElementById('theme').addEventListener('click',function(){
+var d=document.documentElement.dataset.theme==='dark'?'light':'dark';
+document.documentElement.dataset.theme=d;
+try{localStorage.setItem('theme',d)}catch(e){}
+});
+var links=document.querySelectorAll('.side nav a');
+var io=new IntersectionObserver(function(es){
+es.forEach(function(e){
+if(e.isIntersecting){links.forEach(function(l){l.classList.toggle('on',l.getAttribute('href')==='#'+e.target.id)})}
+});
+},{rootMargin:'-30% 0px -60% 0px'});
+document.querySelectorAll('section[id]').forEach(function(s){io.observe(s)});
+})();
 </script>
 </body>
 </html>
